@@ -16,3 +16,5 @@ ios/
 
 expo-env.d.ts
 # @end expo-cli
+__pycache__/
+*.pyc

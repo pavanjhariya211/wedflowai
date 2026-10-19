@@ -26,4 +26,8 @@ session persistence, PKCE email verification/recovery, protected routes and
 accessible form states. Add source product documents and maintain the seven core
 project documents. No domain planning functionality or production deployment.
 
+Phases 1 and 2 are implemented. Phase 2 passed live development migration/RLS and
+real signed-in HTTP tests. Physical-device acceptance is still open. Founder
+review is required before Phase 3 (templates, tasks, owners and master timeline).
+
 Current validation state and external blockers: [progress](progress.md).

@@ -1,22 +1,42 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import { useFocusEffect } from 'expo-router';
 import { useAuth } from '../../src/auth/AuthProvider';
 import { friendlyAuthError } from '../../src/auth/errors';
 import { Body, Button, Card, Heading, Notice, Screen } from '../../src/components/ui';
+import { useWedding } from '../../src/wedding/WeddingProvider';
+import { WeddingForm } from '../../src/wedding/WeddingForm';
+import { JoinForm } from '../../src/wedding/JoinForm';
+import { Choice } from '../../src/wedding/Choice';
+import { indianDate } from '../../src/wedding/validation';
 export default function Home() {
-  const { session, service } = useAuth();
-  const [busy, setBusy] = useState(false);
-  const [failure, setFailure] = useState('');
+  const { session, service: auth } = useAuth();
+  const { wedding, weddings, loading, error, reload, ceremonies } = useWedding();
+  const [mode, setMode] = useState<'view' | 'create' | 'edit' | 'join'>('view');
+  const [busy, setBusy] = useState(false), [failure, setFailure] = useState('');
+  useFocusEffect(useCallback(() => { void reload(); }, [reload]));
   async function signOut() {
-    if (!service || busy) return;
+    if (!auth || busy) return;
     setBusy(true); setFailure('');
-    try { await service.signOut(); } catch (error) { setFailure(friendlyAuthError(error)); }
+    try { await auth.signOut(); } catch (error) { setFailure(friendlyAuthError(error)); }
     finally { setBusy(false); }
   }
-  return <Screen><Heading title="A little less to worry about." subtitle="Your family’s wedding plan, together." />
-    <Notice>Phase 1 · Account foundation</Notice>
-    <Card><Body>Signed in as {session?.user.email ?? 'your account'}.</Body>
-      <Body>Wedding creation is the next milestone. No wedding, tasks, or expenses have been created yet.</Body></Card>
+  return <Screen><Heading title={wedding?.title ?? 'Your wedding starts here.'} subtitle="A clear plan, with your people." />
     {failure ? <Notice error>{failure}</Notice> : null}
+    {loading ? <Notice>Loading your wedding workspace…</Notice> : error ? <><Notice error>{error}</Notice><Button title="Retry connection" onPress={() => { void reload(); }} /></> : <>
+      {mode === 'create' || mode === 'edit' ? <WeddingForm wedding={mode === 'edit' ? wedding ?? undefined : undefined} onDone={() => setMode('view')} onCancel={() => setMode('view')} />
+        : mode === 'join' ? <JoinForm onDone={() => setMode('view')} /> : <>
+        {weddings.length > 1 ? <Choice label="Selected wedding" value={wedding!.id} options={weddings.map((w) => ({ value: w.id, label: w.title }))} onChange={(id) => { void reload(id); }} /> : null}
+        {wedding ? <Card><Body>{indianDate(wedding.main_date)} · {wedding.city ?? 'City not set'}</Body>
+          <Body>{wedding.format === 'single' ? 'One wedding day' : 'Multiple days / functions'} · {wedding.sharing_mode === 'shared' ? 'Shared family workspace' : 'Separate families + shared overview'}</Body>
+          <Body>{ceremonies.length} visible {ceremonies.length === 1 ? 'ceremony' : 'ceremonies'}. Add and manage them in Timeline.</Body>
+          {wedding.budget_paise !== null ? <Body>Shared wedding budget: {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(wedding.budget_paise / 100)}</Body> : null}
+          {wedding.creator_id === session?.user.id ? <Button secondary title="Edit wedding settings" onPress={() => setMode('edit')} /> : null}
+        </Card> : <Card><Body>Create a wedding, choose your family setup, then add the ceremonies that matter to you. No traditions are selected automatically.</Body></Card>}
+        <Button title={wedding ? 'Create another wedding' : 'Create your wedding'} onPress={() => setMode('create')} />
+        <Button secondary title="Join with invitation code" onPress={() => setMode('join')} />
+      </>}
+      <Body>Task templates and shopping arrive in later milestones.</Body>
+    </>}
     <Button secondary title="Sign out of this device" busy={busy} onPress={() => { void signOut(); }} />
   </Screen>;
 }

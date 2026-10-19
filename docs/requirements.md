@@ -16,10 +16,11 @@ v1.0 which was not supplied; use its embedded category table until provided.
 
 - [x] Expo/TypeScript/Router mobile foundation; Android and iOS bundle targets.
 - [x] Supabase Auth integration, registration, email sign-in/verification/recovery,
-  native secure persistence and sign-out. Live-provider/device validation pending.
-- [ ] Wedding creation: name/date, flexible planning start, optional city/budget,
+  native secure persistence and sign-out. Real hosted password sign-in verified;
+  email delivery and physical-device validation remain pending.
+- [x] Wedding creation: name/date, flexible planning start, optional city/budget,
   shared/separate family preference; editable settings with safe date-change flow.
-- [ ] Single- and multi-day ceremonies; multiple same-day events; optional
+- [x] Single- and multi-day ceremonies; multiple same-day events; optional
   traditions, arbitrary custom ceremony names and no religious assumptions.
 - [ ] Configurable templates; editable preview; removable/hidden presets; no
   generated date misrepresented as a vendor-confirmed commitment.
@@ -29,8 +30,9 @@ v1.0 which was not supplied; use its embedded category table until provided.
   safe deletion; notes, reminders, priority, start/deadline where relevant.
 - [ ] One-time, continuous, dependency-driven and recurring behaviours; relevant
   fields only; one primary owner, optional collaborators and delegated subtasks.
-- [ ] Shared and separate family workspaces, accepted invitations, leave/revoke,
-  explicit canonical cross-family sharing and audit history.
+- [x] Shared and separate family workspaces, accepted invitations, leave/revoke,
+  explicit canonical ceremony sharing/withdrawal and backend audit records.
+  Task sharing and richer history views follow in Phase 3.
 - [ ] Database-enforced personal/family/wedding scopes; no private data leaks in
   search, totals, notification delivery, activity, dependency markers or exports.
 - [ ] Shopping collections/items: jewellery, clothing, gifts/custom; quantities,

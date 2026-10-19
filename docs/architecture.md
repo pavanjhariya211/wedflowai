@@ -1,6 +1,6 @@
 # Architecture
 
-Status: approved foundation; only authentication and navigation implemented.
+Status: Phases 1–2 implemented in the selected development environment.
 
 ## Runtime boundaries
 
@@ -18,9 +18,19 @@ Expo Router. Startup storage failures expose a retry state. Backend errors are
 mapped to safe user messages; tokens and full callback URLs are not logged.
 
 Screens use the auth service adapter; SDK calls and input validation live outside
-screen markup. The current app has no OpenAI integration, data cache, wedding
-records or business data services. Introduce TanStack Query with actual domain
-queries in Phase 2 rather than shipping unused infrastructure now.
+screen markup. Domain operations live in src/wedding/service.ts with typed records, pure input
+validation and a session-scoped WeddingProvider. It refreshes on tab focus and
+foregrounding, discards stale request responses, clears records on permission/
+network failures, and is remounted on account changes. No persistent private cache
+or offline write queue is enabled. A query-cache library is deferred until the task
+workflow justifies it; current domain reads use the SDK directly.
+
+Wedding creation and domain writes use narrow SQL RPCs. Client-generated creation
+IDs make wedding retries idempotent; expected versions protect updates, sharing
+and deletion. Workspace-admin-only explicit sharing preserves the ceremony ID.
+Withdrawing a shared ceremony requires the creator or wedding admin plus admin
+permission in the destination family. Shared wedding budget is explicitly labelled
+as visible to accepted members; private expenses are a later separate entity.
 
 ## Planned domain architecture
 
@@ -28,8 +38,9 @@ queries in Phase 2 rather than shipping unused infrastructure now.
   critical mutations. Client permissions are only a UX aid.
 - Shared pure TypeScript business rules handle date suggestions, dependency risk
   calculation and INR arithmetic. The backend validates persisted mutations.
-- Edge Functions handle authenticated AI requests, invitation workflows and
-  delivery operations that require privileged credentials.
+- Edge Functions will handle authenticated AI requests and future delivery
+  operations that require privileged credentials. Invitation-code creation and
+  acceptance currently run in transactional SQL RPCs.
 - A durable notification outbox plus scheduled worker handles reminders, consent,
   permission rechecks and deduplication; push delivery is not guaranteed.
 - Supabase Realtime may invalidate authorized queries; never subscribe to a broad
@@ -68,3 +79,17 @@ Node 24 LTS and Expo SDK 58 are the initial toolchain. Expo's SDK package metada
 pins compatible native libraries; npm's lockfile pins the full dependency graph.
 `react-dom` and React Server Components packages satisfy Router/test peer
 requirements; the app exposes no web platform or web script.
+
+## Implemented domain boundary
+
+Public app tables grant SELECT only to authenticated callers with RLS. Invitation
+hashes are excluded even from that column grant. No direct app table writes are
+granted. RPCs use fixed empty search paths, auth.uid checks, scope checks and
+transaction locks; all default PUBLIC/anonymous function execution is revoked.
+A family creator may bootstrap the other family's first admin but gains no access
+to that family's ceremony contents. Pending invitations reveal no pre-acceptance
+wedding data, expire after seven days and are bound to the authenticated email.
+
+The Management API is used from cloud-only helpers for development migrations and
+controlled tests. No server credential is imported by mobile code. Auth passwords,
+MCP tokens and service keys are never persisted by these helpers.

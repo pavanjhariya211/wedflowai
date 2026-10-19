@@ -1,8 +1,35 @@
 # Preliminary database design
 
-Status: design only. Phase 1 uses managed Supabase Auth; no domain tables, RLS
-policies or application migrations have been applied. Final Phase 2 SQL must be
-reviewed and tested against ordinary authenticated identities.
+Status: Phase 2 tables and three migrations are applied to the selected development
+project. The broader entity map below still includes future task/finance work.
+
+Implemented: profiles, weddings, wedding_memberships, workspaces,
+workspace_memberships, ceremonies, invitations, activity_events and an admin-only
+wf_migrations checksum ledger. Every one has RLS enabled. Read permissions are
+explicit; app mutations are only through validated RPCs.
+
+Migration files:
+
+- 202610190001_wedding_workspaces.sql — core model, authorization and mutations.
+- 202610190002_explicit_ceremony_sharing.sql — canonical sharing and one shared
+  overview per wedding.
+- 202610190003_withdraw_ceremony_sharing.sql — explicit permission-checked withdrawal.
+
+The creator is the wedding admin. Workspace admins manage only their permitted
+workspace; an empty second family can receive a first-admin invitation without
+revealing private records to the creator. Workspace names are permitted sharing
+metadata; membership lists, ceremonies and scoped audit events have narrower RLS.
+
+Invitations contain only a SHA-256 token hash, intended email, role and expiry;
+plaintext codes are returned once. Acceptance cannot overwrite an existing role,
+replay a revoked membership, or bypass expiry/email matching. Scope-row locks
+serialize membership changes and first-admin bootstrap; version fields reject
+stale wedding/ceremony edits. Leave/remove preserves a last workspace admin.
+
+Ceremony times are actual timestamptz values checked against India local dates;
+all-day records have no invented time. A change of wedding date does not move
+ceremonies silently. Sharing-mode migration is deferred by the approved decision.
+
 
 | Entity | Principal fields / relationships |
 | --- | --- |
@@ -77,3 +104,17 @@ server requests; local cached data requires invalidation too.
 
 Seed only synthetic users/data in development. Test cross-family reads, writes,
 aggregates, role escalation, revoked access and malformed foreign-key references.
+
+## Validation and remaining boundaries
+
+supabase/tests/workspaces.sql tests ordinary authenticated and anonymous roles,
+not just admin reads. It covers pre-acceptance isolation, cross-family/unrelated-
+wedding access, viewers, stale writes, revoked/expired/wrong-email invitations,
+last-admin preservation, canonical sharing/withdrawal, and private audit access.
+All fixtures are rolled back. A separate hosted HTTP smoke uses real signed-in
+temporary Auth users and cleans up their wedding and accounts.
+
+Task/expense personal visibility, dependencies, proposal approvals, notifications,
+account deletion/export and retention are not implemented by these migrations.
+Auth user deletion needs an application data lifecycle because profile references
+protect active wedding records. Do not claim this is a complete launch schema.

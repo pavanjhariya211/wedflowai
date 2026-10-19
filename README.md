@@ -5,11 +5,17 @@ Built with Expo SDK 58, React Native, TypeScript, Expo Router and Supabase.
 
 ## Current milestone
 
-Phase 1 implements account registration, email/password sign-in, verification links,
-password recovery, secure native session persistence and protected navigation.
-The Home/Timeline/Tasks/Shopping/Family navigation is a labelled shell; wedding
-planning functionality is **not implemented**. See [progress](docs/progress.md)
-for verification results and remaining setup.
+Phase 2 implements wedding creation/settings, single- or multi-day ceremonies,
+shared or separate family workspaces, accepted invitations, workspace roles,
+revocation, and explicit ceremony sharing/withdrawal with database-enforced access.
+Task templates, planning tasks, shopping and AI remain future milestones.
+
+**Try the flow:** sign in → Home → Create your wedding → Timeline → Add ceremony →
+Family → Create invitation code. The recipient signs in with the invited email and
+uses Home → Join with invitation code. Invitation creation does not send email.
+
+See [progress](docs/progress.md) for checks and limitations and
+[device testing](docs/device-testing.md) for the acceptance checklist.
 
 ## Product sources
 
@@ -53,9 +59,10 @@ In the **development project** dashboard:
   email service may limit delivery to project-team addresses and has rate limits.
   Do not interpret a neutral UI response as proof an email was delivered.
 
-No custom SQL migration is needed for managed Supabase Auth in Phase 1. Domain
-schema and RLS migrations are deferred to Phase 2. Do not create unprotected
-application tables manually.
+Three versioned development migrations are applied to the configured project.
+Writes go through validated transactional RPCs; reads use RLS. See
+[database schema](docs/database-schema.md). Do not create unprotected application
+tables manually or use the administrative token inside the mobile app.
 
 ### Cloud configuration
 
@@ -73,6 +80,28 @@ Expo's optional online checks are blocked; it does not disable TLS or integrity 
 `DOTSLASH_CACHE=/workspace/.cache/dotslash` keeps optional React Native DevTools
 artifacts in a writable cache.
 
+## Development database checks
+
+All development can run in this cloud workspace. Supabase administration uses the
+secure `SUPABASE_ACCESS_TOKEN` binding; browser OAuth/local Codex are unnecessary.
+The supplied helpers are pinned to the selected development project. Never run
+them against a production project.
+
+```sh
+# Test migration changes and RLS fixtures in a rolled-back transaction:
+python scripts/database.py --test
+# Apply reviewed development migrations with checksum tracking:
+python scripts/database.py --apply
+# Real signed-in API checks, with temporary accounts/data and cleanup:
+python scripts/smoke-wedding-api.py
+```
+
+The API smoke helper fetches a server key only into process memory to create and
+remove temporary confirmed Auth users. App requests use their real JWTs and the
+publishable key. It never stores/prints credentials and sends no email. It is a
+controlled development test, not an app dependency or a production health probe.
+Do not run live database tests automatically for untrusted pull requests.
+
 ## Checks
 
 ```sh
@@ -85,8 +114,9 @@ npm run export:ios
 npm run smoke:metro
 ```
 
-Unit/component tests isolate external services; they are **not** proof of live
-Supabase delivery or native device operation. Native exports verify bundle
+Unit/component tests isolate external services. The separate hosted API smoke
+verifies real sign-in and domain operations; neither proves email delivery or
+native device operation. Native exports verify bundle
 compilation, not APK signing or installation. See [device checks](docs/device-testing.md).
 
 ## Android build for device testing
@@ -114,7 +144,7 @@ allowlisting outside this cloud environment.
 - `src/config/`: validated public runtime configuration
 - `src/lib/`: Supabase client and chunked secure session storage
 - `tests/`: meaningful auth, input, storage and configuration checks
-- `supabase/migrations/`: versioned database changes, beginning with Phase 2
+- `supabase/migrations/`: applied versioned domain schema and authorization changes
 - `docs/`: product baseline, architecture, decisions, roadmap and progress
 
 Each major phase requires founder review before the next phase. Production

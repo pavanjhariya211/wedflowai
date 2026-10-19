@@ -43,9 +43,37 @@ Founder approved the presented architecture, Phase 1 and recommended defaults.
   an explicit action. Payment entry never implies purchase/task completion.
 - Original uploaded PRD/discovery files are retained byte-for-byte in docs/product.
 
+## 19 October 2026 — Phase 2 implementation
+
+- Founder asked to move into app development after configuring administrative
+  access. Phase 2 was implemented against the selected empty development schema.
+- Use a cloud personal-access-token binding for administration; local Codex and
+  browser OAuth are not prerequisites. Native MCP tool availability is separate;
+  authorized Management API operations work over HTTPS.
+- Invitation codes expire after seven days and are bound to the authenticated
+  email. Share through the device's explicit share action; no email/SMS/WhatsApp
+  delivery is simulated. Existing members retain their role when accepting an
+  older invitation; role changes use a separate administrator action.
+- Last workspace admin cannot leave/be removed/demoted until another is appointed.
+  Workspace-role management does not automatically confer wedding administration.
+- Wedding creation retries reuse a UUID. Wedding/ceremony edits use expected
+  versions. Family sharing mode remains fixed as previously agreed.
+- Workspace labels identify sharing destinations. Family membership lists,
+  ceremonies and scoped activity remain protected independently.
+- Ceremony sharing uses one canonical record. Broadening visibility is an explicit
+  family-admin action; withdrawal requires ownership/wedding administration and
+  destination-family admin rights. Both are version-checked and audited.
+- The optional wedding-level budget is shared and labelled accordingly. Personal
+  and family expense records are deferred to their separate finance schema.
+- Use the session-scoped provider for now; invalidate on refresh/permission failure
+  and discard out-of-order requests. No persistent offline cache or write replay.
+- Migration checksums are retained; append new migrations instead of editing
+  already applied SQL. Dev API smoke fetches server credentials only in memory
+  for synthetic Auth fixtures; test traffic uses real user sessions.
+
 ## Decisions still requiring detail before their phase
 
-- Invite expiry/reinvitation, role-specific assignment approval and owner departure.
+- Task-assignment acceptance, task-owner departure and wedding-admin transfer.
 - Lead-time defaults/first ceremony packs; how short-lead impossible plans appear.
 - Overdue recurrence, occurrence dependencies and stop conditions.
 - Budget edit permissions, overpayments/refunds and payment privacy edge cases.

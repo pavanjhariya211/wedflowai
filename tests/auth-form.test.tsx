@@ -8,10 +8,11 @@ const mockService = {
 const mockRouter = { push: jest.fn(), replace: jest.fn() };
 jest.mock('expo-router', () => ({ router: {
   push: (path: string) => mockRouter.push(path), replace: (path: string) => mockRouter.replace(path),
-} }));
+}, useFocusEffect: () => undefined }));
 jest.mock('../src/auth/AuthProvider', () => ({
   useAuth: () => ({ service: mockService, session: { user: { email: 'test@example.in' } } }),
 }));
+jest.mock('../src/wedding/WeddingProvider', () => ({ useWedding: () => ({ wedding: null, weddings: [], ceremonies: [], spaces: [], loading: false, error: '', reload: jest.fn() }) }));
 jest.mock('react-native-safe-area-context', () => jest.requireActual('react-native-safe-area-context/jest/mock').default);
 
 beforeEach(() => { jest.resetAllMocks(); });
@@ -70,7 +71,7 @@ describe('authentication screens (mocked provider)', () => {
   test('Home identifies unfinished features and surfaces sign-out failure', async () => {
     mockService.signOut.mockRejectedValueOnce({ name: 'AuthRetryableFetchError' });
     await render(<Home />);
-    expect(screen.getByText(/No wedding, tasks, or expenses have been created yet/)).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Create your wedding' })).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: 'Sign out of this device' }));
     expect(await screen.findByText(/Check your connection and try again/)).toBeTruthy();
   });

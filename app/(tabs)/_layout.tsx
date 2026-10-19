@@ -1,8 +1,10 @@
 import { Tabs } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { WeddingProvider } from '../../src/wedding/WeddingProvider';
+import { useAuth } from '../../src/auth/AuthProvider';
 import { colors } from '../../src/theme/tokens';
 const icons = { index: 'home-outline', timeline: 'calendar-outline', tasks: 'checkbox-outline', shopping: 'bag-outline', family: 'people-outline' } as const;
-export default function TabLayout() {
+function TabNavigator() {
   return <Tabs screenOptions={({ route }) => ({
     headerShown: false, tabBarActiveTintColor: colors.primary, tabBarInactiveTintColor: colors.muted,
     tabBarStyle: { backgroundColor: colors.surface },
@@ -12,4 +14,9 @@ export default function TabLayout() {
     <Tabs.Screen name="tasks" options={{ title: 'Tasks' }} /><Tabs.Screen name="shopping" options={{ title: 'Shopping' }} />
     <Tabs.Screen name="family" options={{ title: 'Family' }} />
   </Tabs>;
+}
+
+export default function TabLayout() {
+  const { session } = useAuth();
+  return <WeddingProvider key={session?.user.id}><TabNavigator /></WeddingProvider>;
 }

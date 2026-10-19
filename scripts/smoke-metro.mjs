@@ -18,5 +18,7 @@ const bundleResponse = await fetch(new URL(launch.pathname + launch.search, orig
 assert.equal(bundleResponse.status, 200, 'Metro must compile the Android entry');
 const bundle = await bundleResponse.text();
 assert.ok(bundle.includes('Your planning space starts here.'), 'Expected app setup module must be present');
+assert.ok(bundle.includes('Accept invitation and join'), 'Phase 2 invitation screen must be present');
+assert.ok(bundle.includes('Share with every wedding member?'), 'Phase 2 permission-controlled sharing must be present');
 console.log('PASS: Android manifest and compiled development bundle served by Metro.');
 console.log('This verifies bundling, not native rendering or live Supabase authentication.');
