@@ -77,6 +77,8 @@ artifacts in a writable cache.
 
 ```sh
 npm run check
+# With the two Supabase values configured (read-only live-provider check):
+npm run check:supabase
 npm run export:android
 npm run export:ios
 # While Metro is running on port 8081:

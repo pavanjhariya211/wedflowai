@@ -44,7 +44,8 @@
     "check": "npm run typecheck && npm run lint && npm test",
     "export:android": "expo export --platform android --max-workers 2",
     "export:ios": "expo export --platform ios --max-workers 2",
-    "smoke:metro": "node scripts/smoke-metro.mjs"
+    "smoke:metro": "node scripts/smoke-metro.mjs",
+    "check:supabase": "node --use-env-proxy scripts/check-supabase.mjs"
   },
   "private": true,
   "engines": {
