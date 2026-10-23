@@ -91,3 +91,28 @@ sessions persist in localStorage, not the OS keystore. Sign out on shared device
 
 Local Chromium smoke used simulated failed Auth responses, not real email delivery.
 Actual deployed-origin sign-in and cross-tab flows are still acceptance steps.
+
+## Core task-plan acceptance (24 October)
+
+The hosted local-browser smoke passes; verify the deployed Netlify build separately.
+
+1. Existing wedding → Home → Build or review your task plan → choose an authorized
+   destination → Preview suggested planning tasks. A new wedding opens Tasks.
+2. Remove a suggestion, rename another and edit a date. Verify nothing is saved
+   until Save reviewed tasks, then reload and check the retained list.
+3. Add a custom task with/without start and deadline. Try an invalid date and an
+   end before its start; no invalid save should occur.
+4. Complete → completed filter → reopen → active filter. Review task history.
+5. Edit deadline/owner, cancel the confirmation, then explicitly save. Other task
+   and ceremony dates must not move. Test another tab's stale edit.
+6. Link one task to several ceremonies in its permitted scope. The master timeline
+   shows one task; ceremony views filter it without duplication. Sharing a family
+   ceremony must not prevent updating its family task. Withdrawing a ceremony
+   from shared visibility must hide its link from broader task readers.
+7. Add an Only me task. A different family member, viewer and wedding admin must
+   not see its title, history or counts. Revoked members lose access on refresh.
+8. Switch weddings during a slow request. The older plan must not replace the
+   selected wedding's plan. Network/permission failures clear loaded private tasks.
+
+Calendar grid, recurrence, collaborators, shopping/finance, dependencies, push and
+AI are not implemented by this milestone and must not be accepted as complete.

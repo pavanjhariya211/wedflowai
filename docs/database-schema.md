@@ -1,6 +1,6 @@
 # Preliminary database design
 
-Status: Phase 2 tables and three migrations are applied to the selected development
+Status: Phase 2 and core Phase 3 tables and five migrations are applied to the selected development
 project. The broader entity map below still includes future task/finance work.
 
 Implemented: profiles, weddings, wedding_memberships, workspaces,
@@ -133,3 +133,35 @@ The browser target reuses the existing development database, roles, RLS and
 transactional RPCs. No schema/migration changes were needed. After a Netlify URL
 exists, add its exact /auth/callback to the Auth redirect allowlist while retaining
 the native callback. That web-origin change is pending; no wildcard was added.
+
+## Applied core planning schema (24 October)
+
+`202610240001_planning_tasks.sql` adds:
+
+- `planning_tasks`: wedding/workspace, title/category/notes, optional planned start
+  and due date, primary owner, personal flag, status/priority/date certainty,
+  optional template source, creator, version and creation time.
+- `task_ceremonies`: canonical many-to-many links; RLS requires both task and
+  ceremony visibility so withdrawn family events do not leak their IDs.
+- `task_history`: task-scoped old/new JSON snapshots and actor/time. No public audit
+  records reveal personal-task existence.
+
+`wf_task_save` locks the workspace alongside membership changes, validates owner
+membership and scope, rejects stale versions and implicit visibility changes, and
+writes history atomically. Personal tasks are owner-only and cannot be reassigned
+to another user. `wf_task_plan` accepts a bounded reviewed batch, retries stable
+IDs safely and commits all retained rows together. Source uniqueness prevents
+reapplying the same starter task in the same workspace/personal visibility scope.
+No direct app writes are granted. Read policies apply to every new table; anonymous
+read/execute access is revoked. Task dates are not changed by wedding-date edits.
+
+The migration was tested transactionally before and after application. Fixtures
+cover private/family/shared reads, history privacy, viewer/direct-write denial,
+CAS conflicts, invalid owners/links, atomic batch rollback and idempotent retry.
+No existing wedding records were populated with tasks or altered by migration.
+
+`202610240002_task_ceremony_scope.sql` preserves family-task links to shared
+ceremonies and filters withdrawn private links from broader tasks even when the
+reader can access both scopes. Its migration and additional multi-link/share/
+withdraw assertions passed before and after application. Both migrations are
+additive; the previously applied SQL/checksums remain unchanged.

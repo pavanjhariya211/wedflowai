@@ -104,3 +104,26 @@ pretending a failed storage write succeeded. Browser confirmation dialogs requir
 explicit consent before existing sensitive mutations. Use exact per-site Auth
 redirects once the Netlify hostname is known. No production/store release or
 future product phase is authorized by this browser-preview request.
+
+## October 24 — founder requests the PRD planning experience
+
+Treat the founder's report that wedding setup leads to no plan as authorization
+to implement the missing core Phase 3 task/template/timeline flow. Keep the broader
+PRD gap visible; successful hosting is not feature acceptance. Restore one useful
+flow before claiming the remaining phases are implemented.
+
+- Do not auto-save preset tasks on wedding creation. Open Tasks, offer a reviewed,
+  editable/optional 14-suggestion plan, and retain its submitted IDs for retries.
+- Use optional India date-only start/deadline fields and explicit date certainty.
+  Show original short-lead suggestions when compressed into the planning window.
+- Keep one primary accepted editor owner; personal tasks belong only to their
+  creator/owner. Existing task visibility is immutable during ordinary edits;
+  broadening sharing requires a future explicit workflow.
+- Create canonical many-to-many ceremony links. Return a link only when the
+  requester can still read its task and ceremony. Do not include private ceremony
+  IDs in task-history snapshots.
+- Archive/cancel tasks instead of deleting their history. Completion is reversible.
+  Capture old/new values server-side and reject stale edits with a refresh message.
+- Only individually managed tasks are implemented now; do not mislabel them as
+  continuous, recurring or dependency-driven behaviour. Calendar, collaborators,
+  shopping/finance, push, risk/rescheduling and AI remain explicit gaps.

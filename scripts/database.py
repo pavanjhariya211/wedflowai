@@ -61,8 +61,9 @@ def main():
     combined = '\n'.join(item[2] for item in pending)
     if args.test:
         tests = (ROOT / 'supabase/tests/workspaces.sql').read_text()
+        tests += '\n' + '\n'.join(p.read_text() for p in sorted((ROOT / 'supabase/tests').glob('*.sql')) if p.name != 'workspaces.sql')
         query('begin;\n' + combined + '\n' + tests + '\nrollback;')
-        print('PASS: transactional wedding/workspace/RLS assertions; all fixtures rolled back.')
+        print('PASS: transactional wedding/workspace/planning/RLS assertions; all fixtures rolled back.')
         return
     if not pending:
         print('All migrations already applied with matching checksums; no changes.')

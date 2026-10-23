@@ -27,19 +27,29 @@ accessible form states. Add source product documents and maintain the seven core
 project documents. No domain planning functionality or production deployment.
 
 Phases 1 and 2 are implemented. Phase 2 passed live development migration/RLS and
-real signed-in HTTP tests. Physical-device acceptance is still open. Founder
-review is required before Phase 3 (templates, tasks, owners and master timeline).
+real signed-in HTTP tests. Physical-device acceptance is still open. Founder requested the missing PRD planning flow on October 24. The core Phase 3
+task/template/timeline work is authorized and implemented; it is not all of Phase 3.
 
 Current validation state and external blockers: [progress](progress.md).
 
 ## October 23 Android preview setup
 
-Android preview preparation is in progress within Phase 2 acceptance. The upload allowlist and cloud Supabase URL are corrected; EAS preview APK compilation succeeded. Install the APK and run device acceptance. Phase 3 remains unapproved.
+Android preview preparation is in progress within Phase 2 acceptance. The upload allowlist and cloud Supabase URL are corrected; EAS preview APK compilation succeeded. Install the APK and run device acceptance. Phase 3 core task planning was subsequently authorized on October 24.
 
 ## October 24 — Netlify browser preview
 
 Within the approved browser-preview scope, web support and netlify.toml are
 prepared. Remaining handoff: import GitHub repository into the founder's Netlify
 account, add the two public build variables, deploy the testing site, register
-its exact Supabase callback, and run signed-in browser acceptance. Phase 3 is
-still unapproved. The existing Android APK remains available.
+its exact Supabase callback, and run signed-in browser acceptance. Phase 3 core task planning was subsequently authorized on October 24. The existing Android APK remains available.
+
+## October 24 — restore the missing core planning flow
+
+Completed core Phase 3 work: custom scoped tasks, edited optional starter plan,
+primary ownership, date/status lifecycle, scoped history, filters and a master list
+timeline; creation now opens the planning flow. Backend migration and real hosted
+browser acceptance pass. See progress for exact evidence and the PRD gap audit
+for all incomplete requirements. Do not mark Phase 3 complete: recurrence,
+collaborators/delegation, full category management and calendar are still pending.
+Phase 4 shopping/finance and Phase 5 dependencies/notifications remain separate
+work. No public-launch/store authorization is implied.

@@ -1,3 +1,4 @@
+import { TimelineTasks } from '../../src/planning/TimelineTasks';
 import { Alert } from '../../src/lib/confirmation';
 import { useCallback, useState } from 'react';
 import { useFocusEffect } from 'expo-router';
@@ -40,7 +41,8 @@ export default function Timeline() {
       } },
     ]);
   }
-  return <Screen><Heading title="Ceremonies, at a glance." subtitle="Your visible events, in chronological order." />
+  return <Screen><Heading title="Your wedding timeline." subtitle="Planning tasks and ceremonies, with dates you control." />
+    {wedding ? <TimelineTasks key={wedding.id} /> : null}
     {failure ? <Notice error>{failure}</Notice> : null}
     {loading ? <Notice>Loading ceremonies…</Notice> : error ? <Notice error>{error}</Notice> : !wedding ? <Notice>Create or join a wedding in Home first.</Notice> : <>
       {editing ? <CeremonyForm ceremony={editing === 'new' ? undefined : editing} onDone={() => setEditing(null)} /> : <>

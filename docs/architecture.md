@@ -1,6 +1,6 @@
 # Architecture
 
-Status: Phases 1–2 implemented in the selected development environment.
+Status: Phases 1–2 and the Phase 3 core task/template/timeline flow are implemented in development.
 
 ## Runtime boundaries
 
@@ -112,3 +112,24 @@ native SecureStore/processLock adapters. Native crypto installation preserves
 browser WebCrypto. Browser confirm dialogs retain explicit mutation consent.
 Private user data is loaded only after authentication through existing RLS/RPCs.
 Netlify receives only public Supabase build variables. No Netlify site is live yet.
+
+## Core task planning
+
+`src/planning` separates task types, date/template rules, typed service calls,
+request-state invalidation and UI. `usePlanning` discards responses for old wedding
+selections and clears data on fetch failures. Tasks use optional date-only fields
+in the existing Asia/Kolkata planning model, one primary owner, explicit statuses,
+custom categories, notes, priority and a planning/confirmed date label.
+
+An opt-in preview creates stable client IDs, permits exclusion/renaming/rescheduling,
+shows compressed short-lead suggestions for review, and submits one atomic RPC.
+Template suggestions are editorial planning guidance, never confirmed vendor dates.
+No tasks are silently generated on wedding creation. Creation navigates to Tasks;
+Home and Timeline link to the actual planning flow. Timeline combines ceremony
+and task dates without duplicating tasks linked to multiple ceremonies.
+
+Three new RLS tables and SECURITY DEFINER RPCs enforce accepted editor ownership,
+immutable visibility during edits, personal-owner privacy, workspace authorization,
+ceremony-scope validation, CAS versions and old/new history. Private links are
+filtered independently when a ceremony's scope changes. Shopping, calendar grid,
+collaborators, recurrence, dependencies, notifications and AI remain gaps.

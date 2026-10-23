@@ -1,6 +1,6 @@
 # Progress
 
-Updated: 19 October 2026. Phases 1–2 implemented; awaiting review before Phase 3.
+Updated: 24 October 2026. Phases 1–2 and core Phase 3 planning implemented; the PRD remains incomplete.
 Founder authorized moving into app development after cloud configuration.
 
 ## What works
@@ -20,8 +20,9 @@ Founder authorized moving into app development after cloud configuration.
 - Session-scoped data refresh, permission/network error handling, stale-response
   rejection and clearing private records when access is lost on refresh.
 
-Tasks, templates, dependency scheduling, shopping, financial records, notifications
-and AI are still future phases. Those screens remain clearly labelled.
+Core custom tasks and reviewed starter templates are now implemented. Recurrence,
+dependency scheduling, shopping, financial records, notifications and AI remain
+incomplete. See the PRD gap audit.
 
 ## Database and live service evidence
 
@@ -79,11 +80,12 @@ cloud token/server key stayed out of app code, logs and repository files.
 - Activity records exist with scope-aware authorization; richer history UI and
   detailed task old/new-value history follow with tasks.
 
-## Next recommended phase
+## Next implementation work
 
-Phase 3: optional planning templates, custom categories/tasks, ownership and
-collaboration, recurrence, master/ceremony task views and task history. Review the
-current milestone and obtain founder approval before starting that major phase.
+Core Phase 3 task planning is implemented. Finish calendar, recurring/continuous
+behaviours, collaborators/delegation and category management. Shopping/finance,
+dependency approvals, notifications and AI remain separate major phases. Review
+the PRD gap audit; do not treat the current task milestone as the complete PRD.
 
 ## October 23: Android build preparation
 
@@ -138,3 +140,44 @@ Management API readback confirms both changes and email confirmation remains
 enabled. Existing confirmed accounts can try signing in; otherwise request a
 fresh verification link on the live origin in the same browser profile. Real
 email delivery and successful browser code exchange remain user acceptance checks.
+
+## October 24 — core task plan and master timeline
+
+Founder reported the missing PRD planning flow. Implemented actual saved task
+planning rather than treating placeholder tabs as a complete product. New wedding
+setup now opens Tasks; existing Home pages link to planning and Timeline.
+
+- Editable optional starter-plan preview; remove/rename/re-date suggestions before
+  one atomic save; short-lead compression is visibly explained for review.
+- Custom task/category/notes/priority, optional start/deadline, accepted primary
+  owner, planning/confirmed date certainty and explicit owner/date edit consent.
+- Personal-only and permitted family/shared scopes, no silent scope changes,
+  multi-ceremony links, status filters/search/mine/overdue, completion/reopen and
+  cancelled/archived history-preserving states.
+- Master chronological task/ceremony timeline, ceremony filtering and scoped
+  old/new task history. One task linked to several ceremonies stays one record.
+- Additive development migration tested and applied; no pre-existing wedding or
+  user data was populated or edited. Old Android APK does not contain these screens.
+
+Verification: TypeScript and ESLint pass, **106 tests in 18 suites** pass, web and
+Android exports pass. SQL/RLS fixtures passed transactionally before and after
+migration, covering privacy, viewer/direct-write denial, history, version conflicts,
+invalid owners/ceremony links, bulk atomicity and request retries. Chromium used a
+real temporary confirmed Supabase account: browser sign-in → create wedding → Tasks
+navigation → exclude one suggestion and rename another → save 13 tasks → reload →
+complete/reopen → custom personal task → master timeline. Browser API requests
+were forwarded through the cloud's Node HTTPS proxy to the real hosted backend;
+responses were not mocked. No runtime exceptions occurred. Temporary wedding
+records and the Auth account were removed afterward; no email was sent.
+
+The local web export is verified. Netlify publication of the pushed commit is not
+yet independently verified because this cloud's network blocks that hostname.
+PRD remains incomplete: calendar, recurrence, collaborators/delegation, category
+management, shopping/finance, dependencies/approvals, notifications, AI and launch
+acceptance. See [gap audit](prd-gap-audit.md). Do not claim full Phase 3/P0 completion.
+
+A second additive scope-compatibility migration preserves links when family
+ceremonies are shared, and hides withdrawn private ceremony IDs from shared task
+links for every reader. Multi-ceremony linkage and sharing/withdrawal tests pass.
+The final Chromium check waited for the actual timeline panel and visually
+confirmed that dated task cards render (not only that hidden DOM text exists).

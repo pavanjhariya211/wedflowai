@@ -1,18 +1,21 @@
 # Wedflow
 
-An India-first, mobile-only wedding timeline orchestrator for couples and families.
+An India-first mobile and browser wedding timeline orchestrator for couples and families.
 Built with Expo SDK 58, React Native, TypeScript, Expo Router and Supabase.
 
 ## Current milestone
 
-Phase 2 implements wedding creation/settings, single- or multi-day ceremonies,
-shared or separate family workspaces, accepted invitations, workspace roles,
-revocation, and explicit ceremony sharing/withdrawal with database-enforced access.
-Task templates, planning tasks, shopping and AI remain future milestones.
+The app now includes the Phase 2 wedding/family/ceremony foundation and the core
+Phase 3 task plan: custom tasks, optional reviewed templates, primary owners,
+private/family/shared scope, editable dates/statuses, history and a master list
+timeline. **It is not the complete PRD.** See the [gap audit](docs/prd-gap-audit.md).
 
-**Try the flow:** sign in → Home → Create your wedding → Timeline → Add ceremony →
-Family → Create invitation code. The recipient signs in with the invited email and
-uses Home → Join with invitation code. Invitation creation does not send email.
+**Try the flow:** sign in → create a wedding → Tasks → Preview suggested planning
+tasks → keep/edit/remove suggestions → Save reviewed tasks → Timeline. Existing
+weddings can use **Build or review your task plan** in Home. No tasks or traditions
+are added automatically. Family invitations remain explicit code sharing, not
+email/SMS delivery. Shopping, recurrence, dependency automation, push and AI remain
+unimplemented.
 
 See [progress](docs/progress.md) for checks and limitations and
 [device testing](docs/device-testing.md) for the acceptance checklist.

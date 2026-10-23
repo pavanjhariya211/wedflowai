@@ -139,3 +139,21 @@ Phase 1–2 flows are exposed; future phases remain unapproved. Web build, brows
 session persistence/PKCE adapter contracts and browser confirmation safeguards
 are checked. Real hosted browser email delivery and Netlify-origin acceptance
 remain pending; no account connection was available for publication.
+
+## October 24 — task planning implementation and gap audit
+
+Founder reported the missing PRD experience and authorized the core task/template/
+timeline implementation. Delivered: optional reviewed starter plan; custom tasks
+and category names; one accepted primary owner; optional start/deadline with
+planning/confirmed labels; explicit owner/date confirmation; editable statuses,
+completion/reopen, cancellation/archive; search/status/mine/overdue/category/ceremony
+filters; multi-ceremony canonical links; personal/family/shared privacy; old/new
+history; master task/ceremony chronological view. New weddings open Tasks after
+successful setup, and existing weddings expose direct planning/timeline buttons.
+
+This is partial delivery of the broader P0 items above; their checkboxes remain
+open where recurrence, collaborators, calendar, category management or dependent
+behaviour is still missing. Shopping, private finance, notification delivery,
+rescheduling approvals, AI and launch hardening are not implemented. See
+[the explicit gap audit](prd-gap-audit.md) rather than treating app deployment as
+PRD completion.
