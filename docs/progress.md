@@ -126,3 +126,15 @@ See README for one-time import and public variable setup; no secrets were commit
 Final web milestone checks: TypeScript, ESLint and **95 tests in 15 suites** pass.
 Web and Android exports pass; final web output was regenerated after the last copy
 change. A scan found no cloud Supabase access token or Expo token in the web output.
+
+## October 24 — hosted email redirect corrected
+
+Founder reported that verification redirected to localhost. Supabase Auth's default
+site URL still used localhost, and the earlier hosted-site check aborted on a
+network restriction before configuring the web callback. Updated the default
+site URL to `https://wedflowai.netlify.app/auth/callback` and added that exact
+redirect to the allowlist, preserving existing entries and the native callback.
+Management API readback confirms both changes and email confirmation remains
+enabled. Existing confirmed accounts can try signing in; otherwise request a
+fresh verification link on the live origin in the same browser profile. Real
+email delivery and successful browser code exchange remain user acceptance checks.

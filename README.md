@@ -188,8 +188,11 @@ not implement the future tasks, shopping, finance or AI phases.
    Registration/recovery links must open in the same browser profile and origin
    where requested, so that the PKCE verifier can be found.
 
-No Netlify account connection/token was available during implementation, so no
-site was created or published here. Existing Expo/EAS environment variables are
+The founder deployed the browser preview at https://wedflowai.netlify.app.
+Its exact Auth callback and the Supabase default redirect now point to
+`https://wedflowai.netlify.app/auth/callback` (verified by configuration readback).
+No Netlify account connection/token was available during implementation;
+the site was imported and published by the founder. Existing Expo/EAS environment variables are
 separate from Netlify settings. Repository import requires account authorization
 in your Netlify browser session; no local Codex installation is required.
 
