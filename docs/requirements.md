@@ -129,4 +129,4 @@ proposal reversals and privacy incidents. Targets require pilot evidence.
 
 ## October 23 Android preview setup
 
-Device acceptance remains pending until an internal APK can be built and installed. Expo authentication, project linking and signing preparation are verified; source upload is blocked by the cloud network allowlist.
+Device acceptance remains pending until an internal APK can be built and installed. Expo authentication, project linking and signing preparation are verified; the internal APK build is complete after the cloud allowlist correction. Device tests remain pending.

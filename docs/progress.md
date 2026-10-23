@@ -70,8 +70,8 @@ cloud token/server key stayed out of app code, logs and repository files.
 - Physical Android/iOS rendering, OS keychain lifecycle and real email delivery
   still require device acceptance. Hosted sign-in used administratively confirmed
   temporary accounts; it does not establish SMTP delivery or native link routing.
-- Expo project association and Android signing are configured. No signed APK/IPA
-  exists yet: the source upload was blocked by network policy. No local Codex is needed.
+- Expo project association and Android signing are configured. The internal Android APK build has finished successfully.
+  Device acceptance remains pending. No local Codex is needed.
 - The five tabs are not a complete MVP. Timeline currently presents ceremonies;
   the planning-task timeline and templates are Phase 3.
 - Workspace mode migration, wedding-admin transfer, offline writes, account/data
@@ -94,3 +94,16 @@ hosted Auth verification. Corrected the remote URL; the cloud runtime URL remain
 invalid and requires correction in settings. Upload failed HTTP 403 at
 `storage.googleapis.com`; a narrow allowlist draft is saved but requires publication.
 No EAS build job or APK was produced. TypeScript, lint and all 87 tests passed.
+
+## October 23: settings verified and APK build started
+
+Cloud runtime Supabase URL is now correct. `npm run check:supabase` passes against
+hosted Auth. Upload to EAS succeeded after publishing network access. Build
+`4d72654f-c4e4-4e13-a8b1-c3764ac21143` finished successfully at 16:34 IST.
+APK: https://expo.dev/artifacts/eas/iYbtkxRGf0VhX2zDiNpcMyT3_BLxhLn8NO87TzF8x-M.apk
+Added `wedflow://auth/callback` to the Supabase development Auth redirect allowlist,
+preserving existing entries. No email was sent; actual native links need device testing.
+
+Android packaging succeeded; installation, rendering, email delivery and native callback
+routing remain pending physical-device acceptance. No IPA, Netlify website or
+production/store deployment was produced.

@@ -122,3 +122,7 @@ protect active wedding records. Do not claim this is a complete launch schema.
 ## October 23 Android preview setup
 
 Android packaging introduces no schema changes. The existing Supabase project and RLS/RPC model remain the backend; Expo receives only public client configuration.
+
+Native Auth callback allowlisting was updated through project Auth configuration only. No database tables, RLS policies or migrations changed.
+
+The successful APK build uses the existing development schema; packaging success does not replace Auth/RLS integration checks or device acceptance.

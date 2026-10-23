@@ -136,16 +136,17 @@ npm_config_cache=/workspace/.npm-cache npx --yes eas-cli@25.3.0 whoami
 npm_config_cache=/workspace/.npm-cache npx --yes eas-cli@25.3.0 build --platform android --profile preview --non-interactive
 ```
 
-The first upload was blocked by network policy (HTTP 403 at
-`storage.googleapis.com`). Its allowlist change is saved for environment publication;
-no build or APK exists yet. The local cloud Supabase URL must be the HTTPS project
-origin, `https://kyoabyflvstsvvenmcot.supabase.co`; the saved runtime value was invalid
-on October 23 and needs correction in environment settings. The EAS preview URL
-has already been corrected, and its publishable key passed a real Auth check.
+The cloud upload allowlist and Supabase runtime URL are now corrected. The
+publishable key passed a real Auth settings check. Supabase allows
+`wedflow://auth/callback` for native email confirmation and password recovery;
+actual delivery and link routing still require device testing.
 
-After a successful build, install the APK, allow its callback URL in Supabase and
-follow the device checklist. iOS identifiers/signing remain unconfigured. No
-production/store deployment is authorized.
+Android preview build (finished successfully on October 23):
+https://expo.dev/accounts/pavanjhariya211s-team/projects/wedflow-ai/builds/4d72654f-c4e4-4e13-a8b1-c3764ac21143
+
+[Download the Android APK](https://expo.dev/artifacts/eas/iYbtkxRGf0VhX2zDiNpcMyT3_BLxhLn8NO87TzF8x-M.apk). Install it and follow the device checklist.
+iOS identifiers/signing remain unconfigured. No production/store deployment is
+authorized.
 
 ## Project layout
 

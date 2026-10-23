@@ -88,3 +88,7 @@ been authorized by this milestone approval.
 ## October 23 Android preview setup
 
 Use existing Expo owner `pavanjhariya211s-team` and project `wedflow-ai` (27914ae3-994f-40c7-aba8-8369b6eea723), with Android application ID `com.wedflowai.app` and Expo-managed signing for internal APK testing. Do not create a duplicate project. iOS identity and production releases remain undecided.
+
+Preserve existing Supabase redirect entries and add only the exact `wedflow://auth/callback` URL for the internal native app. No broad redirect wildcard was added.
+
+Distribute the October 23 internal APK through the Expo artifact/install links. Keep the APK out of Git and treat device acceptance as pending; no store release is implied.
