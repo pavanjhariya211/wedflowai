@@ -161,3 +161,48 @@ authorized.
 
 Each major phase requires founder review before the next phase. Production
 publication always requires explicit approval.
+
+## Browser preview on Netlify
+
+Browser support was added on October 24 for the current Phase 1–2 app. This does
+not implement the future tasks, shopping, finance or AI phases.
+
+1. In [Netlify](https://app.netlify.com/start), choose **Add new project → Import an
+   existing project → GitHub**. Authorize access to `pavanjhariya211/wedflowai` and
+   select that repository and branch `main`.
+2. Keep the base directory at the repository root. `netlify.toml` sets build command
+   `npm run export:web`, publish directory `dist`, and Node 24.19.0.
+3. Before deploying, add `EXPO_PUBLIC_SUPABASE_URL` with value
+   `https://kyoabyflvstsvvenmcot.supabase.co` and
+   `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` with the same publishable client key used
+   by the app. Set them for the site's build context. These public values are
+   embedded at build time; changing them requires a new build. Netlify builds
+   refuse missing values. Never add Supabase admin/service keys, Expo tokens or
+   Netlify tokens to the web environment.
+4. Deploy the browser testing site. Netlify provides an HTTPS `*.netlify.app` URL.
+5. Add that site's exact `https://<site>.netlify.app/auth/callback` to Supabase
+   Authentication → URL Configuration → Redirect URLs, preserving the Android
+   callback and other existing entries. Share the site URL with the cloud agent
+   if you want it configured here. No wildcard is needed.
+6. Sign in on the site, then run [device/browser acceptance](docs/device-testing.md).
+   Registration/recovery links must open in the same browser profile and origin
+   where requested, so that the PKCE verifier can be found.
+
+No Netlify account connection/token was available during implementation, so no
+site was created or published here. Existing Expo/EAS environment variables are
+separate from Netlify settings. Repository import requires account authorization
+in your Netlify browser session; no local Codex installation is required.
+
+For local web compilation, with the two public variables set:
+
+```sh
+npm ci
+npm run export:web
+```
+
+The browser stores sessions in origin-scoped localStorage and uses Web Locks to
+coordinate refresh between tabs. This is browser storage, not native SecureStore;
+sign out on shared computers. Android/iOS continue using the chunked OS keystore
+adapter. Netlify serves only `dist`, with an SPA fallback for direct routes and
+PKCE callbacks; private wedding data is fetched after sign-in and is not exported
+as static pages. Browser confirmations gate changes in visibility and membership.

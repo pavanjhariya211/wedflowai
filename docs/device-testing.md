@@ -68,3 +68,26 @@ an Expo/EAS account connection; no local Codex installation is needed for coding
     must not produce duplicate wedding workspaces.
 
 Record outcomes, device/OS and build without passwords, invite codes or tokens.
+
+## Netlify browser acceptance
+
+Use the final HTTPS Netlify site after adding its exact Auth callback. Browser
+sessions persist in localStorage, not the OS keystore. Sign out on shared devices.
+
+1. Open the site in desktop and mobile browsers: sign-in renders with no console
+   errors. Directly reload /auth/register and /auth/forgot-password.
+2. Sign in with a test account, reload and open a second tab; session persists.
+   Sign out and confirm protected routes/data clear in both tabs.
+3. Register/recover on the same origin/browser profile; open the latest email
+   callback there. Confirm links work without redirecting to a Netlify 404.
+4. Create/join a test wedding and ceremony. Refresh and confirm database persistence.
+5. Cancel then accept browser confirmations for edits, deletion, ceremony sharing
+   and membership changes. Cancellation must leave data untouched.
+6. Test separate-family/viewer access as in the Phase 2 cases above; the browser
+   must not bypass backend authorization.
+7. Disable local storage or simulate network failure. Expect actionable errors;
+   do not claim persistence on a failed write. Check browser back and reload.
+8. Confirm no admin keys/tokens or private wedding content appear in static assets.
+
+Local Chromium smoke used simulated failed Auth responses, not real email delivery.
+Actual deployed-origin sign-in and cross-tab flows are still acceptance steps.

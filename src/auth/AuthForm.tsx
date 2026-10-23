@@ -8,7 +8,7 @@ import { validateAuthForm, type AuthErrors, type AuthMode } from './validation';
 const titles = { 'sign-in': 'Welcome back.', register: 'A calmer way to plan.', 'forgot-password': 'Reset your password.' };
 const subtitles = {
   'sign-in': 'Sign in to your family’s wedding planning space.',
-  register: 'Create your account. Wedding setup arrives in the next phase.',
+  register: 'Create your account to plan your wedding together.',
   'forgot-password': 'We’ll email you a secure link. Open it on this device.',
 };
 export function AuthForm({ mode }: { mode: AuthMode }) {

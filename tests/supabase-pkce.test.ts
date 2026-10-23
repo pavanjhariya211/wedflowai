@@ -2,6 +2,7 @@ import { createHash, randomFillSync } from 'node:crypto';
 import { createClient } from '@supabase/supabase-js';
 import { installNativeAuthCrypto } from '../src/lib/native-auth-crypto';
 import { createSessionStorage } from '../src/lib/secure-storage';
+import { createBrowserStorage } from '../src/lib/browser-storage';
 import { exchangeAuthCallback } from '../src/auth/callback';
 
 jest.mock('expo-crypto', () => ({
@@ -15,7 +16,7 @@ jest.mock('expo-crypto', () => ({
 
 // Real Supabase SDK and our native adapters, with HTTP and OS crypto bindings
 // isolated. These tests do not contact a hosted Supabase project.
-describe('installed Supabase SDK PKCE contract', () => {
+describe.each(['native', 'browser'])('installed Supabase SDK PKCE contract: %s', (platform) => {
   const originalCrypto = Object.getOwnPropertyDescriptor(globalThis, 'crypto');
   beforeEach(() => {
     const native = {} as Parameters<typeof installNativeAuthCrypto>[0];
@@ -29,7 +30,12 @@ describe('installed Supabase SDK PKCE contract', () => {
 
   function setup() {
     const store = new Map<string, string>();
-    const storage = createSessionStorage({
+    const storage = platform === 'browser' ? createBrowserStorage(() => ({
+      getItem: (key: string) => store.get(key) ?? null,
+      setItem: (key: string, value: string) => { store.set(key, value); },
+      removeItem: (key: string) => { store.delete(key); },
+      clear: () => store.clear(), key: () => null, length: store.size,
+    })) : createSessionStorage({
       getItemAsync: async (key) => store.get(key) ?? null,
       setItemAsync: async (key, value) => { store.set(key, value); },
       deleteItemAsync: async (key) => { store.delete(key); },
@@ -42,7 +48,7 @@ describe('installed Supabase SDK PKCE contract', () => {
     return { client, fetch, storage };
   }
 
-  test('registration sends S256 and stores the verifier securely', async () => {
+  test('registration sends S256 and persists the verifier through its platform adapter', async () => {
     const { client, fetch, storage } = setup();
     fetch.mockResolvedValueOnce(new Response(JSON.stringify({ user: { id: 'test-user', identities: [] }, session: null }), { status: 200, headers: { 'Content-Type': 'application/json' } }));
     const { error } = await client.auth.signUp({ email: 'test@example.in', password: 'test-only long phrase', options: { emailRedirectTo: 'wedflow://auth/callback' } });

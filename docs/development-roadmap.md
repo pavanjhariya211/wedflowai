@@ -35,3 +35,11 @@ Current validation state and external blockers: [progress](progress.md).
 ## October 23 Android preview setup
 
 Android preview preparation is in progress within Phase 2 acceptance. The upload allowlist and cloud Supabase URL are corrected; EAS preview APK compilation succeeded. Install the APK and run device acceptance. Phase 3 remains unapproved.
+
+## October 24 — Netlify browser preview
+
+Within the approved browser-preview scope, web support and netlify.toml are
+prepared. Remaining handoff: import GitHub repository into the founder's Netlify
+account, add the two public build variables, deploy the testing site, register
+its exact Supabase callback, and run signed-in browser acceptance. Phase 3 is
+still unapproved. The existing Android APK remains available.

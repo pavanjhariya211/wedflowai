@@ -1,5 +1,6 @@
+import { Alert } from '../../src/lib/confirmation';
 import { useCallback, useRef, useState } from 'react';
-import { Alert, Share, Text } from 'react-native';
+import { Share, Text } from 'react-native';
 import { useFocusEffect } from 'expo-router';
 import { useAuth } from '../../src/auth/AuthProvider';
 import { Body, Button, Card, Field, Heading, Notice, Screen } from '../../src/components/ui';

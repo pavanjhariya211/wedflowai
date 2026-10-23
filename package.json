@@ -19,7 +19,8 @@
     "react-native": "0.88.0",
     "react-native-safe-area-context": "~5.10.1",
     "react-native-screens": "~4.30.0",
-    "react-native-url-polyfill": "^4.0.0"
+    "react-native-url-polyfill": "^4.0.0",
+    "react-native-web": "^0.21.4"
   },
   "devDependencies": {
     "@react-native/jest-preset": "0.88.0",
@@ -45,7 +46,8 @@
     "export:android": "expo export --platform android --max-workers 2",
     "export:ios": "expo export --platform ios --max-workers 2",
     "smoke:metro": "node scripts/smoke-metro.mjs",
-    "check:supabase": "node --use-env-proxy scripts/check-supabase.mjs"
+    "check:supabase": "node --use-env-proxy scripts/check-supabase.mjs",
+    "export:web": "expo export --platform web --max-workers 2"
   },
   "private": true,
   "engines": {

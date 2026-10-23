@@ -1,9 +1,8 @@
 import 'react-native-url-polyfill/auto';
-import { createClient, processLock } from '@supabase/supabase-js';
-import * as SecureStore from 'expo-secure-store';
+import { createClient } from '@supabase/supabase-js';
+import { authStorage, authLock } from './auth-storage';
 import { environment } from '../config/environment';
 import { installNativeAuthCrypto } from './native-auth-crypto';
-import { createSessionStorage } from './secure-storage';
 
 installNativeAuthCrypto(globalThis);
 
@@ -12,12 +11,12 @@ export const supabase = environment.ready ? createClient(
   environment.supabasePublishableKey,
   {
     auth: {
-      storage: createSessionStorage(SecureStore),
+      storage: authStorage,
       autoRefreshToken: true,
       persistSession: true,
       detectSessionInUrl: false,
       flowType: 'pkce',
-      lock: processLock,
+      lock: authLock,
     },
   },
 ) : null;

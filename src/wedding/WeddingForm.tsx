@@ -1,5 +1,5 @@
+import { Alert } from '../lib/confirmation';
 import { useRef, useState } from 'react';
-import { Alert } from 'react-native';
 import { randomUUID } from 'expo-crypto';
 import { Body, Button, Card, Field, Notice } from '../components/ui';
 import type { Wedding, WeddingDraft } from './models';

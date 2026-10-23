@@ -92,3 +92,15 @@ Use existing Expo owner `pavanjhariya211s-team` and project `wedflow-ai` (27914a
 Preserve existing Supabase redirect entries and add only the exact `wedflow://auth/callback` URL for the internal native app. No broad redirect wildcard was added.
 
 Distribute the October 23 internal APK through the Expo artifact/install links. Keep the APK out of Git and treat device acceptance as pending; no store release is implied.
+
+## October 24 — Netlify browser preview
+
+Founder approved Netlify browser preparation on October 24, expanding the
+initial mobile-only platform decision for testing. Reuse the current React Native
+screens via react-native-web rather than a separate application. Export a SPA;
+keep private data out of static output. Persist browser sessions in localStorage
+with Web Locks; retain OS-backed storage on native. Never silently fall back to
+pretending a failed storage write succeeded. Browser confirmation dialogs require
+explicit consent before existing sensitive mutations. Use exact per-site Auth
+redirects once the Netlify hostname is known. No production/store release or
+future product phase is authorized by this browser-preview request.

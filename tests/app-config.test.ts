@@ -1,8 +1,11 @@
 import type { ConfigContext } from 'expo/config';
 import appConfig from '../app.config';
 const context = { config: { name: 'Wedflow', slug: 'wedflowai' } } as ConfigContext;
+const originalNetlify = process.env.NETLIFY;
 const originalKey = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 afterEach(() => {
+  if (originalNetlify === undefined) delete process.env.NETLIFY;
+  else process.env.NETLIFY = originalNetlify;
   if (originalKey === undefined) delete process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
   else process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY = originalKey;
 });
@@ -15,4 +18,10 @@ test('allows unconfigured setup and does not copy client values into extra metad
   expect(appConfig(context).name).toBe('Wedflow');
   process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_test_only';
   expect(appConfig(context).extra).toBeUndefined();
+});
+
+test('Netlify builds fail with clear guidance when public client configuration is missing', () => {
+  process.env.NETLIFY = 'true';
+  delete process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+  expect(() => appConfig(context)).toThrow('in Netlify environment variables');
 });

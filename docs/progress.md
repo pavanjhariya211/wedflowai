@@ -107,3 +107,22 @@ preserving existing entries. No email was sent; actual native links need device 
 Android packaging succeeded; installation, rendering, email delivery and native callback
 routing remain pending physical-device acceptance. No IPA, Netlify website or
 production/store deployment was produced.
+
+## October 24 — Netlify browser preview
+
+Browser preview code is ready; no Netlify site has been published because no
+account connection/token is available in this session. Added react-native-web,
+platform auth storage/locking, browser confirmations and Netlify SPA routing.
+Web and Android bundle exports pass. Browser smoke in local Chromium verifies
+sign-in rendering, validation, simulated API failure UI, registration route reload,
+390px layout, and invalid PKCE callback guidance with no runtime exceptions.
+The smoke deliberately intercepts failed Auth responses; it does not establish
+hosted browser sign-in or email delivery. Supabase SDK tests exercise S256 verifier
+persistence and recovery through both native and browser adapters. Tests also
+cover browser storage errors and confirmation cancellation. Netlify deployment,
+exact web callback allowlisting and real account browser acceptance remain pending.
+See README for one-time import and public variable setup; no secrets were committed.
+
+Final web milestone checks: TypeScript, ESLint and **95 tests in 15 suites** pass.
+Web and Android exports pass; final web output was regenerated after the last copy
+change. A scan found no cloud Supabase access token or Expo token in the web output.

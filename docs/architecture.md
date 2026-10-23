@@ -101,3 +101,14 @@ Internal Android previews use the existing Expo team project `wedflow-ai`, packa
 Supabase development Auth now allows the exact native callback `wedflow://auth/callback`. Email confirmation and recovery return to the requesting app; physical-device routing remains unverified.
 
 EAS preview build 4d72654f-c4e4-4e13-a8b1-c3764ac21143 successfully produced the signed internal Android APK on October 23. Runtime behaviour remains subject to physical-device acceptance.
+
+## October 24 — Netlify browser preview
+
+The founder authorized a browser preview for Netlify on October 24. Expo Router
+exports a client-rendered SPA (`web.output: single`). Netlify rewrites unknown
+paths to index.html so route reloads and /auth/callback work. Browser auth uses
+origin-scoped localStorage and navigatorLock for cross-tab refresh, preserving
+native SecureStore/processLock adapters. Native crypto installation preserves
+browser WebCrypto. Browser confirm dialogs retain explicit mutation consent.
+Private user data is loaded only after authentication through existing RLS/RPCs.
+Netlify receives only public Supabase build variables. No Netlify site is live yet.

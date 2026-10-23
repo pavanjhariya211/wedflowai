@@ -130,3 +130,12 @@ proposal reversals and privacy incidents. Targets require pilot evidence.
 ## October 23 Android preview setup
 
 Device acceptance remains pending until an internal APK can be built and installed. Expo authentication, project linking and signing preparation are verified; the internal APK build is complete after the cloud allowlist correction. Device tests remain pending.
+
+## October 24 — Netlify browser preview
+
+Founder requested browser access and approved preparing Netlify on October 24,
+superseding the initial mobile-only target for testing. The same implemented
+Phase 1–2 flows are exposed; future phases remain unapproved. Web build, browser
+session persistence/PKCE adapter contracts and browser confirmation safeguards
+are checked. Real hosted browser email delivery and Netlify-origin acceptance
+remain pending; no account connection was available for publication.

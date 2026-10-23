@@ -126,3 +126,10 @@ Android packaging introduces no schema changes. The existing Supabase project an
 Native Auth callback allowlisting was updated through project Auth configuration only. No database tables, RLS policies or migrations changed.
 
 The successful APK build uses the existing development schema; packaging success does not replace Auth/RLS integration checks or device acceptance.
+
+## October 24 — Netlify browser preview
+
+The browser target reuses the existing development database, roles, RLS and
+transactional RPCs. No schema/migration changes were needed. After a Netlify URL
+exists, add its exact /auth/callback to the Auth redirect allowlist while retaining
+the native callback. That web-origin change is pending; no wildcard was added.
