@@ -124,17 +124,28 @@ compilation, not APK signing or installation. See [device checks](docs/device-te
 Expo Go can validate the initial screens when its SDK matches. For reliable custom
 scheme email links, build an internal APK with your Expo account:
 
-1. Choose a stable Android application ID and set `expo.android.package` in
-   `app.json`; also choose `expo.ios.bundleIdentifier` before iOS builds.
-2. Use `npx eas-cli login`, then `npx eas-cli build:configure` to associate your project.
-3. Add the two **public** Supabase values to the EAS `preview` environment.
-4. Run `npx eas-cli build --platform android --profile preview` and install the APK.
-5. Allow its callback URL in the Supabase development project and follow the device checklist.
+The app is linked to `@pavanjhariya211s-team/wedflow-ai` (project
+`27914ae3-994f-40c7-aba8-8369b6eea723`) with Android ID `com.wedflowai.app`.
+Expo manages the generated Android keystore. The EAS `preview` environment has
+both public Supabase values; admin credentials are excluded.
 
-`eas.json` contains only an internal preview profile. No production build,
-deployment, Expo account association, signing credentials or store publication
-has been created by this milestone. EAS access/network destinations may need
-allowlisting outside this cloud environment.
+With `EXPO_TOKEN` configured securely in this cloud environment:
+
+```sh
+npm_config_cache=/workspace/.npm-cache npx --yes eas-cli@25.3.0 whoami
+npm_config_cache=/workspace/.npm-cache npx --yes eas-cli@25.3.0 build --platform android --profile preview --non-interactive
+```
+
+The first upload was blocked by network policy (HTTP 403 at
+`storage.googleapis.com`). Its allowlist change is saved for environment publication;
+no build or APK exists yet. The local cloud Supabase URL must be the HTTPS project
+origin, `https://kyoabyflvstsvvenmcot.supabase.co`; the saved runtime value was invalid
+on October 23 and needs correction in environment settings. The EAS preview URL
+has already been corrected, and its publishable key passed a real Auth check.
+
+After a successful build, install the APK, allow its callback URL in Supabase and
+follow the device checklist. iOS identifiers/signing remain unconfigured. No
+production/store deployment is authorized.
 
 ## Project layout
 

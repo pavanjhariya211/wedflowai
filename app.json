@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Wedflow",
-    "slug": "wedflowai",
+    "slug": "wedflow-ai",
     "version": "0.1.0",
     "scheme": "wedflow",
     "orientation": "portrait",
@@ -14,7 +14,8 @@
       "supportsTablet": false
     },
     "android": {
-      "predictiveBackGestureEnabled": true
+      "predictiveBackGestureEnabled": true,
+      "package": "com.wedflowai.app"
     },
     "plugins": [
       "expo-router",
@@ -23,6 +24,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "owner": "pavanjhariya211s-team",
+    "extra": {
+      "eas": {
+        "projectId": "27914ae3-994f-40c7-aba8-8369b6eea723"
+      }
     }
   }
 }

@@ -118,3 +118,7 @@ Task/expense personal visibility, dependencies, proposal approvals, notification
 account deletion/export and retention are not implemented by these migrations.
 Auth user deletion needs an application data lifecycle because profile references
 protect active wedding records. Do not claim this is a complete launch schema.
+
+## October 23 Android preview setup
+
+Android packaging introduces no schema changes. The existing Supabase project and RLS/RPC model remain the backend; Expo receives only public client configuration.

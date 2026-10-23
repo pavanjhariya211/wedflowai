@@ -70,8 +70,8 @@ cloud token/server key stayed out of app code, logs and repository files.
 - Physical Android/iOS rendering, OS keychain lifecycle and real email delivery
   still require device acceptance. Hosted sign-in used administratively confirmed
   temporary accounts; it does not establish SMTP delivery or native link routing.
-- No signed APK/IPA or Expo/EAS account association has been created. All coding
-  and service checks ran here; no local Codex installation is required.
+- Expo project association and Android signing are configured. No signed APK/IPA
+  exists yet: the source upload was blocked by network policy. No local Codex is needed.
 - The five tabs are not a complete MVP. Timeline currently presents ceremonies;
   the planning-task timeline and templates are Phase 3.
 - Workspace mode migration, wedding-admin transfer, offline writes, account/data
@@ -84,3 +84,13 @@ cloud token/server key stayed out of app code, logs and repository files.
 Phase 3: optional planning templates, custom categories/tasks, ownership and
 collaboration, recurrence, master/ceremony task views and task history. Review the
 current milestone and obtain founder approval before starting that major phase.
+
+## October 23: Android build preparation
+
+Expo token authentication passed with owner access. Linked the existing team project
+`wedflow-ai`, set Android ID `com.wedflowai.app`, generated an Expo-managed keystore,
+and configured EAS preview public Supabase variables. The publishable key passed
+hosted Auth verification. Corrected the remote URL; the cloud runtime URL remains
+invalid and requires correction in settings. Upload failed HTTP 403 at
+`storage.googleapis.com`; a narrow allowlist draft is saved but requires publication.
+No EAS build job or APK was produced. TypeScript, lint and all 87 tests passed.

@@ -31,3 +31,7 @@ real signed-in HTTP tests. Physical-device acceptance is still open. Founder
 review is required before Phase 3 (templates, tasks, owners and master timeline).
 
 Current validation state and external blockers: [progress](progress.md).
+
+## October 23 Android preview setup
+
+Android preview preparation is in progress within Phase 2 acceptance. Publish the saved upload-domain allowlist and correct the cloud Supabase URL, then retry EAS preview, install and run device acceptance. Phase 3 remains unapproved.

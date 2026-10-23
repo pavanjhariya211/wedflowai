@@ -80,7 +80,11 @@ Founder approved the presented architecture, Phase 1 and recommended defaults.
 - Reminder offsets, quiet hours, snooze and escalation policy.
 - Retention/export/account deletion details and India privacy/legal review.
 - Minimum Android/iOS support and regions/languages for pilot.
-- Stable native application identifiers, Expo organization and signing ownership.
+- iOS application identifier and signing; production release ownership.
 
 No production deployment, payments integration, AI usage or external messaging has
 been authorized by this milestone approval.
+
+## October 23 Android preview setup
+
+Use existing Expo owner `pavanjhariya211s-team` and project `wedflow-ai` (27914ae3-994f-40c7-aba8-8369b6eea723), with Android application ID `com.wedflowai.app` and Expo-managed signing for internal APK testing. Do not create a duplicate project. iOS identity and production releases remain undecided.

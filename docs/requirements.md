@@ -126,3 +126,7 @@ PRD activation definition: wedding + five retained tasks + one accepted addition
 member within seven days, superseding discovery's earlier three-task proposal.
 Other metrics: collaboration, known-cost capture, useful alerts, muted alerts,
 proposal reversals and privacy incidents. Targets require pilot evidence.
+
+## October 23 Android preview setup
+
+Device acceptance remains pending until an internal APK can be built and installed. Expo authentication, project linking and signing preparation are verified; source upload is blocked by the cloud network allowlist.

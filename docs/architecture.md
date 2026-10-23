@@ -93,3 +93,7 @@ wedding data, expire after seven days and are bound to the authenticated email.
 The Management API is used from cloud-only helpers for development migrations and
 controlled tests. No server credential is imported by mobile code. Auth passwords,
 MCP tokens and service keys are never persisted by these helpers.
+
+## October 23 Android preview setup
+
+Internal Android previews use the existing Expo team project `wedflow-ai`, package `com.wedflowai.app`, and the EAS preview environment. Only public Supabase client configuration is supplied to the mobile build.
