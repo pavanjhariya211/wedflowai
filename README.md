@@ -224,7 +224,8 @@ as static pages. Browser confirmations gate changes in visibility and membership
 
 The authenticated function is `/.netlify/functions/plan-intake`, bundled by Netlify
 with esbuild. No Netlify token or OpenAI key is available to this cloud session,
-so account settings and real OpenAI output have not been verified here.
+so account settings cannot be inspected directly. The final deployed-endpoint
+acceptance returned HTTP 200 with source ai through a real temporary account.
 
 In the Netlify project's environment variables:
 
@@ -251,7 +252,8 @@ old counters on their next request. Model output is only a preview until accepte
 
 `npm run check` includes Node handler tests with simulated providers. The web/native
 exports and temporary-account browser smoke establish the rules-based path;
-production-origin function routing and actual OpenAI delivery still need live acceptance.
+production-origin function routing and actual AI output were verified in the
+final Stitch UI acceptance. This does not establish broader autonomous planning.
 
 ## Stitch UI / UX redesign
 
@@ -270,6 +272,8 @@ Browser acceptance can be repeated after a web export with
 `python scripts/smoke-ui.py` (development cloud/admin bindings and Chromium required).
 It creates and cleans disposable test data, checks actual Supabase operations and
 responsive interactions, and reports live AI status separately. The first run
-against the deployed AI function returned `502 ai_unavailable`; rules fallback
-worked. This does not establish successful OpenAI output. The server now returns
-safe failure categories for diagnosis without exposing provider messages or keys.
+returned `502 ai_unavailable` and exercised the labelled fallback. After deployment,
+the final authenticated live endpoint check returned **200 with source ai** and
+its generated proposal was accepted and saved. The new live UI entry asset matches
+the locally verified export. Safe provider-failure categories remain available
+without exposing provider messages or keys.

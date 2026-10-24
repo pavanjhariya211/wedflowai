@@ -254,8 +254,11 @@ browser/export tests use real assets.
 
 Live endpoint checks: Netlify responds 200 and the function GET responds 405.
 An authenticated fictional brief reached the deployed AI endpoint but returned
-502 ai_unavailable; the UI used the explicit rules fallback. Live AI is therefore
-not verified. Added safe provider-failure categories for diagnosis after redeploy.
+502 ai_unavailable; the UI used the explicit rules fallback. That initial run did not verify AI. After the new deployment, the final
+authenticated live endpoint check returned **HTTP 200 with source ai**. Its
+proposal was generated, accepted and saved successfully in the real browser flow.
+The live JavaScript entry asset exactly matches the verified local Stitch export.
+Safe provider-failure categories remain available for diagnosis.
 No Stitch or server key was copied to Git/app code. The shared Android APK is still
 from the older milestone and must not be described as containing this redesign.
 
@@ -263,3 +266,10 @@ Final UI milestone validation: TypeScript and ESLint pass without lint warnings;
 118 Jest tests in 21 suites and 7 Node handler tests pass (125 total). Web and
 Android exports and server-function esbuild bundling pass. Browser screenshots
 were inspected at desktop and phone widths. No new APK or store release was made.
+
+Final live acceptance: Netlify serves the new Stitch UI; the updated server
+credentials work through the deployed AI endpoint. The second browser run passed
+actual AI generation, plan acceptance, persistence, completion/reopening, calendar
+interaction, task editing/cancel, responsive navigation and session reload. All
+temporary records were cleaned. Initial 502 findings above are superseded by this
+final successful deployed-endpoint check.

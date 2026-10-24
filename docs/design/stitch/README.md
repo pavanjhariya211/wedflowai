@@ -32,3 +32,7 @@ uses real hosted Auth/domain requests, checks the deployed AI endpoint once with
 a fictional brief, exercises desktop/mobile UI, writes screenshots under `/tmp`,
 and removes temporary data in a finally block. No email is sent. Provider failure
 is reported separately and exercises the honest fallback; it is not AI success.
+
+The final live verification returned HTTP 200 with source ai and passed plan
+acceptance/persistence. Netlify served the exact new UI entry asset. An earlier
+502 was transient/pre-deployment and is not the final acceptance outcome.

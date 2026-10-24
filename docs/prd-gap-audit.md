@@ -21,7 +21,7 @@ not a claim that Netlify has published the latest commit.
 | Shopping and costs | Placeholder | Collections/items, purchase state, receipts, quantities, private costs, partial payments and totals |
 | Dependencies and date changes | Catalog prerequisites sequence generated proposals; timing risk and attention hints; stale-version protection; no silent task date shifts | Graph validation, buffers/risk, owner approvals and atomic rescheduling proposals |
 | Reminders/notifications | Not implemented | In-app inbox, opt-in push, quiet hours/deduplication and delivery checks |
-| AI | Authenticated, rate-limited brief interpreter and validated fact contract implemented; clear rules fallback | Actual provider credentials/output and live-origin acceptance; broader AI task drafting and recommendations |
+| AI | Authenticated, rate-limited brief interpreter and validated fact contract implemented; live 200 AI response verified; clear rules fallback | Broader AI task drafting, preference reasoning and recommendations |
 | Quality/launch | Automated unit/RLS checks, temporary-account hosted browser smoke, browser/native exports | Real-user device/email acceptance, accessibility review, recovery and pilot measures |
 
 Do not label the product complete or ready for a public launch until the remaining
