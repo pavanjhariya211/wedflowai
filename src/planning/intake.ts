@@ -7,7 +7,7 @@ export const emptyFacts: IntakeFacts = { guestCount: null, venueBooked: null, ca
 export function readBrief(brief: string): IntakeFacts {
  const count = /\b(\d{1,5})\s*(?:guests?|people|attendees)\b/i.exec(brief);
  const booked = (rawName: string) => {
-  const name = `(?:${rawName})`; 
+  const name = `(?:${rawName})`;
   const yes = new RegExp(`\\b${name}\\s+(?:(?:is|already)\\s+)*(?:booked|confirmed|arranged)\\b|\\bbooked\\s+(?:the\\s+)?${name}\\b`, 'i');
   const negative = new RegExp(`\\b(?:not|haven.t|isn.t|not yet|need to)\\b[^.!?;]{0,35}\\b${name}\\b|\\b${name}\\b[^.!?;]{0,20}\\b(?:not|unbooked|pending)\\b`, 'i');
   return !negative.test(brief) && yes.test(brief) ? true : null;
