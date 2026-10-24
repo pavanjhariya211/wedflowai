@@ -1,5 +1,6 @@
+import { GuidedPlanner } from '../../src/planning/GuidedPlanner';
 import { useCallback, useState } from 'react';
-import { useFocusEffect } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams, router } from 'expo-router';
 import { useAuth } from '../../src/auth/AuthProvider';
 import { Body, Button, Card, Field, Heading, Notice, Screen } from '../../src/components/ui';
 import { useWedding } from '../../src/wedding/WeddingProvider';
@@ -15,7 +16,8 @@ import { PlanPreview } from '../../src/planning/PlanPreview';
 function TasksContent() {
  const { wedding, spaces, ceremonies } = useWedding(); const { session } = useAuth();
  const { tasks, loading, error, reload, service } = usePlanning();
- const [mode, setMode] = useState<'list' | 'new' | 'plan'>('list'); const [editing, setEditing] = useState<Task | null>(null);
+ const params = useLocalSearchParams<{ plan?: string }>();
+ const [mode, setMode] = useState<'list' | 'new' | 'plan' | 'guided'>(params.plan === 'generate' ? 'guided' : 'list'); const [editing, setEditing] = useState<Task | null>(null);
  const [query, setQuery] = useState(''), [filter, setFilter] = useState('active'), [category, setCategory] = useState('all'), [ceremony, setCeremony] = useState('all');
  const [workspace, setWorkspace] = useState(spaces.find((s) => s.can_edit && s.kind === 'family')?.id ?? spaces.find((s) => s.can_edit)?.id ?? '');
  const [today, setToday] = useState(() => parseIndianDate(todayIndia())!);
@@ -23,16 +25,17 @@ function TasksContent() {
  const filtered = tasks.filter((t) => (!query || `${t.title} ${t.category} ${t.notes}`.toLowerCase().includes(query.toLowerCase())) &&
   (filter === 'all' || (filter === 'active' ? activeTask(t) : filter === 'overdue' ? activeTask(t) && !!t.due_date && t.due_date < today : filter === 'mine' ? t.owner_id === session?.user.id && activeTask(t) : t.status === filter)) &&
   (category === 'all' || t.category === category) && (ceremony === 'all' || t.task_ceremonies.some((c) => c.ceremony_id === ceremony)));
- function done() { setMode('list'); setEditing(null); void reload(); }
+ function done() { router.setParams({ plan: '' }); setMode('list'); setEditing(null); void reload(); }
  return <>
   {loading ? <Notice>Loading your task plan…</Notice> : error ? <Notice error>{error}</Notice> : service ? <>
    {mode === 'new' || editing ? <TaskForm key={editing?.id ?? 'new'} task={editing ?? undefined} service={service} onDone={done} />
-    : mode === 'plan' ? <PlanPreview workspace={workspace} tasks={tasks} service={service} onDone={done} /> : <>
-    {!tasks.length ? <Card><Body>Your wedding is saved. Now build your plan.</Body><Body>Review an optional starter plan or add your own tasks. Nothing is generated or shared without your review.</Body></Card> : <Body>{tasks.filter((t) => t.status === 'completed').length} completed · {tasks.filter(activeTask).length} active visible tasks</Body>}
+    : mode === 'guided' ? <GuidedPlanner tasks={tasks} service={service} onDone={done} /> : mode === 'plan' ? <PlanPreview workspace={workspace} tasks={tasks} service={service} onDone={done} /> : <>
+    {!tasks.length ? <Card><Body>Your wedding is saved. Now build your plan.</Body><Body>Generate a sequenced proposal from your wedding details, then accept it in one review.</Body></Card> : <Body>{tasks.filter((t) => t.status === 'completed').length} completed · {tasks.filter(activeTask).length} active visible tasks</Body>}
     {spaces.some((s) => s.can_edit) ? <>
-     <Button title="Add a custom task" onPress={() => setMode('new')} />
-     <Choice label="Starter plan destination" value={workspace} options={spaces.filter((s) => s.can_edit).map((s) => ({ value: s.id, label: s.name }))} onChange={setWorkspace} />
-     <Button secondary title="Preview suggested planning tasks" disabled={!workspace} onPress={() => setMode('plan')} />
+     <Button title="Generate my guided timeline" onPress={() => setMode('guided')} />
+     <Button secondary title="Add a custom task" onPress={() => setMode('new')} />
+     <Choice label="Manual starter-plan destination" value={workspace} options={spaces.filter((s) => s.can_edit).map((s) => ({ value: s.id, label: s.name }))} onChange={setWorkspace} />
+     <Button secondary title="Use the manual template editor" disabled={!workspace} onPress={() => setMode('plan')} />
     </> : <Notice>You have view-only access.</Notice>}
     <Field label="Search your visible tasks" value={query} onChangeText={setQuery} />
     <Choice label="Show tasks" value={filter} options={[{ value: 'active', label: 'Active' }, { value: 'mine', label: 'Assigned to me' }, { value: 'overdue', label: 'Overdue' }, { value: 'all', label: 'All, including archived' }, ...statuses.map((s) => ({ value: s, label: labelStatus(s) }))]} onChange={setFilter} />

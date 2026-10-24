@@ -181,3 +181,44 @@ ceremonies are shared, and hides withdrawn private ceremony IDs from shared task
 links for every reader. Multi-ceremony linkage and sharing/withdrawal tests pass.
 The final Chromium check waited for the actual timeline panel and visually
 confirmed that dated task cards render (not only that hidden DOM text exists).
+
+## October 24 — guided intelligent planner
+
+The founder approved building the guided intelligent planner. Delivered:
+
+- New wedding setup opens guided intake automatically. Saved date/city/planning
+  window are reused; one optional brief and optional booking choices replace
+  mandatory task-by-task template editing.
+- Rules select relevant tasks, order prerequisite decisions, allocate dates within
+  the available window with suggested minimum lead times, flag infeasible short
+  windows, preserve existing tasks/confirmed dates, and avoid duplicate sources.
+- AI brief interpretation uses an authenticated Netlify function, strict schema,
+  runtime validation, bounded input/output/time, no tools, no raw logs, and an
+  atomic per-user/workspace-authorized quota. Source is honestly labelled, and
+  model failures/missing settings fall back to rules. Empty briefs make no AI call.
+- Compact proposal cards, optional adjustments and one Accept plan action persist
+  all selected suggestions atomically. Dates/owners/sharing are explained before
+  acceptance; high timing risks need acknowledgment. Home surfaces visible blocked,
+  overdue, near-term and catalog-sequence issues; it does not silently reschedule.
+
+Verification: TypeScript/ESLint, **116 Jest tests in 20 suites plus 6 Node function
+contract tests**, web/Android exports and server-function esbuild bundling pass.
+The quota migration and SQL role/scope/cooldown/daily-limit/privacy fixtures passed
+before and after application. Chromium used a temporary real Supabase account:
+create wedding → guided intake → “300 guests, venue booked, reception” → generate →
+clearly labelled rules fallback → accept 14 tasks in one action → reload → complete/
+reopen → private blocked task → rendered master timeline → Home attention card.
+Real Auth/domain requests were forwarded to hosted Supabase through the cloud
+proxy; only the unavailable AI endpoint was simulated. Temporary wedding and Auth
+fixtures were removed; no email or model request was sent.
+
+Live AI is not yet verified: this cloud session has no OpenAI key or Netlify account
+connection. Netlify must have a server-only OPENAI_API_KEY and runtime access to
+the two public Supabase variables. See README. Netlify live-origin function routing,
+actual model output and deployed-origin acceptance remain pending. The previously
+shared APK predates these screens. Shopping, calendar/recurrence, durable custom
+dependencies/owner-approved rescheduling, notifications and broader AI remain gaps.
+
+Generated preparation tasks also respect the actual date of saved family/shared
+ceremonies; feasibility is checked against that event rather than only the main
+wedding date. Shared ceremony links retain the existing scope compatibility rules.

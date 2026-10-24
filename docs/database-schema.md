@@ -165,3 +165,17 @@ ceremonies and filters withdrawn private links from broader tasks even when the
 reader can access both scopes. Its migration and additional multi-link/share/
 withdraw assertions passed before and after application. Both migrations are
 additive; the previously applied SQL/checksums remain unchanged.
+
+## October 24 — guided intelligent planner
+
+`202610240003_planner_ai_quota.sql` adds `planner_ai_attempts` (identity ID,
+auth user ID, creation time). RLS is enabled, direct app/anonymous access is revoked,
+and no brief, task context, response or credential is stored in the table.
+`wf_claim_planner_ai(wedding,workspace)` verifies current editing authority and
+wedding/workspace consistency, serializes per-user reservations, enforces a
+30-second cooldown and 20 attempts per rolling 24 hours, and prunes that caller's
+counters older than two days on their next reservation. It is authenticated-only;
+no service-role key is required by the Netlify function. SQL fixtures cover role
+and scope denial, cooldown, daily quota and counter privacy, inside rollback.
+The additive migration is tested and applied to the selected development project.
+No existing task dates/owners/visibility or wedding records were changed.

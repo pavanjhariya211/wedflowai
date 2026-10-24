@@ -53,3 +53,15 @@ for all incomplete requirements. Do not mark Phase 3 complete: recurrence,
 collaborators/delegation, full category management and calendar are still pending.
 Phase 4 shopping/finance and Phase 5 dependencies/notifications remain separate
 work. No public-launch/store authorization is implied.
+
+## October 24 — guided intelligent planner
+
+The founder explicitly approved beginning the guided planner: saved setup →
+short brief → sequenced proposal → one acceptance → attention dashboard. This
+first implementation and authenticated server AI intake are authorized without a
+new phase approval loop. The rules path and provider-contract/error paths are
+verified; actual Netlify runtime AI settings and live model delivery remain an
+external setup/acceptance step. Later work includes richer intake/preferences,
+real provider acceptance, durable dependencies, affected-owner date-change
+proposals and approvals, calendar/recurrence, shopping/finance and notifications.
+Do not claim autonomous rescheduling or complete PRD/P1 delivery.

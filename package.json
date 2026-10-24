@@ -42,12 +42,13 @@
     "lint": "eslint .",
     "test": "jest --runInBand",
     "test:watch": "jest --watch",
-    "check": "npm run typecheck && npm run lint && npm test",
+    "check": "npm run typecheck && npm run lint && npm test && npm run test:planner-api",
     "export:android": "expo export --platform android --max-workers 2",
     "export:ios": "expo export --platform ios --max-workers 2",
     "smoke:metro": "node scripts/smoke-metro.mjs",
     "check:supabase": "node --use-env-proxy scripts/check-supabase.mjs",
-    "export:web": "expo export --platform web --max-workers 2"
+    "export:web": "expo export --platform web --max-workers 2",
+    "test:planner-api": "node --test tests/planner-api.test.mjs"
   },
   "private": true,
   "engines": {

@@ -133,3 +133,31 @@ immutable visibility during edits, personal-owner privacy, workspace authorizati
 ceremony-scope validation, CAS versions and old/new history. Private links are
 filtered independently when a ceremony's scope changes. Shopping, calendar grid,
 collaborators, recurrence, dependencies, notifications and AI remain gaps.
+
+## October 24 — guided intelligent planner
+
+Founder approved guided intelligent planning on October 24. `GuidedPlanner`
+reuses wedding setup and asks for an optional brief plus booked-service choices.
+`intake.ts` conservatively extracts explicit facts locally; the optional authenticated
+Netlify function interprets a brief with OpenAI under a strict schema. The model
+receives no saved task/member/financial context and cannot return authoritative
+dates or owners. Invalid/unavailable model output produces a labelled rules fallback.
+
+`generator.ts` selects relevant catalog rules, topologically sorts prerequisites,
+compresses relative timing to the available window and applies suggested minimum
+lead times. It raises visible infeasibility warnings rather than claiming every
+short-notice plan fits. Existing saved dates/tasks remain intact; source IDs suppress
+duplicates in the same visible scope. Preparation tasks for named functions do not
+create ceremonies or invent actual function dates. Accepted new tasks use the
+existing atomic plan RPC. Compact cards expand only for requested adjustments;
+manual proposals remain accessible as a secondary workflow.
+
+The Home attention widget checks only RLS-returned visible tasks: blocked, overdue,
+near-term and catalog-sequence issues. These are deterministic hints, not model
+monitoring or a complete persisted dependency graph/rescheduling engine. Full
+owner approvals, notifications and advanced planning remain gaps.
+
+The server verifies JWT identity, reserves a workspace-authorized quota, calls the
+Responses API with no tools and store:false, validates facts, and returns no raw
+provider errors. Request bodies and tokens are not logged. The brief/AI consent
+and source/fallback state are visible. No live provider invocation is claimed.

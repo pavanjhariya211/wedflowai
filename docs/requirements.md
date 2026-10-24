@@ -157,3 +157,20 @@ behaviour is still missing. Shopping, private finance, notification delivery,
 rescheduling approvals, AI and launch hardening are not implemented. See
 [the explicit gap audit](prd-gap-audit.md) rather than treating app deployment as
 PRD completion.
+
+## October 24 — guided intelligent planner
+
+Founder approved the shift from manual task-entry toward guided intelligent
+planning. Implemented first iteration: reuse saved wedding facts, optional natural
+language brief, explicit booked-service choices, a rules-calculated sequenced plan,
+visible assumptions/infeasibility, compact optional task adjustments, one approval,
+and a visible-task attention dashboard. AI brief interpretation is implemented
+server-side with identity/scope/quota checks and a validated output contract; it
+is optional and has an honest offline/rules fallback.
+
+The current supported intake facts are guest count, explicit venue/catering/photo
+booking status, travel needs and named functions. AI is not an unrestricted wedding
+agent and does not infer cultural rules, confirmed dates or prices. Actual model
+access is not configured/verified in this cloud session. Intelligent proposals do
+not establish full P1 AI delivery, durable custom dependency graphs, automatic
+rescheduling, personal recommendations, messaging or reminders.

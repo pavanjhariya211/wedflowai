@@ -116,3 +116,26 @@ The hosted local-browser smoke passes; verify the deployed Netlify build separat
 
 Calendar grid, recurrence, collaborators, shopping/finance, dependencies, push and
 AI are not implemented by this milestone and must not be accepted as complete.
+
+## Guided planner and AI acceptance
+
+1. New wedding → guided intake automatically. Reuse the saved wedding facts. Enter
+   a brief or leave it blank; check optional booked-service choices and destination.
+2. Generate: verify relevant booking tasks are omitted only from the recognised
+   facts displayed in assumptions. All dates must be marked suggestions.
+3. Review compact cards with no required task-entry fields; accept in one action.
+   Expand one card to change/exclude it. Cancel must save nothing.
+4. Test a two-day planning window: timing risks must appear and require explicit
+   acknowledgment. Verify existing confirmed dates remain unchanged on regeneration.
+5. Confirm Home shows the saved user's blocked/overdue/near-term tasks. Another
+   family's/private tasks must not appear in text, counts or dependency hints.
+6. With AI off or no key/failing model, verify a labelled rules-based proposal.
+   A blank brief must make no model request.
+7. After configuring OPENAI_API_KEY in Netlify Functions, submit a brief on the live
+   site. Verify AI source labelling, safe structured facts and actual provider output;
+   test invalid session, viewer role, rapid retry, provider timeout and refusal.
+8. Inspect static assets: no OpenAI/server keys or session tokens. Do not paste
+   credentials or full callback URLs into acceptance records.
+
+Live model output and final deployed-origin behaviour remain pending; mocked
+provider contracts and a real Supabase rules-path smoke do not establish them.

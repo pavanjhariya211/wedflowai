@@ -10,12 +10,19 @@ Phase 3 task plan: custom tasks, optional reviewed templates, primary owners,
 private/family/shared scope, editable dates/statuses, history and a master list
 timeline. **It is not the complete PRD.** See the [gap audit](docs/prd-gap-audit.md).
 
-**Try the flow:** sign in → create a wedding → Tasks → Preview suggested planning
-tasks → keep/edit/remove suggestions → Save reviewed tasks → Timeline. Existing
-weddings can use **Build or review your task plan** in Home. No tasks or traditions
-are added automatically. Family invitations remain explicit code sharing, not
-email/SMS delivery. Shopping, recurrence, dependency automation, push and AI remain
-unimplemented.
+**Try the flow:** sign in → create a wedding → describe the plan in one short
+brief (optional) → Generate my timeline → review assumptions and dates → Accept
+plan. Existing weddings use Tasks → Generate my guided timeline. Per-task editing
+is optional. Home highlights visible blocked/overdue/near-term tasks and sequence
+risks; it does not silently move deadlines or assign relatives.
+
+The planner uses deterministic prerequisite sequencing, minimum suggested lead
+times and the available India-date planning window. It adapts to explicit booking
+status, guest estimate, travel and named functions, preserves existing tasks and
+flags infeasible short windows. AI can interpret the brief on the server, but
+live AI is not yet verified. A clearly labelled rules-based fallback works without
+an AI key. Shopping, full dependency/rescheduling workflows, recurrence and push
+remain incomplete.
 
 See [progress](docs/progress.md) for checks and limitations and
 [device testing](docs/device-testing.md) for the acceptance checklist.
@@ -212,3 +219,36 @@ sign out on shared computers. Android/iOS continue using the chunked OS keystore
 adapter. Netlify serves only `dist`, with an SPA fallback for direct routes and
 PKCE callbacks; private wedding data is fetched after sign-in and is not exported
 as static pages. Browser confirmations gate changes in visibility and membership.
+
+## Enable server-side AI brief interpretation on Netlify
+
+The authenticated function is `/.netlify/functions/plan-intake`, bundled by Netlify
+with esbuild. No Netlify token or OpenAI key is available to this cloud session,
+so account settings and real OpenAI output have not been verified here.
+
+In the Netlify project's environment variables:
+
+- Add `OPENAI_API_KEY` with **Functions** scope only. Do not use an `EXPO_PUBLIC_`
+  prefix, place it in app code/Git, or paste the key into chat.
+- Optional `OPENAI_MODEL` (Functions scope); default is `gpt-4.1-mini`.
+- Ensure the existing two public Supabase variables are available in **Builds and
+  Functions**. They remain publishable client configuration; no service key is used.
+- Redeploy, then test a brief. A successful model response is labelled
+  **AI-interpreted brief · dates calculated by planning rules**. Missing settings,
+  provider failure, timeout, refusal or invalid output yield an explicit rules fallback.
+
+Only the explicitly submitted brief is sent to OpenAI; saved family tasks,
+financial records, member lists and sessions are not included. The UI explains
+this before Generate and permits opting out. Responses use strict JSON schema
+plus runtime validation and `store: false`. That setting is not a promise of zero
+provider retention. The model cannot choose dates, owners or mutate the database.
+
+The endpoint verifies the Supabase session and workspace editing authority,
+reserves an atomic quota (one attempt per 30 seconds, at most 20 in a rolling
+24 hours per user), limits input/output and provider time, and never logs brief or
+credential bodies. The quota table stores only user ID/time and prunes that user's
+old counters on their next request. Model output is only a preview until accepted.
+
+`npm run check` includes Node handler tests with simulated providers. The web/native
+exports and temporary-account browser smoke establish the rules-based path;
+production-origin function routing and actual OpenAI delivery still need live acceptance.

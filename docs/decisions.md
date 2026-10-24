@@ -127,3 +127,28 @@ flow before claiming the remaining phases are implemented.
 - Only individually managed tasks are implemented now; do not mislabel them as
   continuous, recurring or dependency-driven behaviour. Calendar, collaborators,
   shopping/finance, push, risk/rescheduling and AI remain explicit gaps.
+
+## October 24 — guided intelligent planner
+
+The founder rejected an entry-book experience and approved building guided
+intelligent planning. Make one short intake and one proposal approval the primary
+path; retain per-task forms as optional adjustment tools.
+
+- Rules own sequencing, date arithmetic, scope and state changes. AI only extracts
+  explicit facts from the submitted brief under a strict schema; no model-chosen
+  dates, owners, prices, availability or database tools.
+- A missing key, refusal, invalid response or provider failure is an explicitly
+  labelled rules fallback, never fabricated AI success. A blank brief makes no AI call.
+- Use only existing authorized wedding/ceremony context in the local generator.
+  Send only the user-submitted brief to OpenAI after the UI explanation/choice;
+  never silently attach saved private tasks, member data or financial records.
+- Preserve previously saved and confirmed task dates. Propose only missing catalog
+  sources; no automatic edits/reassignment. Suggested minimum lead times can be
+  infeasible; expose that risk and require acknowledgment before accepting them.
+- Name unspecified functions as preparation tasks; do not create rituals or assign
+  ceremony dates. Default responsibility is the accepting user, stated in review.
+- Use an authenticated Netlify function, server-only OPENAI_API_KEY and an atomic
+  Supabase quota without a service-role key. Default model gpt-4.1-mini is configurable.
+  No live provider call is claimed until settings and actual output are verified.
+- Attention is based on currently visible saved task facts and catalog rules; no
+  hidden/private task markers, external monitoring or automatic notifications.

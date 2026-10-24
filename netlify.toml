@@ -2,6 +2,9 @@
   command = "npm run export:web"
   publish = "dist"
 
+[functions]
+  node_bundler = "esbuild"
+
 [build.environment]
   NODE_VERSION = "24.19.0"
   EXPO_NO_TELEMETRY = "1"
