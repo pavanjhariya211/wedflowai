@@ -252,3 +252,24 @@ old counters on their next request. Model output is only a preview until accepte
 `npm run check` includes Node handler tests with simulated providers. The web/native
 exports and temporary-account browser smoke establish the rules-based path;
 production-origin function routing and actual OpenAI delivery still need live acceptance.
+
+## Stitch UI / UX redesign
+
+The founder's existing Stitch designs now drive the Expo interface: editorial
+Playfair/Inter typography, forest/ivory palette, a real-data Today dashboard,
+compact guided intake, category accordions for proposal review, and a timeline
+with working list/month/date/ceremony views. Task links open the existing
+permission-checked editor. Desktop uses a navigation rail; phones retain bottom
+tabs. See [design provenance](docs/design/stitch/README.md).
+
+No sample names, prices, notification counts, avatars or unimplemented automation
+from the mockups are presented as real features. A progress percentage means
+completed visible tasks only. The original PRD remains incomplete.
+
+Browser acceptance can be repeated after a web export with
+`python scripts/smoke-ui.py` (development cloud/admin bindings and Chromium required).
+It creates and cleans disposable test data, checks actual Supabase operations and
+responsive interactions, and reports live AI status separately. The first run
+against the deployed AI function returned `502 ai_unavailable`; rules fallback
+worked. This does not establish successful OpenAI output. The server now returns
+safe failure categories for diagnosis without exposing provider messages or keys.

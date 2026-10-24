@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_blank" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#f7faf6;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary-fixed-dim": "#aecebe", "inverse-on-surface": "#eef1ee", "tertiary": "#2c1d00", "on-surface-variant": "#424844", "inverse-primary": "#aecebe", "on-primary": "#ffffff", "secondary": "#9b432e", "on-secondary-fixed-variant": "#7c2d19", "background": "#f7faf6", "surface-container-high": "#e6e9e5", "surface-container-low": "#f1f4f1", "surface-variant": "#e0e3e0", "error": "#ba1a1a", "outline-variant": "#c1c8c3", "on-tertiary-fixed": "#271900", "on-primary-container": "#86a496", "on-surface": "#181c1b", "inverse-surface": "#2d312f", "primary-container": "#1e3a2f", "primary": "#07241a", "on-error-container": "#93000a", "on-primary-fixed": "#032017", "secondary-fixed": "#ffdad2", "on-error": "#ffffff", "on-secondary-fixed": "#3c0700", "surface": "#f7faf6", "error-container": "#ffdad6", "on-primary-fixed-variant": "#304c41", "surface-container-lowest": "#ffffff", "tertiary-fixed-dim": "#eac077", "surface-bright": "#f7faf6", "tertiary-container": "#473100", "on-secondary": "#ffffff", "on-tertiary-fixed-variant": "#5e4201", "surface-container": "#ecefeb", "secondary-fixed-dim": "#ffb4a2", "tertiary-fixed": "#ffdea8", "on-tertiary": "#ffffff", "primary-fixed": "#caeada", "surface-container-highest": "#e0e3e0", "on-tertiary-container": "#be9852", "on-secondary-container": "#752814", "outline": "#727974", "secondary-container": "#fe9075", "on-background": "#181c1b", "surface-tint": "#486458", "surface-dim": "#d8dbd7" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-2xl": "3rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "space-md": "1rem", "space-xl": "2rem", "margin": "1rem", "gutter": "1rem", "space-lg": "1.5rem", "margin-tablet": "1.5rem", "margin-desktop": "2.5rem", "gutter-desktop": "1.5rem" }, fontFamily: { "title-lg": ["Inter"], "headline-md": ["Playfair Display"], "label-sm": ["Inter"], "body-sm": ["Inter"], "body-lg": ["Inter"], "body-md": ["Inter"], "display-lg": ["Playfair Display"], "title-md": ["Inter"], "label-lg": ["Inter"], "display-lg-mobile": ["Playfair Display"], "label-md": ["Inter"], "headline-lg": ["Playfair Display"], "headline-sm": ["Playfair Display"], "headline-lg-mobile": ["Playfair Display"] }, fontSize: { "title-lg": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "500" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }], "body-lg": ["17px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "500" }], "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "0em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased"><main class="flex flex-col relative w-full pt-safe pb-safe bg-surface min-h-screen"><div class="flex flex-col w-full px-margin pb-space-2xl space-y-space-lg relative">
+<!-- Progress Stepper Header -->
+<header class="pt-space-md flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between text-on-surface-variant font-label-md text-label-md">
+<span class="tracking-widest uppercase font-semibold text-primary">Wedflow Guided Setup</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded-full text-on-surface font-medium">Step 2 of 3</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden flex">
+<div class="bg-primary-container h-full w-2/3 rounded-full transition-all duration-500 ease-out"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1 text-on-surface font-medium">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span> 1. Core Profile
+      </span>
+<span class="flex items-center gap-1 text-primary font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> 2. Intelligent Synthesis
+      </span>
+<span class="text-outline">3. Family Plan Review</span>
+</div>
+</header>
+<!-- Known Details Context Card -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Synchronized Context</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary font-semibold bg-tertiary-fixed/60 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-xs">group</span> Shared Family Workspace
+      </span>
+</div>
+<div class="flex items-baseline gap-2 pt-1">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Kabir &amp; Riya</h2>
+<span class="font-label-md text-label-md text-on-surface-variant">• Indore</span>
+</div>
+<div class="flex flex-wrap items-center gap-y-1 gap-x-3 text-on-surface-variant font-body-sm text-body-sm pt-1">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">calendar_month</span>
+        18–20 Feb 2025
+      </span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">groups</span>
+        ~300 Guests
+      </span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="flex items-center gap-1 text-secondary font-medium">
+<span class="material-symbols-outlined text-sm">temple_hindu</span>
+        5 Multi-Day Ceremonies
+      </span>
+</div>
+</section>
+<!-- Conversational Brief Prompt -->
+<section class="space-y-space-sm">
+<div class="space-y-1">
+<div class="inline-flex items-center gap-1.5 text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-base">auto_awesome</span>
+<span class="">Natural Planning Assistant</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold tracking-tight">
+        Tell us a little about your wedding
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Speak freely in your own words. Wedflow understands regional rituals, shared family responsibilities, and venue dependencies.
+      </p>
+</div>
+<!-- Editorial Textarea with Warm Mineral Tone -->
+<div class="relative bg-surface-container-lowest rounded-xl p-space-md shadow-sm focus-within:shadow-md transition-shadow">
+<label class="block font-label-md text-label-md font-semibold text-primary mb-2" for="wedding-brief">
+        Your Celebration Story &amp; Logistics
+      </label>
+<textarea class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md p-space-sm rounded-lg outline-none resize-none placeholder:text-outline focus:bg-surface-container-lowest transition-colors" id="wedding-brief" placeholder="Type or paste your celebration notes, venue bookings, rituals, or division of family tasks..." rows="5">February wedding in Indore, around 300 guests. Venue (Brilliant Convention Centre) is booked. We're planning Haldi, Mehendi, Sangeet, Wedding ceremony, and an evening Reception. Kabir's family is coordinating accommodation and transport; Riya's family is handling decor and catering.</textarea>
+<div class="flex items-center justify-between pt-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-xs">tune</span>
+          Autodetected: Indore • 5 Events • Split Roles
+        </span>
+<button class="text-primary font-medium hover:underline flex items-center gap-0.5" onclick="document.getElementById('wedding-brief').value='';" type="button">
+          Clear
+        </button>
+</div>
+</div>
+</section>
+<!-- Quick Toggle Arranged Services -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<h3 class="font-title-md text-title-md text-on-surface font-semibold">
+        Already sorted? Tap to lock in
+      </h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Prevents repetitive tasks</span>
+</div>
+<div class="flex flex-wrap gap-2" id="service-chips-container">
+<!-- Checked Pill 1 -->
+<button class="service-chip flex items-center gap-1.5 h-10 px-4 rounded-full font-label-md text-label-md font-medium transition-all shadow-sm bg-primary-container text-on-primary" data-active="true" onclick="toggleChip(this)" type="button">
+<span class="material-symbols-outlined text-sm chip-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="">Venue booked</span>
+</button>
+<!-- Checked Pill 2 -->
+<button class="service-chip flex items-center gap-1.5 h-10 px-4 rounded-full font-label-md text-label-md font-medium transition-all shadow-sm bg-primary-container text-on-primary" data-active="true" onclick="toggleChip(this)" type="button">
+<span class="material-symbols-outlined text-sm chip-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="">Photographers shortlisted</span>
+</button>
+<!-- Unchecked Pill 3 -->
+<button class="service-chip flex items-center gap-1.5 h-10 px-4 rounded-full font-label-md text-label-md font-medium transition-all bg-surface-container-lowest text-on-surface shadow-sm" data-active="false" onclick="toggleChip(this)" type="button">
+<span class="material-symbols-outlined text-sm text-outline chip-icon">add</span>
+<span class="">Catering decided</span>
+</button>
+<!-- Unchecked Pill 4 -->
+<button class="service-chip flex items-center gap-1.5 h-10 px-4 rounded-full font-label-md text-label-md font-medium transition-all bg-surface-container-lowest text-on-surface shadow-sm" data-active="false" onclick="toggleChip(this)" type="button">
+<span class="material-symbols-outlined text-sm text-outline chip-icon">add</span>
+<span class="">Mehendi artist booked</span>
+</button>
+<!-- Unchecked Pill 5 -->
+<button class="service-chip flex items-center gap-1.5 h-10 px-4 rounded-full font-label-md text-label-md font-medium transition-all bg-surface-container-lowest text-on-surface shadow-sm" data-active="false" onclick="toggleChip(this)" type="button">
+<span class="material-symbols-outlined text-sm text-outline chip-icon">add</span>
+<span class="">Pandit / Officiant</span>
+</button>
+</div>
+</section>
+<!-- Reassuring Editorial Microcopy Card -->
+<section class="bg-surface-container-low rounded-xl p-space-md space-y-space-xs">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-base">verified_user</span>
+</div>
+<div class="space-y-1">
+<h4 class="font-title-md text-title-md text-on-surface font-semibold">Adaptive Indian Wedding Sequencing</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          Wedflow builds an adaptive sequence based on Indian wedding vendor lead times, regional ceremony traditions, and family coordination. You can customize every milestone with elders and partners anytime.
+        </p>
+</div>
+</div>
+</section>
+<!-- Action CTA -->
+<section class="pt-space-xs">
+<button class="w-full min-h-[48px] h-14 bg-primary text-on-primary rounded-xl font-title-lg text-title-lg flex items-center justify-center gap-2 shadow-md active:scale-[0.99] transition-transform" id="create-plan-btn" onclick="startSynthesisExperience()" type="button">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">arrow_back_ios_new</span>
+<span class="">Create my wedding plan</span>
+</button>
+<p class="text-center font-label-sm text-label-sm text-on-surface-variant mt-2">
+      Instantly maps out vendor milestones, family duties &amp; timelines
+    </p>
+</section>
+<!-- Genuine AI Loading State & Synthesis Live Accordion Modal -->
+<div aria-modal="true" class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm flex items-end justify-center hidden" id="synthesis-modal" role="dialog">
+<div class="w-full max-w-lg bg-surface-container-lowest rounded-t-2xl p-space-lg space-y-space-lg shadow-xl animate-in slide-in-from-bottom duration-300">
+<!-- Modal Header -->
+<div class="flex items-start justify-between">
+<div class="space-y-1">
+<div class="inline-flex items-center gap-1.5 text-secondary font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-sm animate-spin">cyclone</span>
+<span class="">Synthesizing Indore Celebration</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">
+            Structuring Your Master Plan
+          </h2>
+</div>
+<button aria-label="Close dialog" class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-on-surface" onclick="closeSynthesisModal()" type="button">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<!-- Real Sequential Intelligence Stages (No Fake Percentages) -->
+<div class="space-y-space-md" id="stages-container">
+<!-- Stage 1 -->
+<div class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-low transition-colors duration-300" id="stage-1">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0" id="stage-1-icon-box">
+<span class="material-symbols-outlined text-sm animate-pulse">psychology</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-on-surface font-semibold">Understanding your brief</span>
+<span class="font-label-sm text-label-sm text-primary font-medium" id="stage-1-status">Analyzing...</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Extracting ceremony sequences (Haldi, Mehendi, Sangeet, Pheras) and side-wise assignments for Kabir &amp; Riya.
+            </p>
+</div>
+</div>
+<!-- Stage 2 -->
+<div class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-lowest opacity-50 transition-all duration-300" id="stage-2">
+<div class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0" id="stage-2-icon-box">
+<span class="material-symbols-outlined text-sm">hub</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-on-surface font-semibold">Organizing planning sequence</span>
+<span class="font-label-sm text-label-sm text-outline" id="stage-2-status">Queued</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Locking down Brilliant Convention Centre logistical milestones, room blocks &amp; transport buffers.
+            </p>
+</div>
+</div>
+<!-- Stage 3 -->
+<div class="flex items-start gap-3 p-3 rounded-lg bg-surface-container-lowest opacity-50 transition-all duration-300" id="stage-3">
+<div class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0" id="stage-3-icon-box">
+<span class="material-symbols-outlined text-sm">event_available</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-on-surface font-semibold">Preparing proposed timeline</span>
+<span class="font-label-sm text-label-sm text-outline" id="stage-3-status">Queued</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Generating 14-week collaborative checklist ready for family review and WhatsApp sharing.
+            </p>
+</div>
+</div>
+</div>
+<!-- Live Synthesis Preview Panel -->
+<div class="bg-surface-container-high rounded-xl p-3 flex items-center justify-between" id="preview-box">
+<div class="flex items-center gap-2.5">
+<div class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></div>
+<span class="font-label-md text-label-md text-on-surface font-medium" id="status-live-ticker">
+            Parsing ceremony dates (18-20 Feb 2025)...
+          </span>
+</div>
+<span class="material-symbols-outlined text-primary text-base">auto_fix_high</span>
+</div>
+<!-- Action inside Modal -->
+<div class="pt-2 flex flex-col gap-2">
+<button class="w-full h-12 rounded-lg bg-primary text-on-primary font-title-md text-title-md font-semibold opacity-40 cursor-not-allowed transition-all flex items-center justify-center gap-2" disabled="" id="finish-btn" onclick="completePlanGeneration()" type="button">
+<span class="">Enter Wedding Workspace</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<button class="w-full h-10 text-on-surface-variant font-label-md text-label-md hover:text-on-surface" onclick="closeSynthesisModal()" type="button">
+          Cancel synthesis
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function toggleChip(button) {
+    const isActive = button.getAttribute('data-active') === 'true';
+    const icon = button.querySelector('.chip-icon');
+
+    if (isActive) {
+      button.setAttribute('data-active', 'false');
+      button.className = "service-chip flex items-center gap-1.5 h-10 px-4 rounded-full font-label-md text-label-md font-medium transition-all bg-surface-container-lowest text-on-surface shadow-sm";
+      icon.textContent = "add";
+      icon.style.fontVariationSettings = "'FILL' 0";
+      icon.className = "material-symbols-outlined text-sm text-outline chip-icon";
+    } else {
+      button.setAttribute('data-active', 'true');
+      button.className = "service-chip flex items-center gap-1.5 h-10 px-4 rounded-full font-label-md text-label-md font-medium transition-all shadow-sm bg-primary-container text-on-primary";
+      icon.textContent = "check_circle";
+      icon.style.fontVariationSettings = "'FILL' 1";
+      icon.className = "material-symbols-outlined text-sm chip-icon";
+    }
+  }
+
+  let synthesisTimer1, synthesisTimer2, synthesisTimer3;
+
+  function startSynthesisExperience() {
+    const modal = document.getElementById('synthesis-modal');
+    modal.classList.remove('hidden');
+
+    const s1 = document.getElementById('stage-1');
+    const s1Status = document.getElementById('stage-1-status');
+    const s1IconBox = document.getElementById('stage-1-icon-box');
+
+    const s2 = document.getElementById('stage-2');
+    const s2Status = document.getElementById('stage-2-status');
+    const s2IconBox = document.getElementById('stage-2-icon-box');
+
+    const s3 = document.getElementById('stage-3');
+    const s3Status = document.getElementById('stage-3-status');
+    const s3IconBox = document.getElementById('stage-3-icon-box');
+
+    const ticker = document.getElementById('status-live-ticker');
+    const finishBtn = document.getElementById('finish-btn');
+
+    // Reset initial modal UI
+    s1.className = "flex items-start gap-3 p-3 rounded-lg bg-surface-container-low transition-colors duration-300";
+    s1Status.textContent = "Analyzing...";
+    s1Status.className = "font-label-sm text-label-sm text-primary font-medium";
+    s1IconBox.className = "w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0";
+    s1IconBox.innerHTML = '<span class="material-symbols-outlined text-sm animate-pulse">psychology</span>';
+
+    s2.className = "flex items-start gap-3 p-3 rounded-lg bg-surface-container-lowest opacity-50 transition-all duration-300";
+    s2Status.textContent = "Queued";
+    s2Status.className = "font-label-sm text-label-sm text-outline";
+    s2IconBox.className = "w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0";
+    s2IconBox.innerHTML = '<span class="material-symbols-outlined text-sm">hub</span>';
+
+    s3.className = "flex items-start gap-3 p-3 rounded-lg bg-surface-container-lowest opacity-50 transition-all duration-300";
+    s3Status.textContent = "Queued";
+    s3Status.className = "font-label-sm text-label-sm text-outline";
+    s3IconBox.className = "w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0";
+    s3IconBox.innerHTML = '<span class="material-symbols-outlined text-sm">event_available</span>';
+
+    finishBtn.disabled = true;
+    finishBtn.classList.add('opacity-40', 'cursor-not-allowed');
+
+    ticker.textContent = "Detecting rituals: Haldi, Mehendi, Sangeet & Reception...";
+
+    // Stage 1 to 2
+    synthesisTimer1 = setTimeout(() => {
+      s1Status.textContent = "Completed";
+      s1Status.className = "font-label-sm text-label-sm text-primary font-bold";
+      s1IconBox.innerHTML = '<span class="material-symbols-outlined text-sm" style="font-variation-settings: \'FILL\' 1;">check</span>';
+
+      s2.classList.remove('opacity-50');
+      s2.classList.add('bg-surface-container-low');
+      s2Status.textContent = "Synthesizing...";
+      s2Status.className = "font-label-sm text-label-sm text-primary font-medium";
+      s2IconBox.className = "w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0";
+      s2IconBox.innerHTML = '<span class="material-symbols-outlined text-sm animate-spin">sync</span>';
+
+      ticker.textContent = "Assigning Kabir family (stay/cabs) & Riya family (catering)...";
+    }, 1800);
+
+    // Stage 2 to 3
+    synthesisTimer2 = setTimeout(() => {
+      s2Status.textContent = "Completed";
+      s2Status.className = "font-label-sm text-label-sm text-primary font-bold";
+      s2IconBox.innerHTML = '<span class="material-symbols-outlined text-sm" style="font-variation-settings: \'FILL\' 1;">check</span>';
+
+      s3.classList.remove('opacity-50');
+      s3.classList.add('bg-surface-container-low');
+      s3Status.textContent = "Building timeline...";
+      s3Status.className = "font-label-sm text-label-sm text-primary font-medium";
+      s3IconBox.className = "w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0";
+      s3IconBox.innerHTML = '<span class="material-symbols-outlined text-sm animate-pulse">schedule</span>';
+
+      ticker.textContent = "Finalizing milestone deadlines for Brilliant Convention Centre...";
+    }, 3600);
+
+    // All Complete
+    synthesisTimer3 = setTimeout(() => {
+      s3Status.textContent = "Ready";
+      s3Status.className = "font-label-sm text-label-sm text-primary font-bold";
+      s3IconBox.innerHTML = '<span class="material-symbols-outlined text-sm" style="font-variation-settings: \'FILL\' 1;">check</span>';
+
+      ticker.textContent = "Plan generated! 42 tailored tasks across 5 ceremonies ready.";
+
+      finishBtn.disabled = false;
+      finishBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+      finishBtn.classList.add('shadow-lg', 'animate-bounce');
+      setTimeout(() => finishBtn.classList.remove('animate-bounce'), 1000);
+    }, 5200);
+  }
+
+  function closeSynthesisModal() {
+    clearTimeout(synthesisTimer1);
+    clearTimeout(synthesisTimer2);
+    clearTimeout(synthesisTimer3);
+    const modal = document.getElementById('synthesis-modal');
+    modal.classList.add('hidden');
+  }
+
+  function completePlanGeneration() {
+    const ticker = document.getElementById('status-live-ticker');
+    ticker.textContent = "Loading your collaborative dashboard...";
+    setTimeout(() => {
+      closeSynthesisModal();
+    }, 600);
+  }
+</script></main>
+
+</body></html>

@@ -152,3 +152,24 @@ path; retain per-task forms as optional adjustment tools.
   No live provider call is claimed until settings and actual output are verified.
 - Attention is based on currently visible saved task facts and catalog rules; no
   hidden/private task markers, external monitoring or automatic notifications.
+
+## October 24 — Stitch UI implementation
+
+Use the founder's existing Stitch project `17939857750060252617` instead of
+creating a competing design project. Import its design system and four relevant
+HTML references; translate them to Expo components rather than embedding HTML.
+
+- Bundle the actual Playfair Display/Inter fonts locally; no external font CDN is
+  required by the app. Keep native controls, screen-reader labels and 48px controls.
+- Adapt dashboard statistics to visible saved records only. No invented planning
+  health, avatar, notification badge, family role, vendor price or cultural claim.
+- Use category accordions and optional task details to reduce form density while
+  keeping proposal approval, scope, timing risks and AI/rules source explicit.
+- Make calendar/month controls functional, with view-only filtering and clear empty
+  states. Ensure the grid scrolls internally on narrow screens without page overflow.
+- Use desktop rail/mobile tabs through the installed navigator's supported API.
+  Task deep links open existing role-checked editing; backend authorization remains
+  authoritative.
+- Test real fonts/icons in Chromium; unit tests isolate glyph asset loading while
+  retaining auth/permission assertions. No live AI success is claimed from a 502
+  response; add safe diagnostic categories without exposing provider bodies.

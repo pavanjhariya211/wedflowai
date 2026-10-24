@@ -222,3 +222,44 @@ dependencies/owner-approved rescheduling, notifications and broader AI remain ga
 Generated preparation tasks also respect the actual date of saved family/shared
 ceremonies; feasibility is checked against that event rather than only the main
 wedding date. Shared ceremony links retain the existing scope compatibility rules.
+
+## October 24 — Stitch UI implementation
+
+Stitch key authentication succeeded via the MCP endpoint. Located the founder's
+existing Wedflow Wedding Planner UI project and imported its dashboard, intake,
+review, timeline and design-system exports as references. Implemented the design
+in actual Expo/React Native components, preserving the working Supabase services.
+
+- Bundled Playfair/Inter, forest/ivory tokens, reusable badges/chips/progress/sections,
+  desktop rail and mobile tabs, and more compact accessible form primitives.
+- Today dashboard: actual wedding countdown, visible event/task counts and progress,
+  priority attention, next actions, ceremonies and contextual planning entry point.
+  Administrative settings collapse out of the primary dashboard flow.
+- Guided setup/review: saved context, booked-service chips, honest generation state,
+  expandable category groups, visible assumptions/scope/source/risks and atomic
+  acceptance. No fixed sample people, prices or vendor claims from the mockups.
+- Master timeline: month sections, confirmed/suggested labels, actual monthly grid,
+  month/day/ceremony filters, scoped task cards and links into role-checked editing.
+- Existing task cards now progressively disclose details/history and retain real
+  completion/reopening/version checks. No database/policy/schema changes.
+
+The real temporary-account Chromium smoke passed at 1440px and 390px: sign-in,
+wedding setup, grouped review expansion, actual atomic acceptance, completion/
+reopening, month/date navigation, deep-link editing/cancel, dashboard, mobile
+calendar, session reload, no page overflow, loaded brand fonts and no runtime
+exceptions. Actual Auth/domain calls use hosted Supabase via the cloud proxy.
+Temporary records/account were removed and no email was sent. Screenshots were
+visually inspected. Source UI/component tests isolate native glyph/font loading;
+browser/export tests use real assets.
+
+Live endpoint checks: Netlify responds 200 and the function GET responds 405.
+An authenticated fictional brief reached the deployed AI endpoint but returned
+502 ai_unavailable; the UI used the explicit rules fallback. Live AI is therefore
+not verified. Added safe provider-failure categories for diagnosis after redeploy.
+No Stitch or server key was copied to Git/app code. The shared Android APK is still
+from the older milestone and must not be described as containing this redesign.
+
+Final UI milestone validation: TypeScript and ESLint pass without lint warnings;
+118 Jest tests in 21 suites and 7 Node handler tests pass (125 total). Web and
+Android exports and server-function esbuild bundling pass. Browser screenshots
+were inspected at desktop and phone widths. No new APK or store release was made.

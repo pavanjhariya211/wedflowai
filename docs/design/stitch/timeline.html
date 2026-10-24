@@ -1,0 +1,356 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_tab" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#f7faf6;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary-fixed-dim": "#aecebe", "inverse-on-surface": "#eef1ee", "tertiary": "#2c1d00", "on-surface-variant": "#424844", "inverse-primary": "#aecebe", "on-primary": "#ffffff", "secondary": "#9b432e", "on-secondary-fixed-variant": "#7c2d19", "background": "#f7faf6", "surface-container-high": "#e6e9e5", "surface-container-low": "#f1f4f1", "surface-variant": "#e0e3e0", "error": "#ba1a1a", "outline-variant": "#c1c8c3", "on-tertiary-fixed": "#271900", "on-primary-container": "#86a496", "on-surface": "#181c1b", "inverse-surface": "#2d312f", "primary-container": "#1e3a2f", "primary": "#07241a", "on-error-container": "#93000a", "on-primary-fixed": "#032017", "secondary-fixed": "#ffdad2", "on-error": "#ffffff", "on-secondary-fixed": "#3c0700", "surface": "#f7faf6", "error-container": "#ffdad6", "on-primary-fixed-variant": "#304c41", "surface-container-lowest": "#ffffff", "tertiary-fixed-dim": "#eac077", "surface-bright": "#f7faf6", "tertiary-container": "#473100", "on-secondary": "#ffffff", "on-tertiary-fixed-variant": "#5e4201", "surface-container": "#ecefeb", "secondary-fixed-dim": "#ffb4a2", "tertiary-fixed": "#ffdea8", "on-tertiary": "#ffffff", "primary-fixed": "#caeada", "surface-container-highest": "#e0e3e0", "on-tertiary-container": "#be9852", "on-secondary-container": "#752814", "outline": "#727974", "secondary-container": "#fe9075", "on-background": "#181c1b", "surface-tint": "#486458", "surface-dim": "#d8dbd7" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-2xl": "3rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "space-md": "1rem", "space-xl": "2rem", "margin": "1rem", "gutter": "1rem", "space-lg": "1.5rem", "margin-tablet": "1.5rem", "margin-desktop": "2.5rem", "gutter-desktop": "1.5rem" }, fontFamily: { "title-lg": ["Inter"], "headline-md": ["Playfair Display"], "label-sm": ["Inter"], "body-sm": ["Inter"], "body-lg": ["Inter"], "body-md": ["Inter"], "display-lg": ["Playfair Display"], "title-md": ["Inter"], "label-lg": ["Inter"], "display-lg-mobile": ["Playfair Display"], "label-md": ["Inter"], "headline-lg": ["Playfair Display"], "headline-sm": ["Playfair Display"], "headline-lg-mobile": ["Playfair Display"] }, fontSize: { "title-lg": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "500" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }], "body-lg": ["17px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }], "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "500" }], "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "0em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased"><div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9Tb497Y3AGRSfJeACYQHcfkqebwnGQ5UjLRdKtyoezw8oZpB2e7piM32jZEwAO-kXsvFp_YY3bVdAOz9dDziuNpzZCCO3-jAby6sUYVSJ9ECKUPeVA88D-UhfnCXwdS384hxNkdNWQQrZoAqpLDxZvQG4mkKFQ9mzqBwuAIN6F141JiEnnYIhPF02TC3LPYchPregSap-NahpUI42xNG1ABvwKWzlVj1S78oODmP7qh6qXkXSsmQmLQ" alt="Atmospheric background portrait" class="w-full h-full object-cover object-top opacity-[0.12]"></div><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_12px_rgba(7,36,26,0.04)]"><div class="h-20 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><img alt="Wedflow Brand Mark" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1WTPRXmCjc_QbI4aQykh7VJppLo3FtmT5NUZpRLrRGuMTIOqt4WlH0X2cD7oyC65X082R-opI5YSWB0i8c_h3Y9wMxZNGE17jM5RUgtywBhNBY09JaqfWRTImZ9R-Ew2T_47EUjJm1QJfbJbXIByNyEK1tSS9rc3w-upheBnyQae9qvHf3_zHMtoxC0ZMR-7ay83aKYoM5DLtfzVmvQ12QiR-OFbzuYek2T-Gcq_w9yoF2tQa4RK_mBNsRm"><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><button class="flex items-center gap-1 min-w-0 text-left focus:outline-none" type="button"><span class="font-title-md text-title-md text-primary truncate max-w-[140px] xs:max-w-[180px]">Riya &amp; Kabir</span><span class="material-symbols-outlined text-[18px] text-on-surface-variant flex-shrink-0">expand_more</span></button><span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap">Shared</span></div><div class="flex items-center gap-1.5"><span class="font-label-sm text-label-sm text-on-surface-variant truncate">18 Feb 2025 • Plan</span></div></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><button aria-label="Notifications" class="relative w-12 h-12 flex items-center justify-center rounded-full text-on-surface hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[24px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-secondary ring-2 ring-surface"></span></button><button aria-label="Account Profile" class="w-12 h-12 flex items-center justify-center rounded-full hover:opacity-90 transition-opacity" type="button"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfjaZfOeGqtHs0C-72I_bVcJf5OHevqY9b4OXHjcz9ZBUhDkcXyAAkqUvO8cfV3dxZ1GmFXhr9gSewFz_iDOqtWdDAeX3cIFQxGNeGgruKtKQSEZIupzIoxWNARZ45TX_ZzaFEuWfTr3EWHqiXo-MHSgd-g1UFTmfeYlM4a3waa5T3wq8d_HrAos9N-sggiG2_rJ3gypD1wxuPvEORgepbZ0Y34LYUcgIs78BbJ_-HadaYha4Ie73qnQ"></button></div></div></header><main class="flex flex-col relative w-full pt-20 pb-24 bg-surface min-h-screen z-10"><div class="flex flex-col w-full pb-8">
+<div class="px-margin pt-4 pb-2">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Master Planning Schedule</p>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mt-0.5">Timeline &amp; Tasks</h1>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-high text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container">hourglass_top</span>
+<span class="">74 Days Left</span>
+</div>
+</div>
+</div>
+<div class="px-margin py-2">
+<div class="flex p-1 bg-surface-container-low rounded-xl gap-1 shadow-sm">
+<button class="flex-1 py-2.5 px-2 rounded-lg bg-surface-container-lowest shadow-sm text-primary font-label-md text-label-md text-center transition-all flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
+<span class="">Timeline List</span>
+</button>
+<button class="flex-1 py-2.5 px-2 rounded-lg text-on-surface-variant hover:text-primary font-label-md text-label-md text-center transition-all flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">calendar_view_month</span>
+<span class="">Monthly View</span>
+</button>
+<button class="flex-1 py-2.5 px-2 rounded-lg text-on-surface-variant hover:text-primary font-label-md text-label-md text-center transition-all flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+<span class="">Ceremony Map</span>
+</button>
+</div>
+</div>
+<div class="py-2 overflow-x-auto no-scrollbar">
+<div class="flex items-center gap-2 px-margin whitespace-nowrap min-w-max">
+<button class="px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1.5 shadow-sm" type="button">
+<span class="">All</span>
+<span class="px-1.5 py-0.2 rounded-full bg-primary-container text-primary-fixed font-label-sm text-label-sm">59</span>
+</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-colors" type="button">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+<span class="">Mandap &amp; Rituals</span>
+</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-colors" type="button">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="">Catering &amp; Bar</span>
+</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-colors" type="button">
+<span class="w-2 h-2 rounded-full bg-primary-fixed-dim"></span>
+<span class="">Decor</span>
+</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-colors" type="button">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span class="">Guest Hospitality</span>
+</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-colors" type="button">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="">Wardrobe</span>
+</button>
+</div>
+</div>
+<div class="px-margin mt-3">
+<div class="p-3.5 rounded-xl bg-surface-container-low flex items-center justify-between gap-3">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Joint Wedding Milestones</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Showing active deadlines across 5 events</p>
+</div>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="font-title-md text-title-md">68%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">done</span>
+</div>
+</div>
+</div>
+<div class="px-margin mt-5 flex flex-col gap-4">
+<div class="sticky top-20 z-20 py-2 bg-surface/95 backdrop-blur-sm flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<h2 class="font-headline-sm text-headline-sm text-primary">December 2024</h2>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold">Critical Bookings</span>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-md flex flex-col gap-3.5">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container text-primary-fixed flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[22px]">music_note</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex flex-wrap items-center gap-1.5 mb-1">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-on-surface font-label-sm text-label-sm">Entertainment &amp; Music</span>
+<span class="px-2 py-0.5 rounded-md bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">groups</span>
+                Shared Workspace
+              </span>
+</div>
+<h3 class="font-title-md text-title-md text-primary leading-snug">Finalize Sangeet Choreographer &amp; Song Selections</h3>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2 pt-0.5">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container-low text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">event_available</span>
+<span class="font-semibold">Confirmed: 12 Dec 2024</span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container-low text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">celebration</span>
+<span class="">Sangeet Night (17 Feb)</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Assigned to:</span>
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm font-semibold">Kabir (Groom)</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">+</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm font-semibold">Riya (Bride)</span>
+</div>
+</div>
+<span class="text-on-surface-variant material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-semibold">Progress: In Progress</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">3 of 5 subtasks completed</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 60%;"></div>
+</div>
+<div class="flex flex-col gap-1.5 pt-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface line-through opacity-80">Selected couple song</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface line-through opacity-80">Cousins medley track</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface line-through opacity-80">Practice schedule finalized</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-outline">radio_button_unchecked</span>
+<span class="font-body-sm text-body-sm text-on-surface">Grandparents entry song cue</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-outline">radio_button_unchecked</span>
+<span class="font-body-sm text-body-sm text-on-surface">Sound check technician rehearsal</span>
+</div>
+</div>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-high/60 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary mt-0.5">sticky_note_2</span>
+<div class="flex-1">
+<p class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Vendor Note &amp; Commercials</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5">"Choreographer charges ₹35,000 for 6 couple practices + 2 group runs. Advance invoice submitted."</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-1">
+<button class="h-12 px-3 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98] transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">done_all</span>
+<span class="">Mark Completed</span>
+</button>
+<button class="h-12 px-3 rounded-lg bg-surface-container-high text-primary font-label-md text-label-md flex items-center justify-center gap-1.5 active:scale-[0.98] transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+<span class="">Adjust Date</span>
+</button>
+<button class="h-12 px-3 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+<span class="">Change Owner</span>
+</button>
+<button class="h-12 px-3 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md flex items-center justify-center gap-1.5" id="trigger-detail-modal" type="button">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+<span class="">More Details</span>
+</button>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[22px]">mark_email_read</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex flex-wrap items-center gap-1.5 mb-1">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-on-surface font-label-sm text-label-sm">Invitations &amp; Stationery</span>
+<span class="px-2 py-0.5 rounded-md bg-secondary-container text-on-secondary-container font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">lock</span>
+                Riya's Family Only
+              </span>
+</div>
+<h3 class="font-title-md text-title-md text-primary leading-snug">Approve Wedding Invitation Box Mockup</h3>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 p-2.5 rounded-lg bg-tertiary-fixed/30 text-on-tertiary-container">
+<span class="material-symbols-outlined text-[18px] text-tertiary-container flex-shrink-0">auto_awesome</span>
+<span class="font-body-sm text-body-sm">AI Suggested: 18 Dec 2024 • Recommended 60 days before dispatch</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Owner: <strong class="text-on-surface font-semibold">Riya's Parents</strong></span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm">Awaiting Proofing</span>
+</div>
+<div class="flex items-center gap-2 px-2.5 py-1.5 rounded-md bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">account_tree</span>
+<span class="font-label-sm text-label-sm">Pre-requisite for: Print Batch Distribution</span>
+</div>
+<div class="flex items-center justify-end gap-2 pt-1">
+<button class="h-10 px-4 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md" type="button">Review PDF</button>
+<button class="h-10 px-4 rounded-lg bg-primary text-on-primary font-label-md text-label-md" type="button">Approve Mockup</button>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-tertiary-container text-tertiary-fixed flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[22px]">temple_hindu</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex flex-wrap items-center gap-1.5 mb-1">
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-on-surface font-label-sm text-label-sm">Rituals &amp; Pooja</span>
+<span class="px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">Both Families</span>
+</div>
+<h3 class="font-title-md text-title-md text-primary leading-snug">Finalize Panditji Muhurat Timings</h3>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container-low text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">event_available</span>
+<span class="font-semibold">Confirmed: 22 Dec 2024</span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="">Morning Pheras (10:15 AM Window)</span>
+</div>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Owner: <strong class="text-on-surface font-semibold">Uncle Ramesh</strong></span>
+<button class="h-8 px-3 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">call</span>
+<span class="">Call Panditji</span>
+</button>
+</div>
+</div>
+</div>
+<div class="px-margin mt-6">
+<div class="p-4 rounded-xl bg-gradient-to-br from-surface-container to-surface-container-high shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-tertiary-container">psychology</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-semibold text-on-surface-variant">Next-Gen Intelligence</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">Preview Concept</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-primary">Automated Rescheduling Proposals &amp; Dependency Visualizer</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+          If vendor milestone shifts occur, Wedflow simulates cascading effects across all 5 days of events and drafts WhatsApp-ready approval briefs for family elders.
+        </p>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-fixed-dim"></div>
+<span class="font-label-sm text-label-sm text-on-surface">3 active branch protections configured</span>
+</div>
+<button class="h-9 px-3.5 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm flex items-center gap-1 active:scale-95 transition-transform" type="button">
+<span class="">Explore Sandbox</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="fixed inset-0 z-50 flex items-end justify-center hidden" id="task-modal">
+<div class="absolute inset-0 bg-primary/40 backdrop-blur-sm" id="modal-scrim"></div>
+<div class="relative w-full max-w-lg rounded-t-2xl bg-surface-container-lowest shadow-2xl p-5 flex flex-col gap-4 max-h-[85vh] overflow-y-auto">
+<div class="w-12 h-1.5 rounded-full bg-surface-variant mx-auto mb-1"></div>
+<div class="flex items-start justify-between gap-3">
+<div>
+<span class="px-2 py-0.5 rounded-md bg-surface-container text-primary font-label-sm text-label-sm">Detail Drawer</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-1">Sangeet Choreography Hub</h3>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface" id="close-detail-modal" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col gap-2">
+<div class="flex items-center justify-between text-on-surface">
+<span class="font-label-md text-label-md">Contract Signed</span>
+<span class="font-label-md text-label-md text-primary font-semibold">₹35,000 / 8 Sessions</span>
+</div>
+<div class="flex items-center justify-between text-on-surface">
+<span class="font-label-md text-label-md">Studio Location</span>
+<span class="font-label-md text-label-md">Bandra West, Studio 4</span>
+</div>
+<div class="flex items-center justify-between text-on-surface">
+<span class="font-label-md text-label-md">Family Access</span>
+<span class="font-label-md text-label-md">Bride &amp; Groom Sides</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<p class="font-label-md text-label-md text-primary font-semibold">Rehearsal Schedule</p>
+<div class="space-y-1.5">
+<div class="p-2.5 rounded-lg bg-surface-container-high/50 flex items-center justify-between text-on-surface">
+<span class="font-body-sm text-body-sm">Session 1: Bride &amp; Groom Solo</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary">14 Dec • 7 PM</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-high/50 flex items-center justify-between text-on-surface">
+<span class="font-body-sm text-body-sm">Session 2: Cousins Medley</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary">16 Dec • 6 PM</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-high/50 flex items-center justify-between text-on-surface">
+<span class="font-body-sm text-body-sm">Session 3: Full Grand Finale</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary">20 Dec • 5 PM</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-2">
+<button class="flex-1 h-12 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span class="">Send Family Update</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const trigger = document.getElementById('trigger-detail-modal');
+    const modal = document.getElementById('task-modal');
+    const closeBtn = document.getElementById('close-detail-modal');
+    const scrim = document.getElementById('modal-scrim');
+
+    function openModal() {
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+    }
+
+    function closeModal() {
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    if (trigger) trigger.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (scrim) scrim.addEventListener('click', closeModal);
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_16px_rgba(7,36,26,0.05)]" data-active-classes="text-primary-container font-semibold"><div class="h-16 px-gutter flex items-center justify-around"><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[48px] py-1 text-on-surface-variant hover:text-primary transition-all group" data-path="today" href="#"><span class="material-symbols-outlined text-[24px] mb-0.5 group-hover:scale-105 transition-transform">dashboard</span><span class="font-label-sm text-label-sm tracking-wide">Today</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] min-h-[48px] py-1 transition-all group text-primary-container font-semibold" data-path="plan" href="#"><span class="material-symbols-outlined text-[24px] mb-0.5 group-hover:scale-105 transition-transform">calendar_month</span><span class="font-label-sm text-label-sm tracking-wide">Plan</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[48px] py-1 text-on-surface-variant hover:text-primary transition-all group" data-path="ceremonies" href="#"><span class="material-symbols-outlined text-[24px] mb-0.5 group-hover:scale-105 transition-transform">celebration</span><span class="font-label-sm text-label-sm tracking-wide">Ceremonies</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[48px] py-1 text-on-surface-variant hover:text-primary transition-all group" data-path="family" href="#"><span class="material-symbols-outlined text-[24px] mb-0.5 group-hover:scale-105 transition-transform">diversity_3</span><span class="font-label-sm text-label-sm tracking-wide">Family</span></a></div></nav>
+
+</body></html>

@@ -179,3 +179,13 @@ no service-role key is required by the Netlify function. SQL fixtures cover role
 and scope denial, cooldown, daily quota and counter privacy, inside rollback.
 The additive migration is tested and applied to the selected development project.
 No existing task dates/owners/visibility or wedding records were changed.
+
+## October 24 — Stitch UI implementation
+
+The Stitch UI milestone introduces no database schema, migration, policy or
+privilege changes. All data, statistics, timeline cells and deep links rely on
+existing authorized records and RPCs. Dashboard progress excludes cancelled and
+archived tasks, and includes only tasks actually returned for the signed-in user.
+Calendar navigation only filters views. No sample Stitch records or fictional
+financial data were inserted. Browser acceptance creates an isolated temporary
+wedding/account and deletes them afterward.

@@ -161,3 +161,24 @@ The server verifies JWT identity, reserves a workspace-authorized quota, calls t
 Responses API with no tools and store:false, validates facts, and returns no raw
 provider errors. Request bodies and tokens are not logged. The brief/AI consent
 and source/fallback state are visible. No live provider invocation is claimed.
+
+## October 24 — Stitch UI implementation
+
+The founder authorized implementing the existing Stitch project's four screen
+exports. Source design files and project/screen provenance live under
+`docs/design/stitch`; HTML/CDN scripts are not embedded or executed in the app.
+
+Shared tokens and UI primitives use bundled Playfair Display and Inter assets,
+with Expo Asset/Font configured. Native components adapt the mobile designs to a
+responsive desktop rail and mobile tabs using the SDK 58 navigator's supported
+emitter/navigateToTab API. Dashboard cards derive all countdown, completion and
+attention content from RLS-returned data. Proposal categories use accessible
+expand/collapse controls. The timeline has actual list/month modes, month/date
+navigation, event dots, filtered entries and task-to-editor deep links. Date
+selection does not mutate saved records. Task details progressively disclose
+notes/history while preserving the existing versioned save/complete actions.
+
+The server's AI failure responses now expose only a coarse safe category (provider
+credentials, limiting, model, request or availability), never raw provider errors.
+This supports diagnosis of the observed live 502 while preserving a clear rules
+fallback. It does not establish that live AI is working.

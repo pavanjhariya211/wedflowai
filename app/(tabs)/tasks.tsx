@@ -16,7 +16,7 @@ import { PlanPreview } from '../../src/planning/PlanPreview';
 function TasksContent() {
  const { wedding, spaces, ceremonies } = useWedding(); const { session } = useAuth();
  const { tasks, loading, error, reload, service } = usePlanning();
- const params = useLocalSearchParams<{ plan?: string }>();
+ const params = useLocalSearchParams<{ plan?: string; task?: string }>();
  const [mode, setMode] = useState<'list' | 'new' | 'plan' | 'guided'>(params.plan === 'generate' ? 'guided' : 'list'); const [editing, setEditing] = useState<Task | null>(null);
  const [query, setQuery] = useState(''), [filter, setFilter] = useState('active'), [category, setCategory] = useState('all'), [ceremony, setCeremony] = useState('all');
  const [workspace, setWorkspace] = useState(spaces.find((s) => s.can_edit && s.kind === 'family')?.id ?? spaces.find((s) => s.can_edit)?.id ?? '');
@@ -25,10 +25,12 @@ function TasksContent() {
  const filtered = tasks.filter((t) => (!query || `${t.title} ${t.category} ${t.notes}`.toLowerCase().includes(query.toLowerCase())) &&
   (filter === 'all' || (filter === 'active' ? activeTask(t) : filter === 'overdue' ? activeTask(t) && !!t.due_date && t.due_date < today : filter === 'mine' ? t.owner_id === session?.user.id && activeTask(t) : t.status === filter)) &&
   (category === 'all' || t.category === category) && (ceremony === 'all' || t.task_ceremonies.some((c) => c.ceremony_id === ceremony)));
- function done() { router.setParams({ plan: '' }); setMode('list'); setEditing(null); void reload(); }
+ const requested = params.task ? tasks.find((t) => t.id === params.task) : null;
+ const activeEditing = editing ?? (requested && spaces.some((s) => s.id === requested.workspace_id && s.can_edit) ? requested : null);
+ function done() { router.setParams({ plan: '', task: '' }); setMode('list'); setEditing(null); void reload(); }
  return <>
   {loading ? <Notice>Loading your task plan…</Notice> : error ? <Notice error>{error}</Notice> : service ? <>
-   {mode === 'new' || editing ? <TaskForm key={editing?.id ?? 'new'} task={editing ?? undefined} service={service} onDone={done} />
+   {mode === 'new' || activeEditing ? <TaskForm key={activeEditing?.id ?? 'new'} task={activeEditing ?? undefined} service={service} onDone={done} />
     : mode === 'guided' ? <GuidedPlanner tasks={tasks} service={service} onDone={done} /> : mode === 'plan' ? <PlanPreview workspace={workspace} tasks={tasks} service={service} onDone={done} /> : <>
     {!tasks.length ? <Card><Body>Your wedding is saved. Now build your plan.</Body><Body>Generate a sequenced proposal from your wedding details, then accept it in one review.</Body></Card> : <Body>{tasks.filter((t) => t.status === 'completed').length} completed · {tasks.filter(activeTask).length} active visible tasks</Body>}
     {spaces.some((s) => s.can_edit) ? <>
@@ -52,7 +54,7 @@ function TasksContent() {
 export default function Tasks() {
  const { wedding, loading, error, reload } = useWedding();
  useFocusEffect(useCallback(() => { void reload(); }, [reload]));
- return <Screen><Heading title="Your wedding task plan." subtitle="A clear owner, an editable date, and progress you can follow." />
+ return <Screen wide><Heading title="Your wedding task plan." subtitle="A clear owner, an editable date, and progress you can follow." />
   {loading ? <Notice>Loading wedding…</Notice> : error ? <Notice error>{error}</Notice> : wedding ? <TasksContent key={wedding.id} /> : <Notice>Create or join a wedding in Home first.</Notice>}
  </Screen>;
 }

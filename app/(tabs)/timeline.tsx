@@ -41,7 +41,7 @@ export default function Timeline() {
       } },
     ]);
   }
-  return <Screen><Heading title="Your wedding timeline." subtitle="Planning tasks and ceremonies, with dates you control." />
+  return <Screen wide><Heading title="Your wedding timeline." subtitle="Planning tasks and ceremonies, with dates you control." />
     {wedding ? <TimelineTasks key={wedding.id} /> : null}
     {failure ? <Notice error>{failure}</Notice> : null}
     {loading ? <Notice>Loading ceremonies…</Notice> : error ? <Notice error>{error}</Notice> : !wedding ? <Notice>Create or join a wedding in Home first.</Notice> : <>

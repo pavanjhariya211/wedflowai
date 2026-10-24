@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { AuthForm } from '../src/auth/AuthForm';
 import Home from '../app/(tabs)/index';
+jest.mock('../src/planning/usePlanning', () => ({ usePlanning: () => ({ tasks: [], loading: false, error: '', service: null, reload: jest.fn() }) }));
 
 const mockService = {
   signIn: jest.fn(), register: jest.fn(), resetPassword: jest.fn(), resendVerification: jest.fn(), signOut: jest.fn(),

@@ -14,7 +14,7 @@ not a claim that Netlify has published the latest commit.
 | Custom tasks/categories | Create/edit/archive, free category names, notes, priority | Category-wide rename/hide management; delegated subtasks |
 | Dates and ownership | Optional start/deadline, planning-vs-confirmed label, accepted primary owner, explicit owner/deadline edit confirmation | Collaborators and assignment acceptance workflow |
 | Task lifecycle/history | Not started/in progress/blocked/completed/cancelled/archived, reversible completion, scoped old/new audit | Rich field-by-field history UI |
-| Master timeline | Chronological tasks and ceremonies, ceremony filter; linked task remains one record | Calendar grid and dedicated upcoming dashboard |
+| Master timeline | Chronological tasks and ceremonies, ceremony filter; linked task remains one record | Further timeline/pilot usability work (calendar grid and attention dashboard now implemented) |
 | Search/task views | Search, category/ceremony filters, mine, overdue, status views | Cross-feature search |
 | Privacy | Owner-only personal tasks; permitted family/shared scopes; RLS, validated RPCs; viewer write denial | Explicit task share/withdraw workflow (editing does not change visibility) |
 | One-time/continuous/dependent/recurring behaviours | Individually managed tasks only; no recurring or dependent behaviour claimed | Recurrence rules/occurrences, continuous-item progress, dependency graph |

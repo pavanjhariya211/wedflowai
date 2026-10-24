@@ -36,3 +36,10 @@ test('malformed, out-of-range, refused or incomplete output never becomes truste
 test('oversized and invalid intake is rejected before authentication requests',async()=>{
  const q=queue([]);assert.equal((await handleIntake(request({...body,brief:'x'.repeat(1501)}),env,q.send)).status,400);assert.equal(q.calls.length,0);
 });
+
+test('provider failures expose a safe category without returning raw provider details',async()=>{
+ for(const [status,code] of [[401,'ai_credentials_rejected'],[429,'ai_provider_limited'],[400,'ai_request_rejected'],[404,'ai_model_unavailable']]){
+  const q=queue([Response.json({id:'user'}),new Response(null,{status:204}),Response.json({error:{message:'private provider detail'}},{status})]);
+  const r=await handleIntake(request(),env,q.send);assert.equal(r.status,502);const data=await r.json();assert.equal(data.code,code);assert.ok(!JSON.stringify(data).includes('private provider detail'));
+ }
+});

@@ -65,3 +65,16 @@ external setup/acceptance step. Later work includes richer intake/preferences,
 real provider acceptance, durable dependencies, affected-owner date-change
 proposals and approvals, calendar/recurrence, shopping/finance and notifications.
 Do not claim autonomous rescheduling or complete PRD/P1 delivery.
+
+## October 24 — Stitch UI implementation
+
+The approved UI/UX work imports the founder's existing Stitch design direction
+and replaces the basic dashboard/intake/review/timeline presentation. The actual
+calendar-grid portion of Phase 3 is now implemented, including month navigation
+and date filtering. Existing permission/version/history workflows stay connected.
+Mobile and desktop acceptance includes real temporary-account persistence and
+navigation checks. Netlify publication must be verified against the new asset
+hashes after push; the old APK will still predate this redesign. Live OpenAI
+provider 502 diagnosis is separate from the successful Stitch connection/UI work.
+Shopping, recurrence, durable dependencies/rescheduling, notifications and other
+remaining PRD gaps are still not complete.

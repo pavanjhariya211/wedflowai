@@ -2,6 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react-nativ
 import { WeddingForm } from '../src/wedding/WeddingForm';
 import { JoinForm } from '../src/wedding/JoinForm';
 import Timeline from '../app/(tabs)/timeline';
+jest.mock('../src/planning/usePlanning', () => ({ usePlanning: () => ({ tasks: [], loading: false, error: '', service: null, reload: jest.fn() }) }));
 const mockService = { create: jest.fn(), accept: jest.fn() };
 const mockReload = jest.fn();
 const mockDone = jest.fn();
