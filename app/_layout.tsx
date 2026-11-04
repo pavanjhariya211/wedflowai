@@ -1,3 +1,4 @@
+import { View } from 'react-native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -34,5 +35,5 @@ export default function RootLayout() {
     PlayfairDisplay_600SemiBold: require('@expo-google-fonts/playfair-display/600SemiBold/PlayfairDisplay_600SemiBold.ttf'),
   });
   if (!loaded && !fontError) return null;
-  return <SafeAreaProvider><AuthProvider><HostingBadge /><StatusBar style="dark" /><Navigation /></AuthProvider></SafeAreaProvider>;
+  return <SafeAreaProvider><AuthProvider><StatusBar style="dark" /><View style={{flex:1}}><Navigation /><HostingBadge /></View></AuthProvider></SafeAreaProvider>;
 }
