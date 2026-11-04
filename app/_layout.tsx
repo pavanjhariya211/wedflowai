@@ -6,6 +6,7 @@ import { AuthProvider, useAuth } from '../src/auth/AuthProvider';
 import { Button, Heading, Loading, Notice, Screen } from '../src/components/ui';
 import { environment } from '../src/config/environment';
 import { colors } from '../src/theme/tokens';
+import { HostingBadge } from '../src/components/HostingBadge';
 
 function Navigation() {
   const { session, loading, recovery, startupError, retrySession } = useAuth();
@@ -33,5 +34,5 @@ export default function RootLayout() {
     PlayfairDisplay_600SemiBold: require('@expo-google-fonts/playfair-display/600SemiBold/PlayfairDisplay_600SemiBold.ttf'),
   });
   if (!loaded && !fontError) return null;
-  return <SafeAreaProvider><AuthProvider><StatusBar style="dark" /><Navigation /></AuthProvider></SafeAreaProvider>;
+  return <SafeAreaProvider><AuthProvider><HostingBadge /><StatusBar style="dark" /><Navigation /></AuthProvider></SafeAreaProvider>;
 }
