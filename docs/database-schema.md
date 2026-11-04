@@ -194,3 +194,7 @@ wedding/account and deletes them afterward.
 
 The static design gallery adds no schema, policy, credentials or records. Names,
 dates and task counts are examples baked into mockup images, not seeded data.
+
+## November 5 — approved Berry & Marigold implementation
+
+The approved Berry & Marigold implementation requires no schema, policy or data migration. No user records, dates, owners or privacy scopes are changed by the redesign.

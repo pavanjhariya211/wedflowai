@@ -189,3 +189,7 @@ fallback. It does not establish that live AI is working.
 SPA. Local PNGs and a PDF provide browser-accessible alternatives to broken chat
 attachments. It makes no Auth, database or AI requests; existing app routes and
 runtime components are unchanged.
+
+## November 5 — approved Berry & Marigold implementation
+
+Shared tokens and UI primitives apply Berry & Marigold across Auth and domain screens. A fixed layout header sits outside screen scrolling. Three navigation items retain existing task/timeline routes via PlanNavigation; permissions, RPCs and date logic are unchanged.

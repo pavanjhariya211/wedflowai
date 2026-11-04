@@ -196,3 +196,7 @@ Founder requested visual concepts for a clearer UI and stronger button emphasis,
 with audio excluded. Provide two comparable themes as browser-viewable images and
 a PDF after chat attachments failed. The concepts are review artifacts; neither
 palette nor their proposed navigation is implemented in the app.
+
+## November 5 — approved Berry & Marigold implementation
+
+Founder selected Berry & Marigold and explicitly requested live website implementation. Implemented consistent theme, prominent primary buttons, compact headers, three-section navigation, three prioritized dashboard tasks, and progressive disclosure for filters, manual templates and task history. Audio remains excluded.

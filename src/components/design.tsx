@@ -38,5 +38,5 @@ export const ds = StyleSheet.create({
  chip: { minHeight: 48, borderRadius: 28, backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, paddingHorizontal: 15, paddingVertical: 12, flexDirection: 'row', gap: 7, alignItems: 'center', flexShrink: 1 },
  chipSelected: { backgroundColor: colors.primary, borderColor: colors.primary }, chipText: { color: colors.primary, fontFamily: fonts.medium, fontSize: 12, lineHeight: 19, flexShrink: 1 },
  iconButton: { width: 48, height: 48, borderRadius: 24, backgroundColor: colors.warm, justifyContent: 'center', alignItems: 'center' },
- track: { height: 8, borderRadius: 8, backgroundColor: '#E9E9E2', overflow: 'hidden' }, fill: { height: 8, borderRadius: 8, backgroundColor: colors.primary },
+ track: { height: 8, borderRadius: 8, backgroundColor: colors.primarySoft, overflow: 'hidden' }, fill: { height: 8, borderRadius: 8, backgroundColor: colors.marigold },
 });

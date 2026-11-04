@@ -1,3 +1,4 @@
+import { PlanNavigation } from '../../src/planning/PlanNavigation';
 import { GuidedPlanner } from '../../src/planning/GuidedPlanner';
 import { useCallback, useState } from 'react';
 import { useFocusEffect, useLocalSearchParams, router } from 'expo-router';
@@ -18,6 +19,7 @@ function TasksContent() {
  const { tasks, loading, error, reload, service } = usePlanning();
  const params = useLocalSearchParams<{ plan?: string; task?: string }>();
  const [mode, setMode] = useState<'list' | 'new' | 'plan' | 'guided'>(params.plan === 'generate' ? 'guided' : 'list'); const [editing, setEditing] = useState<Task | null>(null);
+ const [filters, setFilters] = useState(false), [options, setOptions] = useState(false);
  const [query, setQuery] = useState(''), [filter, setFilter] = useState('active'), [category, setCategory] = useState('all'), [ceremony, setCeremony] = useState('all');
  const [workspace, setWorkspace] = useState(spaces.find((s) => s.can_edit && s.kind === 'family')?.id ?? spaces.find((s) => s.can_edit)?.id ?? '');
  const [today, setToday] = useState(() => parseIndianDate(todayIndia())!);
@@ -34,15 +36,17 @@ function TasksContent() {
     : mode === 'guided' ? <GuidedPlanner tasks={tasks} service={service} onDone={done} /> : mode === 'plan' ? <PlanPreview workspace={workspace} tasks={tasks} service={service} onDone={done} /> : <>
     {!tasks.length ? <Card><Body>Your wedding is saved. Now build your plan.</Body><Body>Generate a sequenced proposal from your wedding details, then accept it in one review.</Body></Card> : <Body>{tasks.filter((t) => t.status === 'completed').length} completed · {tasks.filter(activeTask).length} active visible tasks</Body>}
     {spaces.some((s) => s.can_edit) ? <>
-     <Button title="Generate my guided timeline" onPress={() => setMode('guided')} />
+     <Button secondary={tasks.length > 0} title="Generate my guided timeline" onPress={() => setMode('guided')} />
      <Button secondary title="Add a custom task" onPress={() => setMode('new')} />
-     <Choice label="Manual starter-plan destination" value={workspace} options={spaces.filter((s) => s.can_edit).map((s) => ({ value: s.id, label: s.name }))} onChange={setWorkspace} />
-     <Button secondary title="Use the manual template editor" disabled={!workspace} onPress={() => setMode('plan')} />
+     <Button secondary title={options ? "Hide template options" : "More planning options"} onPress={() => setOptions(!options)} />
+     {options ? <><Choice label="Manual starter-plan destination" value={workspace} options={spaces.filter((s) => s.can_edit).map((s) => ({ value: s.id, label: s.name }))} onChange={setWorkspace} />
+     <Button secondary title="Use the manual template editor" disabled={!workspace} onPress={() => setMode('plan')} /></> : null}
     </> : <Notice>You have view-only access.</Notice>}
     <Field label="Search your visible tasks" value={query} onChangeText={setQuery} />
-    <Choice label="Show tasks" value={filter} options={[{ value: 'active', label: 'Active' }, { value: 'mine', label: 'Assigned to me' }, { value: 'overdue', label: 'Overdue' }, { value: 'all', label: 'All, including archived' }, ...statuses.map((s) => ({ value: s, label: labelStatus(s) }))]} onChange={setFilter} />
+    <Button secondary title={filters ? "Hide task filters" : "Filter tasks"} onPress={() => setFilters(!filters)} />
+    {filters ? <><Choice label="Show tasks" value={filter} options={[{ value: 'active', label: 'Active' }, { value: 'mine', label: 'Assigned to me' }, { value: 'overdue', label: 'Overdue' }, { value: 'all', label: 'All, including archived' }, ...statuses.map((s) => ({ value: s, label: labelStatus(s) }))]} onChange={setFilter} />
     <Choice label="Category filter" value={category} options={[{ value: 'all', label: 'All categories' }, ...Array.from(new Set(tasks.map((t) => t.category))).sort().map((c) => ({ value: c, label: c }))]} onChange={setCategory} />
-    {ceremonies.length ? <Choice label="Ceremony filter" value={ceremony} options={[{ value: 'all', label: 'All ceremonies' }, ...ceremonies.map((c) => ({ value: c.id, label: c.title }))]} onChange={setCeremony} /> : null}
+    {ceremonies.length ? <Choice label="Ceremony filter" value={ceremony} options={[{ value: 'all', label: 'All ceremonies' }, ...ceremonies.map((c) => ({ value: c.id, label: c.title }))]} onChange={setCeremony} /> : null}</> : null}
     {!filtered.length ? <Notice>No tasks match this view.</Notice> : filtered.map((task) => <TaskCard key={`${task.id}:${task.version}`} task={task} service={service} reload={reload} onEdit={() => setEditing(task)} />)}
     <Notice>Recurring schedules, dependency automation and reminders are still being developed. This plan currently saves individually managed tasks.</Notice>
    </>}
@@ -54,7 +58,7 @@ function TasksContent() {
 export default function Tasks() {
  const { wedding, loading, error, reload } = useWedding();
  useFocusEffect(useCallback(() => { void reload(); }, [reload]));
- return <Screen wide><Heading title="Your wedding task plan." subtitle="A clear owner, an editable date, and progress you can follow." />
+ return <Screen wide><PlanNavigation current="tasks"/><Heading compact title="Your wedding plan." subtitle="A clear owner, an editable date, and progress you can follow." />
   {loading ? <Notice>Loading wedding…</Notice> : error ? <Notice error>{error}</Notice> : wedding ? <TasksContent key={wedding.id} /> : <Notice>Create or join a wedding in Home first.</Notice>}
  </Screen>;
 }

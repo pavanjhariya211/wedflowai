@@ -11,8 +11,8 @@ export function Screen({ children, wide = false }: PropsWithChildren<{ wide?: bo
   </KeyboardAvoidingView>
  </SafeAreaView>;
 }
-export function Heading({ title, subtitle }: { title: string; subtitle?: string }) {
- return <View style={styles.heading}><Text style={styles.eyebrow}>WEDFLOW · THOUGHTFULLY PLANNED</Text>
+export function Heading({ title, subtitle, compact = false }: { title: string; subtitle?: string; compact?: boolean }) {
+ return <View style={styles.heading}>{!compact ? <Text style={styles.eyebrow}>WEDFLOW · THOUGHTFULLY PLANNED</Text> : null}
   <Text accessibilityRole="header" style={styles.title}>{title}</Text>
   {subtitle ? <Text style={styles.body}>{subtitle}</Text> : null}</View>;
 }
@@ -43,19 +43,19 @@ export function Loading({ message = 'Restoring your session…' }: { message?: s
 }
 export const styles = StyleSheet.create({
  safe: { flex: 1, backgroundColor: colors.background },
- content: { padding: 32, paddingBottom: 48, gap: 24, width: '100%', maxWidth: 640, alignSelf: 'center', flexGrow: 1 },
+ content: { padding: 32, paddingBottom: 48, gap: 18, width: '100%', maxWidth: 640, alignSelf: 'center', flexGrow: 1 },
  heading: { gap: 10, marginTop: 4, marginBottom: 4 },
  eyebrow: { color: colors.primary, fontFamily: fonts.semibold, fontSize: 10, letterSpacing: 1.8 },
- title: { fontSize: 34, lineHeight: 43, fontFamily: fonts.display, color: colors.text },
+ title: { fontSize: 32, lineHeight: 40, fontFamily: fonts.display, color: colors.text },
  body: { fontFamily: fonts.body, color: colors.muted, fontSize: 14, lineHeight: 23 },
- card: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: 20, padding: 22, gap: 16 },
- notice: { backgroundColor: colors.primarySoft, borderRadius: 12, padding: 16, borderLeftWidth: 3, borderLeftColor: '#A8BCAD' },
+ card: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: 16, padding: 20, gap: 16 },
+ notice: { backgroundColor: colors.primarySoft, borderRadius: 12, padding: 16, borderLeftWidth: 3, borderLeftColor: colors.primary },
  errorNotice: { backgroundColor: colors.errorSoft, borderLeftColor: colors.error }, errorText: { color: colors.error, fontFamily: fonts.medium, fontSize: 13, lineHeight: 21 },
- button: { minHeight: 52, borderRadius: 12, backgroundColor: colors.primary, paddingHorizontal: 20, paddingVertical: 14, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 10 },
- buttonText: { fontFamily: fonts.semibold, color: colors.surface, fontSize: 14, lineHeight: 21, textAlign: 'center' },
- secondaryButton: { backgroundColor: colors.warm, borderColor: colors.border, borderWidth: 1 },
+ button: { minHeight: 56, borderRadius: 14, backgroundColor: colors.primary, paddingHorizontal: 20, paddingVertical: 14, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 10 },
+ buttonText: { fontFamily: fonts.semibold, color: colors.onPrimary, fontSize: 16, lineHeight: 24, textAlign: 'center' },
+ secondaryButton: { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1 },
  secondaryText: { color: colors.primary }, dim: { opacity: 0.6 },
  field: { gap: 9 }, label: { fontFamily: fonts.semibold, fontSize: 13, color: colors.text },
- input: { fontFamily: fonts.body, backgroundColor: '#F4F5F1', minHeight: 52, borderWidth: 1, borderColor: colors.border, borderRadius: 12, padding: 15, color: colors.text, fontSize: 16, lineHeight: 25 },
+ input: { fontFamily: fonts.body, backgroundColor: colors.surface, minHeight: 52, borderWidth: 1, borderColor: colors.border, borderRadius: 12, padding: 15, color: colors.text, fontSize: 16, lineHeight: 25 },
  invalidInput: { borderColor: colors.error }, loading: { flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16 },
 });

@@ -286,3 +286,7 @@ Browser link: https://wedflowai.netlify.app/design-preview/
 Source files live in `public/design-preview/` and are copied by the web export.
 The gallery uses illustrative sample content and no authentication, external
 assets or scripts. It does not apply either theme to the working app.
+
+## November 5 — approved Berry & Marigold implementation
+
+Berry & Marigold is now the approved application theme: blush backgrounds, berry primary actions, marigold progress, Inter headings, a persistent wedding header and Today/Plan/Family navigation. Plan links retain task and calendar routes. The gallery remains a comparison of static sample concepts.

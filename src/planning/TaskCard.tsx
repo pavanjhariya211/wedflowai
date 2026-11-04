@@ -38,9 +38,9 @@ export function TaskCard({ task, service, onEdit, reload }: { task: Task; servic
     await service.save({ ...taskInput(task), status: task.status === 'completed' ? 'not_started' : 'completed' }, task.version); setHistory(null); await reload();
    }); }} /> : null}
   </> : <Body>View-only access</Body>}
-  <Button secondary title={history ? 'Hide task history' : 'Show task history'} disabled={busy} onPress={() => {
+  {details || history ? <Button secondary title={history ? 'Hide task history' : 'Show task history'} disabled={busy} onPress={() => {
    if (history) setHistory(null); else { void run(async () => { setHistory(await service.history(task.id)); }); }
-  }} />
+  }} /> : null}
   {history?.map((h) => <Card key={h.id}><Body>{new Intl.DateTimeFormat('en-IN', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Asia/Kolkata' }).format(new Date(h.created_at))} IST</Body>
    <Body>{h.old_values ? `Updated: ${labelStatus(h.old_values.status)} → ${labelStatus(h.new_values.status)}` : 'Task created'}</Body>
    {h.old_values && h.old_values.due_date !== h.new_values.due_date ? <Body>Deadline: {h.old_values.due_date ? indianDate(h.old_values.due_date) : 'None'} → {h.new_values.due_date ? indianDate(h.new_values.due_date) : 'None'}</Body> : null}

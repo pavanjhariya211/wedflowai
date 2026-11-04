@@ -1,3 +1,4 @@
+import { PlanNavigation } from '../../src/planning/PlanNavigation';
 import { TimelineTasks } from '../../src/planning/TimelineTasks';
 import { Alert } from '../../src/lib/confirmation';
 import { useCallback, useState } from 'react';
@@ -41,7 +42,7 @@ export default function Timeline() {
       } },
     ]);
   }
-  return <Screen wide><Heading title="Your wedding timeline." subtitle="Planning tasks and ceremonies, with dates you control." />
+  return <Screen wide><PlanNavigation current="timeline"/><Heading compact title="Your wedding timeline." subtitle="Planning tasks and ceremonies, with dates you control." />
     {wedding ? <TimelineTasks key={wedding.id} /> : null}
     {failure ? <Notice error>{failure}</Notice> : null}
     {loading ? <Notice>Loading ceremonies…</Notice> : error ? <Notice error>{error}</Notice> : !wedding ? <Notice>Create or join a wedding in Home first.</Notice> : <>

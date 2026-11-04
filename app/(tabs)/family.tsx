@@ -35,7 +35,7 @@ export default function Family() {
       { text: 'Cancel', style: 'cancel' }, { text: 'Confirm', onPress: () => { if (service) void action(() => service.changeMember(m.workspace_id, m.user_id, nextRole)); } },
     ]);
   }
-  return <Screen><Heading title="Plan with your people." subtitle="Invitations require explicit acceptance with the invited email." />
+  return <Screen><Heading compact title="Plan with your people." subtitle="Invitations require explicit acceptance with the invited email." />
     {failure ? <Notice error>{failure}</Notice> : null}
     {loading ? <Notice>Loading family workspaces…</Notice> : error ? <Notice error>{error}</Notice> : !wedding ? <Notice>Create or join a wedding in Home first.</Notice> : <>
       <Body>Workspace names identify sharing destinations. Private family contents are available only to that family’s members.</Body>

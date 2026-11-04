@@ -181,3 +181,7 @@ existing mockups through a separate `/design-preview/` page on the authorized
 Netlify testing site, with original PNGs and a two-page PDF. Keep the originals
 unchanged, label sample content, avoid external dependencies and do not replace
 the app's theme or navigation. This is preview hosting, not a production launch.
+
+## November 5 — approved Berry & Marigold implementation
+
+Use approved berry #76264F and blush #FCF7F5 with marigold #E9AD3D accents and dark text on gold. Inter replaces editorial serif headings. Keep Today, Plan and Family as navigation; retain calendar and task deep links. Dashboard prioritizes up to three visible active tasks, preserving blocked/overdue signals; secondary controls expand on demand. Founder explicitly authorized this website update.

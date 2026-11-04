@@ -287,3 +287,7 @@ the two-page PDF is valid, section links work, no page overflow or runtime error
 The application entry asset remains unchanged. Hosted delivery is validated
 against the page marker, image/PDF content types and file checksums before
 reporting the link as ready.
+
+## November 5 — approved Berry & Marigold implementation
+
+Implemented the approved theme and UI simplification. TypeScript, ESLint, 118 Jest tests plus 7 handler tests pass. Web and Android bundle exports pass. Browser walkthrough uses explicitly simulated Auth/data/AI fixtures: setup, proposal review/acceptance, completion/reopening, filters, calendar, task editing/cancel, responsive navigation and reload. It verifies UI behaviour, not new live database/model delivery. Read-only hosted Supabase Auth accepts the configured public key. No database migrations or new APK. Deployed assets are checked against the verified local export after publication.

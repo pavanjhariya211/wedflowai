@@ -1,8 +1,9 @@
-// Adapted from the user's Stitch project: Wedflow Wedding Planner UI.
+// Approved Berry & Marigold direction; use shared tokens across every screen.
 export const colors = {
- background: '#FBF9F5', surface: '#FFFFFF', text: '#232725', muted: '#5A625D',
- primary: '#1E3A2F', primarySoft: '#EAF0EA', border: '#E6E0D6',
- error: '#9B432E', errorSoft: '#FBECE5', accent: '#886329',
- goldSoft: '#FFF3DB', terracotta: '#A34C36', warm: '#F4EFEB', onPrimary: '#FFFFFF',
+ background: '#FCF7F5', surface: '#FFFFFF', text: '#2D1B2B', muted: '#6B5967',
+ primary: '#76264F', primarySoft: '#F5E8EE', border: '#EBDDE3',
+ error: '#A3352B', errorSoft: '#FCECE7', accent: '#80520B',
+ goldSoft: '#FFF2D5', terracotta: '#A3352B', warm: '#FAF0F3', onPrimary: '#FFFFFF',
+ marigold: '#E9AD3D',
 };
-export const fonts = { display: 'PlayfairDisplay_600SemiBold', body: 'Inter_400Regular', medium: 'Inter_500Medium', semibold: 'Inter_600SemiBold' };
+export const fonts = { display: 'Inter_600SemiBold', body: 'Inter_400Regular', medium: 'Inter_500Medium', semibold: 'Inter_600SemiBold' };

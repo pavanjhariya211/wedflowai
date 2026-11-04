@@ -84,3 +84,7 @@ remaining PRD gaps are still not complete.
 Deliver a separate static gallery for comparing Berry & Marigold with Indigo &
 Coral. Theme selection and changes to the working app remain the next design
 step. Audio and other new functional phases are outside this artifact delivery.
+
+## November 5 — approved Berry & Marigold implementation
+
+Berry & Marigold implementation is authorized for the existing Netlify browser testing site. This delivers UI simplification and theme consistency; it does not add other PRD phases or update the older signed APK.
