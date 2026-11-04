@@ -296,3 +296,10 @@ The first deployed UI check exposed Netlify attribution covering the mobile
 Family tab. A browser-only footer hosts the badge outside the navigation and preserves
 attribution without covering any controls; native rendering uses a no-op component. Repeat deployed navigation
 acceptance after this fix before declaring the release complete.
+
+Final hosted acceptance passed after the footer fix: deployed entry/common
+bundles match the verified export; desktop and 390px browser walkthroughs pass
+with simulated service responses, including sticky header, three tabs, the actual
+Open my plan button, calendar, Family navigation, settings edit/cancel and reload.
+The attribution frame is below the tab controls; no runtime errors or page
+overflow. This verifies deployed UI behaviour, not a new live-account/model test.
