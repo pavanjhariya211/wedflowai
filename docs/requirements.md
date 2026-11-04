@@ -189,3 +189,10 @@ vendor charges, assumed ceremonies/roles, avatars and future automation from the
 mockups are excluded. The live AI test returned 502, so only the fallback path is
 accepted; successful provider output remains outstanding. Styling is not evidence
 that the remaining PRD workflows have been implemented.
+
+## November 5 — theme review scope
+
+Founder requested visual concepts for a clearer UI and stronger button emphasis,
+with audio excluded. Provide two comparable themes as browser-viewable images and
+a PDF after chat attachments failed. The concepts are review artifacts; neither
+palette nor their proposed navigation is implemented in the app.

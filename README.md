@@ -277,3 +277,12 @@ the final authenticated live endpoint check returned **200 with source ai** and
 its generated proposal was accepted and saved. The new live UI entry asset matches
 the locally verified export. Safe provider-failure categories remain available
 without exposing provider messages or keys.
+
+## Theme mockup preview
+
+The standalone `/design-preview/` page compares the Berry & Marigold and
+Indigo & Coral concepts, with original PNG downloads and a two-page PDF.
+Browser link: https://wedflowai.netlify.app/design-preview/
+Source files live in `public/design-preview/` and are copied by the web export.
+The gallery uses illustrative sample content and no authentication, external
+assets or scripts. It does not apply either theme to the working app.

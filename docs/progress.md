@@ -273,3 +273,17 @@ actual AI generation, plan acceptance, persistence, completion/reopening, calend
 interaction, task editing/cancel, responsive navigation and session reload. All
 temporary records were cleaned. Initial 502 findings above are superseded by this
 final successful deployed-endpoint check.
+
+## November 5 — accessible theme mockup gallery
+
+Prepared a standalone browser gallery at `/design-preview/` after the founder
+could not open chat attachments or workspace image links. Includes both original
+mockup boards, full-size/download links and a two-page PDF. Sample content is
+explicitly labelled; no app components, authentication, data or theme changed.
+
+TypeScript, lint, all 118 Jest tests and 7 function tests pass. Web export and
+Chromium gallery acceptance pass at 1440px and 390px: both original images load,
+the two-page PDF is valid, section links work, no page overflow or runtime errors.
+The application entry asset remains unchanged. Hosted delivery is validated
+against the page marker, image/PDF content types and file checksums before
+reporting the link as ready.

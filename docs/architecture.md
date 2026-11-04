@@ -182,3 +182,10 @@ The server's AI failure responses now expose only a coarse safe category (provid
 credentials, limiting, model, request or availability), never raw provider errors.
 This supports diagnosis of the observed live 502 while preserving a clear rules
 fallback. It does not establish that live AI is working.
+
+## November 5 — standalone theme preview
+
+`public/design-preview/` is a static, script-free gallery exported alongside the
+SPA. Local PNGs and a PDF provide browser-accessible alternatives to broken chat
+attachments. It makes no Auth, database or AI requests; existing app routes and
+runtime components are unchanged.

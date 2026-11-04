@@ -78,3 +78,9 @@ hashes after push; the old APK will still predate this redesign. Live OpenAI
 provider 502 diagnosis is separate from the successful Stitch connection/UI work.
 Shopping, recurrence, durable dependencies/rescheduling, notifications and other
 remaining PRD gaps are still not complete.
+
+## November 5 — theme review artifacts
+
+Deliver a separate static gallery for comparing Berry & Marigold with Indigo &
+Coral. Theme selection and changes to the working app remain the next design
+step. Audio and other new functional phases are outside this artifact delivery.

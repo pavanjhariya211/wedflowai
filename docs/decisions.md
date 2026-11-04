@@ -173,3 +173,11 @@ HTML references; translate them to Expo components rather than embedding HTML.
 - Test real fonts/icons in Chromium; unit tests isolate glyph asset loading while
   retaining auth/permission assertions. No live AI success is claimed from a 502
   response; add safe diagnostic categories without exposing provider bodies.
+
+## November 5 — browser delivery for inaccessible mockups
+
+Chat image attachments and workspace links failed for the founder. Deliver the
+existing mockups through a separate `/design-preview/` page on the authorized
+Netlify testing site, with original PNGs and a two-page PDF. Keep the originals
+unchanged, label sample content, avoid external dependencies and do not replace
+the app's theme or navigation. This is preview hosting, not a production launch.

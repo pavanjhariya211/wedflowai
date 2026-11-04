@@ -189,3 +189,8 @@ archived tasks, and includes only tasks actually returned for the signed-in user
 Calendar navigation only filters views. No sample Stitch records or fictional
 financial data were inserted. Browser acceptance creates an isolated temporary
 wedding/account and deletes them afterward.
+
+## November 5 — theme mockup delivery
+
+The static design gallery adds no schema, policy, credentials or records. Names,
+dates and task counts are examples baked into mockup images, not seeded data.
