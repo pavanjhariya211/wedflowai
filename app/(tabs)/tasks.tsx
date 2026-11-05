@@ -42,6 +42,8 @@ function TasksContent() {
      {options ? <><Choice label="Manual starter-plan destination" value={workspace} options={spaces.filter((s) => s.can_edit).map((s) => ({ value: s.id, label: s.name }))} onChange={setWorkspace} />
      <Button secondary title="Use the manual template editor" disabled={!workspace} onPress={() => setMode('plan')} /></> : null}
     </> : <Notice>You have view-only access.</Notice>}
+    <Button secondary title={filter === 'mine' ? "Show everyone’s tasks" : "Show my tasks"} onPress={() => setFilter(filter === 'mine' ? 'active' : 'mine')} />
+    {filter === 'mine' ? <Body>Showing active tasks assigned to you.</Body> : null}
     <Field label="Search your visible tasks" value={query} onChangeText={setQuery} />
     <Button secondary title={filters ? "Hide task filters" : "Filter tasks"} onPress={() => setFilters(!filters)} />
     {filters ? <><Choice label="Show tasks" value={filter} options={[{ value: 'active', label: 'Active' }, { value: 'mine', label: 'Assigned to me' }, { value: 'overdue', label: 'Overdue' }, { value: 'all', label: 'All, including archived' }, ...statuses.map((s) => ({ value: s, label: labelStatus(s) }))]} onChange={setFilter} />

@@ -303,3 +303,15 @@ with simulated service responses, including sticky header, three tabs, the actua
 Open my plan button, calendar, Family navigation, settings edit/cancel and reload.
 The attribution frame is below the tab controls; no runtime errors or page
 overflow. This verifies deployed UI behaviour, not a new live-account/model test.
+
+## November 6 — family invitation links and collaboration
+
+Implemented the collaboration entry points, fragment invitation links, pending-invitation persistence and auth continuation, explicit acceptance into the returned existing wedding, role labels, joined/pending lists, copy/share controls and My tasks shortcut. The Supabase management binding returns HTTP 401, preventing a new hosted multi-user fixture run; no credentials were changed or requested in chat. Validation uses existing unit/PKCE/storage contracts and explicit browser service fixtures. These fixtures test UI behaviour, not hosted authorization or real email delivery. No database mutation/migration is needed for this milestone. Final test/build and deployed-asset acceptance are recorded after verification.
+
+Verification: TypeScript and ESLint pass; 132 Jest tests in 23 suites and 7
+function tests pass (139 total). Web, Android and iOS exports pass. The browser
+fixture test covers link creation, pending members, registration guidance, reload
+persistence, wrong-email rejection, account switching, explicit acceptance,
+selection of an existing wedding, later manual wedding switching, viewer controls,
+My tasks, joined members and revocation with no runtime errors or mobile overflow.
+It sends no email and performs no hosted account/database writes.

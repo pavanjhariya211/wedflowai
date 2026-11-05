@@ -18,7 +18,7 @@ function Navigation() {
     <Stack.Screen name="index" />
     <Stack.Protected guard={!environment.ready}><Stack.Screen name="setup" /></Stack.Protected>
     <Stack.Protected guard={environment.ready}>
-      <Stack.Screen name="auth/callback" />
+      <Stack.Screen name="auth/callback" /><Stack.Screen name="join" />
       <Stack.Protected guard={!session}>
         <Stack.Screen name="auth/sign-in" /><Stack.Screen name="auth/register" /><Stack.Screen name="auth/forgot-password" />
       </Stack.Protected>

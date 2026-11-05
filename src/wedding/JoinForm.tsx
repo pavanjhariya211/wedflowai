@@ -2,9 +2,9 @@ import { useRef, useState } from 'react';
 import { Body, Button, Card, Field, Notice } from '../components/ui';
 import { useWedding } from './WeddingProvider';
 import { weddingError } from './validation';
-export function JoinForm({ onDone }: { onDone: () => void }) {
+export function JoinForm({ onDone, initialToken }: { onDone: (weddingId?: string) => void; initialToken?: string }) {
   const { service, reload } = useWedding();
-  const [name, setName] = useState(''), [token, setToken] = useState(''), [failure, setFailure] = useState('');
+  const [name, setName] = useState(''), [token, setToken] = useState(initialToken ?? ''), [failure, setFailure] = useState('');
   const [busy, setBusy] = useState(false);
   const locked = useRef(false);
   async function accept() {
@@ -13,15 +13,15 @@ export function JoinForm({ onDone }: { onDone: () => void }) {
       setFailure('Enter your name and the full invitation code.'); return;
     }
     locked.current = true; setBusy(true); setFailure('');
-    try { const id = await service.accept(token, name); setToken(''); await reload(id); onDone(); }
+    try { const id = await service.accept(token, name); setToken(''); await reload(id); onDone(id); }
     catch (error) { setFailure(weddingError(error)); }
     finally { locked.current = false; setBusy(false); }
   }
   return <Card><Body>Sign in with the email address named on your invitation. Joining gives you the role and workspace chosen by the inviter.</Body>
     {failure ? <Notice error>{failure}</Notice> : null}
     <Field label="Your display name" value={name} onChangeText={setName} editable={!busy} />
-    <Field label="Invitation code" value={token} onChangeText={setToken} autoCapitalize="none" autoCorrect={false} editable={!busy} multiline />
+    {!initialToken ? <Field label="Invitation code" value={token} onChangeText={setToken} autoCapitalize="none" autoCorrect={false} editable={!busy} multiline /> : null}
     <Button title="Accept invitation and join" busy={busy} onPress={() => { void accept(); }} />
-    <Button secondary title="Cancel" disabled={busy} onPress={onDone} />
+    <Button secondary title="Cancel" disabled={busy} onPress={() => onDone()} />
   </Card>;
 }

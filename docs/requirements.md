@@ -200,3 +200,7 @@ palette nor their proposed navigation is implemented in the app.
 ## November 5 — approved Berry & Marigold implementation
 
 Founder selected Berry & Marigold and explicitly requested live website implementation. Implemented consistent theme, prominent primary buttons, compact headers, three-section navigation, three prioritized dashboard tasks, and progressive disclosure for filters, manual templates and task history. Audio remains excluded.
+
+## November 6 — family invitation links and collaboration
+
+Founder approved the collaboration improvements and live website update. Deliver discoverable Invite family entry, share/copy invitation links, invitation continuation through sign-in/registration/verification, explicit existing-wedding acceptance, joined/pending sections, understandable role labels and a visible My tasks shortcut. Do not add automatic email/WhatsApp sending, public wedding details, automatic acceptance, unrestricted real-time sharing or multiple task owners.

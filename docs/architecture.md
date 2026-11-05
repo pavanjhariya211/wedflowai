@@ -193,3 +193,7 @@ runtime components are unchanged.
 ## November 5 — approved Berry & Marigold implementation
 
 Shared tokens and UI primitives apply Berry & Marigold across Auth and domain screens. A fixed layout header sits outside screen scrolling. Three navigation items retain existing task/timeline routes via PlanNavigation; permissions, RPCs and date logic are unchanged.
+
+## November 6 — family invitation links and collaboration
+
+A public /join route retains a validated fragment token in the platform auth-storage adapter for up to 24 hours, resumes through the root auth redirect, gives password recovery priority and requires explicit acceptance. The existing wf_accept_invite RPC controls email, expiry, role and membership. After acceptance the returned wedding ID selects the existing workspace; transient selection parameters are cleared. A public link exposes no wedding/member metadata before acceptance. Invitation state is cleared only on acceptance or explicit cancellation. Storage errors are visible rather than silently ignored.

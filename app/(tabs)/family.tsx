@@ -1,23 +1,26 @@
 import { Alert } from '../../src/lib/confirmation';
 import { useCallback, useRef, useState } from 'react';
-import { Share, Text } from 'react-native';
+import { Platform, Share, Text } from 'react-native';
 import { useFocusEffect } from 'expo-router';
 import { useAuth } from '../../src/auth/AuthProvider';
 import { Body, Button, Card, Field, Heading, Notice, Screen } from '../../src/components/ui';
 import { Choice } from '../../src/wedding/Choice';
 import { useWedding } from '../../src/wedding/WeddingProvider';
 import { weddingError } from '../../src/wedding/validation';
+import { invitationLink } from '../../src/wedding/invitation-link';
 import type { Member, Role } from '../../src/wedding/models';
 export default function Family() {
   const { session } = useAuth();
   const { wedding, spaces, members, invitations, service, loading, error, reload } = useWedding();
   const [workspace, setWorkspace] = useState(''), [email, setEmail] = useState(''), [role, setRole] = useState<Role>('member');
+  const [showCode,setShowCode] = useState(false);
   const [code, setCode] = useState(''), [failure, setFailure] = useState(''), [busy, setBusy] = useState(false);
   const locked = useRef(false);
   const [now, setNow] = useState(Date.now);
   useFocusEffect(useCallback(() => { setCode(''); setNow(Date.now()); void reload(); }, [reload]));
-  const selected = spaces.find((s) => s.id === workspace);
   const allowed = spaces.filter((s) => s.can_manage || s.bootstrap);
+  const selected = allowed.find((s) => s.id === workspace) ?? (allowed.length === 1 ? allowed[0] : undefined);
+  const roleName = (value: Role) => value === 'member' ? 'Can edit' : value === 'viewer' ? 'View only' : 'Admin';
   async function action(operation: () => Promise<unknown>) {
     if (locked.current) return;
     locked.current = true; setBusy(true); setFailure('');
@@ -35,30 +38,36 @@ export default function Family() {
       { text: 'Cancel', style: 'cancel' }, { text: 'Confirm', onPress: () => { if (service) void action(() => service.changeMember(m.workspace_id, m.user_id, nextRole)); } },
     ]);
   }
-  return <Screen><Heading compact title="Plan with your people." subtitle="Invitations require explicit acceptance with the invited email." />
+  return <Screen><Heading compact title="Plan with your people." subtitle={wedding ? `Invite your people to ${wedding.title}.` : "Plan one wedding together, with separate accounts."} />
     {failure ? <Notice error>{failure}</Notice> : null}
     {loading ? <Notice>Loading family workspaces…</Notice> : error ? <Notice error>{error}</Notice> : !wedding ? <Notice>Create or join a wedding in Home first.</Notice> : <>
       <Body>Workspace names identify sharing destinations. Private family contents are available only to that family’s members.</Body>
+      {allowed.length ? <Card><Text accessibilityRole="header">Invite family</Text><Body>Choose who can help with this wedding. They will use their own account and accept your invitation.</Body><Choice label="Invite to workspace" value={selected?.id ?? ''} options={allowed.map((s) => ({ value: s.id, label: s.name }))} onChange={(id) => { setWorkspace(id); setCode(''); }} disabled={busy} />
+        <Field label="Invited email" value={email} onChangeText={(value) => { setEmail(value); setCode(''); }} autoCapitalize="none" autoCorrect={false} keyboardType="email-address" editable={!busy} />
+        {selected?.bootstrap ? <Notice>The first invitation appoints this family’s admin. It does not grant you access to their private ceremonies.</Notice> : <Choice label="Invitation role" value={role} options={[{ value: 'member', label: 'Can edit' }, { value: 'viewer', label: 'View only' }, { value: 'admin', label: 'Workspace admin' }]} onChange={(value) => { setRole(value); setCode(''); }} disabled={busy} />}
+        <Body>Can edit: manage tasks and ceremonies here. View only: follow the plan. Admin: also manage access. Private family information stays private.</Body><Button title="Create invitation link" busy={busy} onPress={() => { void invite(); }} />
+      </Card> : null}
+      {code ? <Card><Body>Invitation ready for {email.trim()}. Share this link with that person. It expires in 7 days; no email or WhatsApp message has been sent automatically.</Body>
+        <Text selectable accessibilityLabel="New invitation link">{invitationLink(code)}</Text>
+        <Button title="Share invitation link" onPress={() => { void Share.share({ message: `Join our wedding on Wedflow. Sign in with your invited email and accept: ${invitationLink(code)}` }).catch(() => setFailure('Sharing was unavailable. Copy the link below instead.')); }} />
+        {Platform.OS === 'web' ? <Button secondary title="Copy invitation link" onPress={() => { if (!navigator.clipboard) {setFailure('Select the link text and copy it manually.');return;} void navigator.clipboard.writeText(invitationLink(code)).catch(() => setFailure('Copying was unavailable. Select the link text and copy it manually.')); }} /> : null}
+        <Button secondary title={showCode ? 'Hide invitation code' : 'Show invitation code instead'} onPress={() => setShowCode(!showCode)} />
+        {showCode ? <Text selectable accessibilityLabel="New invitation code">{code}</Text> : null}
+        <Button secondary title="Hide invitation link" onPress={() => {setCode('');setShowCode(false);}} />
+      </Card> : null}
+      <Text accessibilityRole="header">Joined members</Text>
       {spaces.map((s) => <Card key={s.id}><Body>{s.name}{s.bootstrap ? ' · Invite first admin' : ''}</Body>
-        {members.filter((m) => m.workspace_id === s.id).map((m) => <Card key={m.user_id}><Body>{m.profiles.display_name} · {m.role}{m.user_id === session?.user.id ? ' (you)' : ''}</Body>
+        {members.filter((m) => m.workspace_id === s.id).map((m) => <Card key={m.user_id}><Body>{m.profiles.display_name} · {roleName(m.role)}{m.user_id === session?.user.id ? ' (you)' : ''}</Body>
           {s.can_manage ? <>
-            <Choice label={`Role for ${m.profiles.display_name}`} value={m.role} disabled={busy} options={[{ value: 'admin', label: 'Admin' }, { value: 'member', label: 'Member' }, { value: 'viewer', label: 'View only' }]} onChange={(r) => change(m, r)} />
+            <Choice label={`Role for ${m.profiles.display_name}`} value={m.role} disabled={busy} options={[{ value: 'admin', label: 'Admin' }, { value: 'member', label: 'Can edit' }, { value: 'viewer', label: 'View only' }]} onChange={(r) => change(m, r)} />
             <Button secondary title={`Remove ${m.profiles.display_name}`} disabled={busy} onPress={() => change(m, null)} />
           </> : m.user_id === session?.user.id ? <Button secondary title={`Leave ${s.name}`} disabled={busy} onPress={() => change(m, null)} /> : null}
         </Card>)}
         {!members.some((m) => m.workspace_id === s.id) ? <Body>Members are private or have not joined yet.</Body> : null}
       </Card>)}
-      {allowed.length ? <Card><Choice label="Invite to workspace" value={workspace} options={allowed.map((s) => ({ value: s.id, label: s.name }))} onChange={(id) => { setWorkspace(id); setCode(''); }} disabled={busy} />
-        <Field label="Invited email" value={email} onChangeText={(value) => { setEmail(value); setCode(''); }} autoCapitalize="none" autoCorrect={false} keyboardType="email-address" editable={!busy} />
-        {selected?.bootstrap ? <Notice>The first invitation appoints this family’s admin. It does not grant you access to their private ceremonies.</Notice> : <Choice label="Invitation role" value={role} options={[{ value: 'member', label: 'Member' }, { value: 'viewer', label: 'View only' }, { value: 'admin', label: 'Workspace admin' }]} onChange={(value) => { setRole(value); setCode(''); }} disabled={busy} />}
-        <Button title="Create invitation code" busy={busy} onPress={() => { void invite(); }} />
-      </Card> : null}
-      {code ? <Card><Body>Invitation created for {email.trim()}. It expires in 7 days. Share it with that person; they can accept it in Home → Join with invitation code. No email has been sent.</Body>
-        <Text selectable accessibilityLabel="New invitation code">{code}</Text>
-        <Button title="Share invitation code" onPress={() => { void Share.share({ message: `Join our wedding in Wedflow using your invited email. In Home, choose Join with invitation code and enter: ${code}` }).catch(() => setFailure('Sharing was unavailable. Select and copy the code instead.')); }} />
-        <Button secondary title="Hide code" onPress={() => setCode('')} />
-      </Card> : null}
-      {invitations.filter((i) => !i.accepted_at && !i.revoked_at && new Date(i.expires_at).valueOf() > now).map((i) => <Card key={i.id}><Body>Pending: {i.email} · {i.role}</Body>
+      <Text accessibilityRole="header">Pending invitations</Text>
+      {!invitations.some(i=>!i.accepted_at && !i.revoked_at && new Date(i.expires_at).valueOf()>now) ? <Body>No pending invitations.</Body> : null}
+      {invitations.filter((i) => !i.accepted_at && !i.revoked_at && new Date(i.expires_at).valueOf() > now).map((i) => <Card key={i.id}><Body>Pending: {i.email} · {roleName(i.role)}</Body>
         <Button secondary title={`Revoke invitation for ${i.email}`} disabled={busy} onPress={() => { if (service) { setCode(''); void action(() => service.revokeInvite(i.id)); } }} /></Card>)}
     </>}
     <Button secondary title="Refresh family access" disabled={loading || busy} onPress={() => { setCode(''); setNow(Date.now()); void reload(); }} />

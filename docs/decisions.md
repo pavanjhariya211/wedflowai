@@ -185,3 +185,7 @@ the app's theme or navigation. This is preview hosting, not a production launch.
 ## November 5 — approved Berry & Marigold implementation
 
 Use approved berry #76264F and blush #FCF7F5 with marigold #E9AD3D accents and dark text on gold. Inter replaces editorial serif headings. Keep Today, Plan and Family as navigation; retain calendar and task deep links. Dashboard prioritizes up to three visible active tasks, preserving blocked/overdue signals; secondary controls expand on demand. Founder explicitly authorized this website update.
+
+## November 6 — family invitation links and collaboration
+
+Founder approved implementing and publishing the simpler collaboration flow. Keep existing email-bound invitation RPCs and roles; member is labelled Can edit. Links use /join#invite=<token> on the live Wedflow origin. Keep a pending invitation in platform storage for at most 24 hours to survive authentication; backend expiry remains seven days. Root routing prioritizes password recovery. New members explicitly accept, then open the returned existing wedding. Never silently create a wedding, accept a link or send a message.

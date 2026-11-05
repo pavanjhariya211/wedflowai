@@ -88,3 +88,7 @@ step. Audio and other new functional phases are outside this artifact delivery.
 ## November 5 — approved Berry & Marigold implementation
 
 Berry & Marigold implementation is authorized for the existing Netlify browser testing site. This delivers UI simplification and theme consistency; it does not add other PRD phases or update the older signed APK.
+
+## November 6 — family invitation links and collaboration
+
+The approved collaboration milestone improves the existing Phase 2 membership flow. It does not authorize notifications, comments/chat, automatic invitations, a broader realtime service or changes to personal/family privacy. Physical native-link acceptance and a new APK remain separate checks.

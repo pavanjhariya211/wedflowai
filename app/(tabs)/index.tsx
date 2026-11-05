@@ -1,6 +1,6 @@
 import { Dashboard } from '../../src/planning/Dashboard';
 import { useCallback, useState } from 'react';
-import { useFocusEffect, router } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams, router } from 'expo-router';
 import { useAuth } from '../../src/auth/AuthProvider';
 import { friendlyAuthError } from '../../src/auth/errors';
 import { Body, Button, Card, Heading, Notice, Screen } from '../../src/components/ui';
@@ -10,12 +10,13 @@ import { JoinForm } from '../../src/wedding/JoinForm';
 import { Choice } from '../../src/wedding/Choice';
 import { indianDate } from '../../src/wedding/validation';
 export default function Home() {
+  const { wedding: requestedWedding } = useLocalSearchParams<{wedding?:string}>();
   const { session, service: auth } = useAuth();
-  const { wedding, weddings, loading, error, reload, ceremonies } = useWedding();
+  const { wedding, weddings, loading, error, reload, ceremonies, spaces } = useWedding();
   const [mode, setMode] = useState<'view' | 'create' | 'edit' | 'join'>('view');
   const [manage, setManage] = useState(false);
   const [busy, setBusy] = useState(false), [failure, setFailure] = useState('');
-  useFocusEffect(useCallback(() => { void reload(); }, [reload]));
+  useFocusEffect(useCallback(() => { void reload(requestedWedding).then(() => { if(requestedWedding) router.setParams({wedding:''}); }); }, [reload,requestedWedding]));
   async function signOut() {
     if (!auth || busy) return;
     setBusy(true); setFailure('');
@@ -28,7 +29,7 @@ export default function Home() {
       {mode === 'create' || mode === 'edit' ? <WeddingForm wedding={mode === 'edit' ? wedding ?? undefined : undefined} onDone={() => { setMode('view'); if (mode === 'create') router.push({ pathname: '/tasks', params: { plan: 'generate' } }); }} onCancel={() => setMode('view')} />
         : mode === 'join' ? <JoinForm onDone={() => setMode('view')} /> : <>
         {weddings.length > 1 ? <Choice label="Selected wedding" value={wedding!.id} options={weddings.map((w) => ({ value: w.id, label: w.title }))} onChange={(id) => { void reload(id); }} /> : null}
-        {wedding ? <><Dashboard key={wedding.id} />
+        {wedding ? <>{spaces.some(s=>s.can_manage || s.bootstrap) ? <Button secondary title="Invite family" onPress={() => router.push('/family')} /> : null}<Dashboard key={wedding.id} />
           <Button secondary title={manage ? 'Hide wedding settings' : 'Wedding settings & account'} onPress={() => setManage(!manage)} />
           {manage ? <Card><Body>{indianDate(wedding.main_date)} · {wedding.city ?? 'City not set'}</Body>
           <Body>{wedding.format === 'single' ? 'One wedding day' : 'Multiple days / functions'} · {wedding.sharing_mode === 'shared' ? 'Shared family workspace' : 'Separate families + shared overview'}</Body>

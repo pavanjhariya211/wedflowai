@@ -59,6 +59,16 @@ test('a rejected invitation does not enter a wedding', async () => {
   expect(await screen.findByText(/Access denied/)).toBeTruthy();
   expect(mockReload).not.toHaveBeenCalled(); expect(mockDone).not.toHaveBeenCalled();
 });
+test('a link supplies the invitation code and opens the accepted existing wedding', async () => {
+  mockService.accept.mockResolvedValueOnce('existing-wedding');
+  await render(<JoinForm initialToken={'a'.repeat(64)} onDone={mockDone} />);
+  expect(screen.queryByLabelText('Invitation code')).toBeNull();
+  await fireEvent.changeText(screen.getByLabelText('Your display name'), 'Relative');
+  await fireEvent.press(screen.getByRole('button', { name: 'Accept invitation and join' }));
+  await waitFor(() => expect(mockDone).toHaveBeenCalledWith('existing-wedding'));
+  expect(mockService.accept).toHaveBeenCalledWith('a'.repeat(64), 'Relative');
+  expect(mockReload).toHaveBeenCalledWith('existing-wedding');
+});
 test('view-only timeline shows no ceremony mutation controls', async () => {
   await render(<Timeline />);
   expect(screen.getByText('You have view-only access.')).toBeTruthy();

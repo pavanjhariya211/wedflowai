@@ -9,7 +9,7 @@ const mockService = {
 const mockRouter = { push: jest.fn(), replace: jest.fn() };
 jest.mock('expo-router', () => ({ router: {
   push: (path: string) => mockRouter.push(path), replace: (path: string) => mockRouter.replace(path),
-}, useFocusEffect: () => undefined }));
+}, useFocusEffect: () => undefined, useLocalSearchParams: () => ({}) }));
 jest.mock('../src/auth/AuthProvider', () => ({
   useAuth: () => ({ service: mockService, session: { user: { email: 'test@example.in' } } }),
 }));

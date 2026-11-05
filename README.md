@@ -290,3 +290,7 @@ assets or scripts. It does not apply either theme to the working app.
 ## November 5 — approved Berry & Marigold implementation
 
 Berry & Marigold is now the approved application theme: blush backgrounds, berry primary actions, marigold progress, Inter headings, a persistent wedding header and Today/Plan/Family navigation. Plan links retain task and calendar routes. The gallery remains a comparison of static sample concepts.
+
+## November 6 — family invitation links and collaboration
+
+Invite family from Today or Family. Enter the invited email, choose Can edit, View only or Admin, then share/copy the generated link. The recipient signs in or registers using that email and explicitly accepts into the same wedding. No email or WhatsApp message is sent automatically. Pending invitations can be revoked; joined members retain existing workspace privacy. Plan includes Show my tasks. Invitation links use fragments to keep tokens out of hosting request paths, and a bounded pending invitation is retained across authentication. Reopen the original link if local pending state expires. Run fixture-only browser acceptance after a web export using `scripts/smoke-collaboration.cjs`, with JSON `{"origin":"<running preview origin>"}` on stdin; it does not create hosted accounts or establish live RLS delivery.

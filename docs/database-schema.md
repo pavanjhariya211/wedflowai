@@ -198,3 +198,7 @@ dates and task counts are examples baked into mockup images, not seeded data.
 ## November 5 — approved Berry & Marigold implementation
 
 The approved Berry & Marigold implementation requires no schema, policy or data migration. No user records, dates, owners or privacy scopes are changed by the redesign.
+
+## November 6 — family invitation links and collaboration
+
+No schema/migration or permission changes. Existing wf_invite, wf_accept_invite, wf_revoke_invite and wf_change_member remain authoritative. Seven-day expiry, email binding, idempotent acceptance, last-admin safeguards and RLS isolation are preserved. Link fragments are a new presentation of the existing invitation token, not a new authorization mechanism.
