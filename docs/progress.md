@@ -315,3 +315,9 @@ persistence, wrong-email rejection, account switching, explicit acceptance,
 selection of an existing wedding, later manual wedding switching, viewer controls,
 My tasks, joined members and revocation with no runtime errors or mobile overflow.
 It sends no email and performs no hosted account/database writes.
+
+Hosted acceptance: the live /join route serves the verified entry/common bundles
+with matching checksums. The collaboration browser walkthrough passed against
+those deployed assets at 390px and 1440px, with simulated Auth/data responses and
+no external messages. Real hosted multi-user acceptance remains unverified due
+to the rejected management credential; public Auth readiness passes.

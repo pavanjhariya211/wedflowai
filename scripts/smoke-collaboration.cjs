@@ -4,7 +4,7 @@ const {chromium}=require('playwright');
 const {randomBytes}=require('node:crypto');
 (async()=>{
  const chunks=[];for await(const c of process.stdin)chunks.push(c);
- const {origin}=JSON.parse(Buffer.concat(chunks));
+ const {origin,width=390}=JSON.parse(Buffer.concat(chunks));
  const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});
  const ids={admin:'11111111-1111-4111-8111-111111111111',guest:'22222222-2222-4222-8222-222222222222',wrong:'33333333-3333-4333-8333-333333333333'};
  const wid='44444444-4444-4444-8444-444444444444',old='55555555-5555-4555-8555-555555555555',sid='66666666-6666-4666-8666-666666666666';
@@ -17,7 +17,7 @@ const {randomBytes}=require('node:crypto');
  }));
  const errors=[];
  async function context(){
-  const ctx=await browser.newContext({viewport:{width:390,height:844}});
+  const ctx=await browser.newContext({viewport:{width,height:844}});
   await ctx.route('https://*.supabase.co/**',async route=>{
    const req=route.request(),u=new URL(req.url()),endpoint=u.pathname.split('/').pop();
    const body=req.postData()?JSON.parse(req.postData()):{};
