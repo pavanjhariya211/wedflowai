@@ -189,3 +189,7 @@ Use approved berry #76264F and blush #FCF7F5 with marigold #E9AD3D accents and d
 ## November 6 — family invitation links and collaboration
 
 Founder approved implementing and publishing the simpler collaboration flow. Keep existing email-bound invitation RPCs and roles; member is labelled Can edit. Links use /join#invite=<token> on the live Wedflow origin. Keep a pending invitation in platform storage for at most 24 hours to survive authentication; backend expiry remains seven days. Root routing prioritizes password recovery. New members explicitly accept, then open the returned existing wedding. Never silently create a wedding, accept a link or send a message.
+
+## November 6 — WhatsApp-only invitations (prepared, not deployed)
+
+User superseded email-targeted creation with WhatsApp-only invitations. Remove recipient email and use direct wa.me compose, not the generic share sheet. Choose single-use links to bound forwarded access; preserve explicit roles, expiry/revocation, first-admin warnings, private scopes and safe same-claimant retries. Legacy email invitations remain email-bound. Existing account authentication is unchanged. Keep this code off main until migration application is verified.

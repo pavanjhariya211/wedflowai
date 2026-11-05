@@ -32,8 +32,8 @@ export default function JoinInvitation() {
   {failure ? <Notice error>{failure}</Notice> : null}
   {!token || failure ? <><Body>Invitation links must be opened in full. No wedding access has been granted.</Body><Button secondary title="Continue to Wedflow" onPress={()=>{void finish();}}/></>
    : recovery ? <><Notice>Finish resetting your password first. Your invitation will be available afterwards.</Notice><Button title="Finish password reset" onPress={()=>router.replace('/auth/update-password')}/></>
-   : !session ? <Card><Body>You have a wedding invitation. Sign in or create an account with the email address the organiser invited. Then review and accept here.</Body><Button title="Sign in to accept" onPress={()=>router.push('/auth/sign-in')}/><Button secondary title="Create an account to join" onPress={()=>router.push('/auth/register')}/><Button secondary title="Decline invitation on this device" onPress={()=>{void finish();}}/></Card>
-   : <><Notice>Signed in as {session.user.email}. Only the invited email can accept this link. Invitations expire after 7 days; the organiser controls your access.</Notice>
+   : !session ? <Card><Body>You have a wedding invitation. Sign in or create your own Wedflow account. Then review and accept here.</Body><Button title="Sign in to accept" onPress={()=>router.push('/auth/sign-in')}/><Button secondary title="Create an account to join" onPress={()=>router.push('/auth/register')}/><Button secondary title="Decline invitation on this device" onPress={()=>{void finish();}}/></Card>
+   : <><Notice>Signed in as {session.user.email}. WhatsApp invites can be accepted once, by the first person who joins. Invitations expire after 7 days; the organiser controls your access.</Notice>
     <WeddingProvider key={session.user.id}><JoinForm initialToken={token} onDone={(id)=>{void finish(id);}}/></WeddingProvider>
     <Button secondary title="Use a different account" onPress={()=>{void service?.signOut().then(()=>router.replace('/auth/sign-in')).catch(()=>setFailure('Could not sign out. Please retry.'));}}/>
    </>}

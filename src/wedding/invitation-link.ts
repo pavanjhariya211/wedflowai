@@ -29,3 +29,8 @@ export async function pendingInvitation(): Promise<string | null> {
  await clearInvitation(); return null;
 }
 export async function clearInvitation() { await authStorage.removeItem(key); }
+
+export function whatsappInvitationUrl(token: string): string {
+ const message = `Join our wedding on Wedflow: ${invitationLink(token)}\nSign in and accept to join our plan. This invitation is for one person; please do not forward it.`;
+ return `https://wa.me/?text=${encodeURIComponent(message)}`;
+}

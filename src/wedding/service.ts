@@ -19,7 +19,7 @@ export function createWeddingService(client: SupabaseClient) {
         client.rpc('wf_workspace_access', { p_wedding: id }),
         client.from('ceremonies').select('*').eq('wedding_id', id).order('start_date').order('starts_at', { nullsFirst: true }),
         client.from('workspace_memberships').select('workspace_id,user_id,role,profiles(display_name)'),
-        client.from('invitations').select('id,workspace_id,email,role,expires_at,accepted_at,revoked_at'),
+        client.from('invitations').select('id,workspace_id,email,channel,role,expires_at,accepted_at,revoked_at'),
       ]);
       for (const result of results) if (result.error) throw result.error;
       const spaces = results[0]!.data as Workspace[];
@@ -44,6 +44,9 @@ export function createWeddingService(client: SupabaseClient) {
     async deleteCeremony(c: Ceremony) { await rpc('wf_delete_ceremony', { p_id: c.id, p_version: c.version }); },
     async invite(workspace: string, email: string, role: Role): Promise<string> {
       return await rpc('wf_invite', { p_workspace: workspace, p_email: email.trim(), p_role: role }) as string;
+    },
+    async inviteWhatsApp(workspace: string, role: Role): Promise<string> {
+      return await rpc('wf_invite_whatsapp', { p_workspace: workspace, p_role: role }) as string;
     },
     async accept(token: string, name: string): Promise<string> {
       return await rpc('wf_accept_invite', { p_token: token.trim(), p_name: name.trim() }) as string;

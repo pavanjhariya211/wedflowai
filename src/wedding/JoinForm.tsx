@@ -17,7 +17,7 @@ export function JoinForm({ onDone, initialToken }: { onDone: (weddingId?: string
     catch (error) { setFailure(weddingError(error)); }
     finally { locked.current = false; setBusy(false); }
   }
-  return <Card><Body>Sign in with the email address named on your invitation. Joining gives you the role and workspace chosen by the inviter.</Body>
+  return <Card><Body>Joining gives you the role and workspace chosen by the organiser. WhatsApp invites are for one person. Older email-specific invites still require the originally invited email.</Body>
     {failure ? <Notice error>{failure}</Notice> : null}
     <Field label="Your display name" value={name} onChangeText={setName} editable={!busy} />
     {!initialToken ? <Field label="Invitation code" value={token} onChangeText={setToken} autoCapitalize="none" autoCorrect={false} editable={!busy} multiline /> : null}

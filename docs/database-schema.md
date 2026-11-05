@@ -202,3 +202,7 @@ The approved Berry & Marigold implementation requires no schema, policy or data 
 ## November 6 — family invitation links and collaboration
 
 No schema/migration or permission changes. Existing wf_invite, wf_accept_invite, wf_revoke_invite and wf_change_member remain authoritative. Seven-day expiry, email binding, idempotent acceptance, last-admin safeguards and RLS isolation are preserved. Link fragments are a new presentation of the existing invitation token, not a new authorization mechanism.
+
+## November 6 — WhatsApp-only invitations (prepared, not deployed)
+
+Additive migration 202611060001_whatsapp_invitations adds channel and private accepted_by, permits null email only for WhatsApp invitations, grants channel reads and introduces a manager-authorized invite RPC. Acceptance serializes on workspace/token rows and binds the first claimant, preserving existing membership roles. Seven-day expiry, revocation, scoped privacy, first-family-admin bootstrap and legacy email binding remain. Local PostgreSQL 17 SQL/RLS fixtures pass; hosted migration application is blocked by management HTTP 401.

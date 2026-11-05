@@ -33,12 +33,12 @@ const {randomBytes}=require('node:crypto');
    else if(endpoint==='wf_workspace_access')data=[{id:sid,name:'Our wedding',kind:'shared',can_edit:who==='admin',can_manage:who==='admin',bootstrap:false}];
    else if(endpoint==='workspace_memberships')data=[{workspace_id:sid,user_id:ids.admin,role:'admin',profiles:{display_name:'Organiser'}},...(joined?[{workspace_id:sid,user_id:ids.guest,role:'viewer',profiles:{display_name:'Relative'}}]:[])];
    else if(endpoint==='invitations')data=who==='admin'?invitations.map(({token:_token,...i})=>i):[];
-   else if(endpoint==='wf_invite'){
-    const i={id:randomBytes(16).toString('hex'),workspace_id:sid,email:body.p_email,role:body.p_role,token:randomBytes(32).toString('hex'),expires_at:new Date(Date.now()+86400000).toISOString(),accepted_at:null,revoked_at:null};invitations.push(i);data=i.token;
+   else if(endpoint==='wf_invite_whatsapp'){
+    const i={id:randomBytes(16).toString('hex'),workspace_id:sid,email:null,channel:'whatsapp',role:body.p_role,token:randomBytes(32).toString('hex'),expires_at:new Date(Date.now()+86400000).toISOString(),accepted_at:null,revoked_at:null};invitations.push(i);data=i.token;
    }else if(endpoint==='wf_accept_invite'){
-    const invite=invitations.find(i=>i.token===body.p_token && !i.revoked_at && i.email===profiles[who].email);
+    const invite=invitations.find(i=>i.token===body.p_token && !i.revoked_at && new Date(i.expires_at).valueOf()>Date.now() && (!i.accepted_by || i.accepted_by===profiles[who].id));
     if(!invite){data={code:'42501',message:'Invitation invalid, expired or belongs to another email'};status=403;}
-    else{invite.accepted_at=new Date().toISOString();joined=true;data=wid;}
+    else{invite.accepted_at=new Date().toISOString();invite.accepted_by=profiles[who].id;joined=true;data=wid;}
    }else if(endpoint==='wf_revoke_invite'){invitations.find(i=>i.id===body.p_id).revoked_at=new Date().toISOString();data=null;}
    else if(endpoint==='wf_create_wedding'){creates++;throw new Error('Joining must not create a wedding');}
    else if(!['ceremonies','planning_tasks','task_history'].includes(endpoint))throw new Error('Unhandled fixture request: '+endpoint);
@@ -54,12 +54,13 @@ const {randomBytes}=require('node:crypto');
   console.log('FIXTURE UI ACCEPTANCE: no hosted accounts, email, or database writes.');
   const admin=await context();await admin.page.goto(origin+'/auth/sign-in');await login(admin.page,profiles.admin.email);
   await admin.page.getByRole('button',{name:'Invite family',exact:true}).click();
-  await admin.page.getByLabel('Invited email',{exact:true}).fill(profiles.guest.email);
+  if(await admin.page.getByLabel('Invited email',{exact:true}).count())throw new Error('WhatsApp invites must not request recipient email');
   await admin.page.getByRole('radio',{name:'View only',exact:true}).first().click();
-  await admin.page.getByRole('button',{name:'Create invitation link',exact:true}).click();
+  await admin.page.getByRole('button',{name:'Create WhatsApp invite',exact:true}).click();
   const link=await admin.page.getByLabel('New invitation link',{exact:true}).textContent();
   if(!link.includes('/join#invite=')||new URL(link).search)throw new Error('Expected a fragment-based invitation link');
-  await admin.page.getByText('Pending: guest@example.invalid · View only',{exact:true}).waitFor();
+  await admin.page.getByText(/Pending: WhatsApp invite .* · View only/).waitFor();
+  await admin.page.getByRole('button',{name:'Share on WhatsApp',exact:true}).waitFor();
   const guest=await context();await guest.page.goto(origin+'/join'+new URL(link).hash);
   await guest.page.getByRole('button',{name:'Create an account to join',exact:true}).click();
   await guest.page.getByLabel('Email',{exact:true}).fill(profiles.guest.email);
@@ -69,13 +70,9 @@ const {randomBytes}=require('node:crypto');
   await guest.page.getByText(/Check your email for a verification link/).waitFor();
   await guest.page.reload();await guest.page.getByRole('button',{name:'Back to sign in',exact:true}).click();
   await login(guest.page,profiles.wrong.email);
-  await guest.page.getByLabel('Your display name',{exact:true}).fill('Relative');
-  await guest.page.getByRole('button',{name:'Accept invitation and join',exact:true}).click();
-  await guest.page.getByText(/Access denied/).waitFor();
-  if(joined)throw new Error('Wrong email gained fixture access');
   await guest.page.getByRole('button',{name:'Use a different account',exact:true}).click();
   await login(guest.page,profiles.guest.email);
-  await guest.page.getByLabel('Your display name',{exact:true}).fill('Relative');
+  await guest.page.locator('input[aria-label="Your display name"]:visible').fill('Relative');
   await guest.page.getByRole('button',{name:'Accept invitation and join',exact:true}).click();
   await guest.page.getByRole('button',{name:'Open wedding workspace',exact:true}).getByText('Together wedding',{exact:true}).waitFor();
   if(creates!==0)throw new Error('Unexpected wedding creation');
@@ -93,15 +90,20 @@ const {randomBytes}=require('node:crypto');
   if(await guest.page.getByRole('button',{name:'Add a custom task',exact:true}).count())throw new Error('Viewer saw mutation controls');
   await admin.page.getByRole('button',{name:'Refresh family access',exact:true}).click();
   await admin.page.getByText('Relative · View only',{exact:false}).waitFor();
-  await admin.page.getByLabel('Invited email',{exact:true}).fill(profiles.wrong.email);
-  await admin.page.getByRole('button',{name:'Create invitation link',exact:true}).click();
-  await admin.page.getByRole('button',{name:'Revoke invitation for wrong@example.invalid',exact:true}).click();
+  await admin.page.getByRole('button',{name:'Create WhatsApp invite',exact:true}).click();
+  await admin.page.getByText(/Pending: WhatsApp invite .* · View only/).waitFor();
+  await admin.page.getByRole('button',{name:'Revoke invitation '+invitations.at(-1).id.slice(0,8),exact:true}).click();
   await admin.page.getByText('No pending invitations.',{exact:true}).waitFor();
+  const replay=await context();await replay.page.goto(origin+'/join'+new URL(link).hash);
+  await replay.page.getByRole('button',{name:'Sign in to accept',exact:true}).click();await login(replay.page,profiles.wrong.email);
+  await replay.page.locator('input[aria-label="Your display name"]:visible').fill('Another person');
+  await replay.page.getByRole('button',{name:'Accept invitation and join',exact:true}).click();
+  await replay.page.getByText(/Access denied/).waitFor();
   if(errors.length)throw new Error(errors.join('; '));
   await admin.page.screenshot({path:'/tmp/wedflow-collaboration-family.png',fullPage:true});
   if(await admin.page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw new Error('Mobile overflow');
-  console.log('PASS: invite link, pending member, registration/verification guidance and reload persistence.');
-  console.log('PASS: wrong-email rejection, account switch, explicit acceptance into an existing wedding, no duplicate wedding and token cleanup.');
+  console.log('PASS: WhatsApp-only invite link without recipient email, pending member, registration/verification guidance and reload persistence.');
+  console.log('PASS: one-use link replay rejection, account switch, explicit acceptance into an existing wedding, no duplicate wedding and token cleanup.');
   console.log('PASS: viewer controls, joined/pending sections, revocation, mobile layout and no runtime errors.');
  }finally{await browser.close();}
 })().catch(e=>{console.error('Collaboration UI acceptance failed:',e.message);process.exitCode=1;});

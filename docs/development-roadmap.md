@@ -92,3 +92,7 @@ Berry & Marigold implementation is authorized for the existing Netlify browser t
 ## November 6 — family invitation links and collaboration
 
 The approved collaboration milestone improves the existing Phase 2 membership flow. It does not authorize notifications, comments/chat, automatic invitations, a broader realtime service or changes to personal/family privacy. Physical native-link acceptance and a new APK remain separate checks.
+
+## November 6 — WhatsApp-only invitations (prepared, not deployed)
+
+WhatsApp-only invitation UI and backend migration are prepared in a separate feature branch. This is manual user-initiated sharing through WhatsApp, not the future automated WhatsApp/provider messaging phase. Publish only after the tested schema is applied with a valid management credential; retain the functioning main branch while blocked.

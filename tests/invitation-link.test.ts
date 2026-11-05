@@ -1,4 +1,4 @@
-import { clearInvitation, invitationLink, pendingInvitation, rememberInvitation, tokenFromInvitationUrl } from '../src/wedding/invitation-link';
+import { clearInvitation, invitationLink, pendingInvitation, rememberInvitation, tokenFromInvitationUrl, whatsappInvitationUrl } from '../src/wedding/invitation-link';
 import { authStorage } from '../src/lib/auth-storage';
 jest.mock('../src/lib/auth-storage',()=>({authStorage:{getItem:jest.fn(),setItem:jest.fn(),removeItem:jest.fn()}}));
 const token='a'.repeat(64);
@@ -25,4 +25,13 @@ test.each(['{bad',JSON.stringify({token,expires:0}),JSON.stringify({token:'bad',
 test('failed persistence remains an error rather than silently losing the invitation',async()=>{
  jest.mocked(authStorage.setItem).mockRejectedValue(new Error('storage denied'));
  await expect(rememberInvitation(token)).rejects.toThrow('storage denied');
+});
+
+test('WhatsApp compose uses wa.me and an encoded single-use invitation, without recipient email',()=>{
+ const link=new URL(whatsappInvitationUrl(token));
+ expect(link.origin).toBe('https://wa.me');
+ expect(link.searchParams.get('text')).toContain(invitationLink(token));
+ expect(link.searchParams.get('text')).toContain('one person');
+ expect(link.searchParams.has('phone')).toBe(false);
+ expect(link.searchParams.get('text')).not.toContain('@');
 });

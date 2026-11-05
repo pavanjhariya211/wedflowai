@@ -321,3 +321,15 @@ with matching checksums. The collaboration browser walkthrough passed against
 those deployed assets at 390px and 1440px, with simulated Auth/data responses and
 no external messages. Real hosted multi-user acceptance remains unverified due
 to the rejected management credential; public Auth readiness passes.
+
+## November 6 — WhatsApp-only invitations (prepared, not deployed)
+
+Prepared the WhatsApp-only UI, compose helper, channel/claimant migration and SQL permission tests on feature/whatsapp-invitations. The saved management token still returns HTTP 401; deployment and hosted migration are blocked. Main remains unchanged. All migrations and existing plus WhatsApp RLS fixtures pass on an isolated PostgreSQL 17 database with synthetic Auth claims. Tests cover first claimant, replay denial, idempotent retry, expired/revoked links, viewer mutation denial, cross-family isolation, role validation, admin bootstrap and legacy regression. This is not hosted Supabase integration evidence.
+
+Validation completed: TypeScript/ESLint, 133 Jest plus 7 function tests (140 total),
+web/Android/iOS exports, all local PostgreSQL SQL/RLS fixtures, and the browser
+fixture walkthrough pass. Browser checks cover no recipient-email field, WhatsApp
+compose entry, registration continuation, explicit acceptance, one-use replay
+denial, roles and revocation. No real WhatsApp message or hosted record was sent.
+Deployment remains blocked until a valid management credential permits the
+reviewed migration to be tested/applied against the selected Supabase project.

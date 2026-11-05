@@ -204,3 +204,7 @@ Founder selected Berry & Marigold and explicitly requested live website implemen
 ## November 6 — family invitation links and collaboration
 
 Founder approved the collaboration improvements and live website update. Deliver discoverable Invite family entry, share/copy invitation links, invitation continuation through sign-in/registration/verification, explicit existing-wedding acceptance, joined/pending sections, understandable role labels and a visible My tasks shortcut. Do not add automatic email/WhatsApp sending, public wedding details, automatic acceptance, unrestricted real-time sharing or multiple task owners.
+
+## November 6 — WhatsApp-only invitations (prepared, not deployed)
+
+Founder requested WhatsApp-only invitation creation, without recipient email entry. Provide private one-person invitation links and a direct WhatsApp compose button. Each recipient signs in to an existing/new Wedflow account and explicitly accepts. Do not claim WhatsApp/phone identity verification or phone-based authentication. Make forwarding/first-acceptance semantics and any admin grant explicit. Retain compatibility for existing email-bound links.

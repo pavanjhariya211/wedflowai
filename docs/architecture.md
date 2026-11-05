@@ -197,3 +197,7 @@ Shared tokens and UI primitives apply Berry & Marigold across Auth and domain sc
 ## November 6 — family invitation links and collaboration
 
 A public /join route retains a validated fragment token in the platform auth-storage adapter for up to 24 hours, resumes through the root auth redirect, gives password recovery priority and requires explicit acceptance. The existing wf_accept_invite RPC controls email, expiry, role and membership. After acceptance the returned wedding ID selects the existing workspace; transient selection parameters are cleared. A public link exposes no wedding/member metadata before acceptance. Invitation state is cleared only on acceptance or explicit cancellation. Storage errors are visible rather than silently ignored.
+
+## November 6 — WhatsApp-only invitations (prepared, not deployed)
+
+The WhatsApp branch adds wf_invite_whatsapp, nullable recipient email with a channel/recipient constraint, and accepted_by for atomic one-person consumption. Workspace/row locking preserves concurrent acceptance safety and authorization. Legacy email-bound links keep their restrictions. The user explicitly opens WhatsApp compose; no messages are sent automatically. Branch UI requires the new schema; do not publish before migration application.
